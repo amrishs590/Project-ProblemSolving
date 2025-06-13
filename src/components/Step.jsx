@@ -11,40 +11,25 @@ const Steps = () => {
   };
 
   return (
-    <div style={{ padding: "30px" }}>
+    <div className="step-container">
       <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
         Problem Solving Steps
       </h1>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: "20px",
-        }}
-      >
+      <div className="step-grid">
         {steps.map((step, index) => (
-          <div
-            key={index}
-            style={{
-              backgroundColor: "#f9f9f9",
-              borderRadius: "10px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-              padding: "20px",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-            }}
-            onClick={() => toggleStep(index)}
-          >
-            <h2>{step.stepTitle}</h2>
+          <div key={index} className="step">
+            <div className="step-header" onClick={() => toggleStep(index)}>
+              <h2>{step.stepTitle}</h2>
+            </div>
 
             {openStepIndex === index && (
-              <div style={{ marginTop: "15px" }}>
+              <div className="step-body">
                 {Object.entries(step.sections).map(
                   ([sectionTitle, questions], sectionIndex) => (
-                    <div key={sectionIndex} style={{ marginBottom: "10px" }}>
+                    <div key={sectionIndex}>
                       <h4>{sectionTitle}</h4>
-                      <ul style={{ paddingLeft: "20px" }}>
+                      <ul>
                         {questions.map((q) => (
                           <li key={q.id}>
                             <Link to={`/question/${q.id}`}>{q.title}</Link>
