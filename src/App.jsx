@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Step />} />
-        <Route path="/question/:questionTitle" element={<QuestionPage />} />
+        <Route path="/question/:id" element={<QuestionPage />} />
       </Routes>
     </Router>
   );
