@@ -1,151 +1,165 @@
 /* General Layout */
+.Holder {
+    width: 100%;
+}
+
 #home {
     height: 700px;
 }
+
 .section {
-  padding: 80px 20px;
-  width: 100%;
-  box-sizing: border-box;
+    padding: 80px 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Hero Section */
 .hero {
-  background-color: #f8fafc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: #f8fafc;
+    /* background-color: lightcoral; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  max-width: 1200px;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 @media (min-width: 768px) {
-  .hero-content {
-    flex-direction: row;
-  }
+    .hero-content {
+        flex-direction: row;
+    }
 }
 
 .hero-left {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .hero-animation {
-  width: 350px;
-  max-width: 100%;
+    width: 350px;
+    max-width: 100%;
 }
 
 .hero-right {
-  flex: 1;
-  text-align: center;
+    flex: 1;
+    text-align: center;
 }
 
 @media (min-width: 768px) {
-  .hero-right {
-    text-align: left;
-  }
+    .hero-right {
+        text-align: left;
+    }
 }
 
 .hero-right h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #1e293b;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #1e293b;
 }
 
 .hero-right p {
-  font-size: 1.2rem;
-  color: #475569;
+    font-size: 1.2rem;
+    color: #475569;
 }
 
-/* Learn Section */
-.learn {
-  background-color: #ffffff;
+/* Learn Section
+/* #learn {
+    background-color: lightsalmon;
+} */
+*/ .learn {
+    background-color: #ffffff;
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #1e293b;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #1e293b;
 }
 
 /* Contact Section */
+
+/* #contact {
+    background-color: lightgreen;
+} */
 .contact {
-  background-color: #f1f5f9;
+    /* background-color: #f1f5f9;  */
+    padding-left: 100px;
 }
 
 .contact-heading {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #1e293b;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #1e293b;
 }
 
 .contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .contact-form label {
-  font-weight: 600;
-  margin-bottom: 6px;
-  display: block;
-  color: #334155;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+    color: #334155;
 }
 
 .contact-form input,
 .contact-form textarea {
-  width: 100%;
-  padding: 10px 14px;
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  outline: none;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: #3b82f6;
+    border-color: #3b82f6;
 }
 
 .contact-form button {
-  background-color: #2563eb;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    background-color: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .contact-form button:hover {
-  background-color: #1d4ed8;
+    background-color: #1d4ed8;
 }
 
 .success-message {
-  background-color: #d1fae5;
-  color: #065f46;
-  padding: 12px;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 500;
-  margin-bottom: 20px;
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
 }
