@@ -12,7 +12,7 @@ const Steps = () => {
 
   return (
     <div className="step-container">
-      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+      <h1 style={{ textAlign: "center", marginBottom: "20px", marginTop:"0px"}}>
         Problem Solving Steps
       </h1>
 
