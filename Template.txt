@@ -1,0 +1,159 @@
+Step 1: Arrays
+    Lec 1 : Easy
+        Largest Element in an Array
+        Second Largest Element in an Array without Sorting
+        Check if the Array is Sorted
+        Remove Duplicates from Sorted Array
+        Left Rotate an Array by D Places
+        Move Zeros to End
+        Linear Search
+        Find the Union
+        Find Missing Number in an Array
+        Maximum Consecutive Ones
+        Find the Number that Appears Once, and Others Twice
+        Longest Subarray with Sum K (Positives + Negatives)
+
+    Lec 2 : Medium
+        2Sum Problem
+        Sort an Array of 0's, 1's, and 2's
+        Majority Element (> n/2 times)
+        Kadane's Algorithm – Maximum Subarray Sum
+        Print Subarray with Maximum Subarray Sum
+        Stock Buy and Sell
+        Rearrange the Array in Alternating Positive and Negative Items
+        Next Permutation
+        Leaders in an Array
+        Longest Consecutive Sequence in an Array
+        Set Matrix Zeros
+        Rotate Matrix by 90 Degrees
+        Print the Matrix in Spiral Manner
+        Count Subarrays with Given Sum
+    Lec 3 : Hard
+        Pascal's Triangle
+        Majority Element (> n/3 times)
+        3-Sum Problem
+        4-Sum Problem
+        Largest Subarray with 0 Sum
+        Count Number of Subarrays with Given XOR K
+        Merge Overlapping Subintervals
+        Merge Two Sorted Arrays Without Extra Space
+        Find the Repeating and Missing Number
+        Count Inversions
+        Reverse Pairs
+        Maximum Product Subarray
+
+Step 2: Binary search 
+	Lec 1 : BS on 1D Arrays 
+		Binary Search to Find X in Sorted Array
+        Implement Lower Bound
+        Implement Upper Bound
+        Search Insert Position
+        Floor/Ceil in Sorted Array
+        Find the First or Last Occurrence of a Given Number in a Sorted Array
+        Count Occurrences of a Number in a Sorted Array with Duplicates
+        Search in Rotated Sorted Array I
+        Search in Rotated Sorted Array II
+        Find Minimum in Rotated Sorted Array
+        Find Out How Many Times an Array Has Been Rotated
+        Single Element in a Sorted Array
+        Find Peak Element
+	Lec 2 : BS on Anwers
+        Find Square Root of a Number in Log N
+        Find the Nth Root of a Number Using Binary Search
+        Koko Eating Bananas
+        Minimum Days to Make M Bouquets
+        Find the Smallest Divisor
+        Capacity to Ship Packages Within D Days
+        Kth Missing Positive Number
+        Aggressive Cows
+        Book Allocation Problem
+        Split Array - Largest Sum
+        Painter's Partition
+        Minimize Max Distance to Gas Station
+        Median of Two Sorted Arrays
+        Kth Element of Two Sorted Arrays
+	Lec 3 : BS on 2D Arrays
+        Find the row with maximum number of 1's
+        Search in a 2D matrix
+        Search in a row and column wise sorted matrix
+        Find Peak Element (2D Matrix)
+        Matrix Median
+
+Step 3 : Linked List
+    Lec 1 : Learn Singly Linked List
+        Introduction to LinkedList, learn about struct, and how is node represented
+        Inserting a node in LinkedList
+        Deleting a node in LinkedList
+        Find the length of the linkedlist [learn traversal]
+        Search an element in the LL
+    Lec 2 : Learn Doubly Linked List
+        Introduction to DLL, learn about struct, and how is node represented
+        Insert a node in DLL
+        Delete a node in DLL
+        Middle of a LinkedList [TortoiseHare Method]
+        Reverse a LinkedList [Iterative]
+    Lec 3 : Medium Problems on Singly LinkedList
+        Middle of a Linked List [Tortoise-Hare Method]
+        Reverse a Linked List [Iterative]
+        Reverse a Linked List [Recursive]
+        Detect a Loop in Linked List
+        Find the Starting Point of the Loop in Linked List
+        Length of Loop in Linked List
+        Check if Linked List is a Palindrome
+        Segregate Odd and Even Nodes in Linked List
+        Remove Nth Node from the Back of the Linked List
+        Delete the Middle Node of Linked List
+        Sort Linked List
+        Sort a Linked List of 0's, 1's, and 2's by Changing Links
+        Find the Intersection Point of Y Linked Lists
+        Add 1 to a Number Represented by Linked List
+        Add 2 Numbers Represented by Linked Lists
+    Lec 4 : Medium Problems on Doubly LinkedList
+        Delete All Occurrences of a Key in Doubly Linked List
+        Find Pairs with Given Sum in Doubly Linked List
+        Remove Duplicates from Sorted Doubly Linked List
+    Lec 5 : Hard Problem
+        Reverse Linked List in Group of Given Size K
+        Rotate a Linked List
+        Flattening of a Linked List
+        Clone a Linked List with Random and Next Pointer
+    
+Step 4 : Sliding Window
+    Lec 1 : Medium Problem
+        Longest Substring Without Repeating Characters
+        Max Consecutive Ones III
+        Fruit Into Baskets
+        Longest Repeating Character Replacement
+        Binary Subarray With Sum
+        Count Number of Nice Subarrays
+        Number of Substrings Containing All Three Characters
+        Maximum Points You Can Obtain from Cards
+    Lec 2 : Hard Problem 
+        Longest Substring with At Most K Distinct Characters
+        Subarray with K Different Integers
+        Minimum Window Substring
+        Minimum Window Subsequence
+
+Step 5 : Greedy Algorithm
+    Lec 1 : Medium Problem
+        Assign Cookies
+        Fractional Knapsack Problem
+        Greedy Algorithm to Find Minimum Number of Coins
+        Lemonade Change
+        Valid Parenthesis Checker
+    Lec 2 : Hard Problem
+        N Meetings in One Room
+        Jump Game
+        Jump Game II
+        Minimum Number of Platforms Required for a Railway
+        Job Sequencing Problem
+        Candy
+        Program for Shortest Job First (SJF) CPU Scheduling
+        Program for Least Recently Used (LRU) Page Replacement Algorithm
+        Insert Interval
+        Merge Intervals
+        Non-overlapping Intervals
+
+
+
+
