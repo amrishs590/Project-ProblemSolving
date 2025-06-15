@@ -90,7 +90,7 @@
 
 /* Contact Section */
 
-/* .contact-wrapper {
+.contact-wrapper {
   padding: 60px 20px;
   background-color: #f9f9f9;
 }
@@ -178,8 +178,8 @@
   border-radius: 6px;
   margin-bottom: 20px;
   font-weight: bold;
-} */
-
+}
+/* 
 .contact-wrapper {
   padding: 60px 30px;
   background-color: #f9f9f9;
@@ -278,4 +278,4 @@
   margin-bottom: 15px;
   color: green;
   font-weight: 600;
-}
+} */
