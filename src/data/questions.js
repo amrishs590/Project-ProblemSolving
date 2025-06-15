@@ -2068,6 +2068,1106 @@ def merge(l1, l2):
       ],
     },
   },
+  {
+    stepTitle: "Step 5: Greedy Algorithm",
+    sections: {
+      "Lec 1: Medium Problem": [
+        {
+          id: "assign-cookies",
+          title: "Assign Cookies",
+          content:
+            "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
+          solution: `def findContentChildren(g, s):
+  g.sort()
+  s.sort()
+  i = j = 0
+  while i < len(g) and j < len(s):
+    if s[j] >= g[i]:
+      i += 1
+    j += 1
+  return i`,
+        },
+        {
+          id: "fractional-knapsack",
+          title: "Fractional Knapsack Problem",
+          content:
+            "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
+          solution: `def fractionalKnapsack(W, items):
+  items.sort(key=lambda x: x[1]/x[0], reverse=True)
+  total = 0
+  for wt, val in items:
+    if W >= wt:
+      W -= wt
+      total += val
+    else:
+      total += val * (W / wt)
+      break
+  return total`,
+        },
+        {
+          id: "minimum-coins",
+          title: "Greedy Algorithm to Find Minimum Number of Coins",
+          content:
+            "Given a value V and coin denominations, return the minimum number of coins needed.",
+          solution: `def minCoins(coins, V):
+  coins.sort(reverse=True)
+  count = 0
+  for coin in coins:
+    if V == 0:
+      break
+    if coin <= V:
+      count += V // coin
+      V %= coin
+  return count`,
+        },
+        {
+          id: "lemonade-change",
+          title: "Lemonade Change",
+          content:
+            "Customers are buying lemonade for $5. Determine if you can provide correct change.",
+          solution: `def lemonadeChange(bills):
+  five = ten = 0
+  for bill in bills:
+    if bill == 5:
+      five += 1
+    elif bill == 10:
+      if five == 0:
+        return False
+      five -= 1
+      ten += 1
+    else:
+      if ten > 0 and five > 0:
+        ten -= 1
+        five -= 1
+      elif five >= 3:
+        five -= 3
+      else:
+        return False
+  return True`,
+        },
+        {
+          id: "valid-parenthesis-checker",
+          title: "Valid Parenthesis Checker",
+          content:
+            "Given a string with parentheses, check if it's valid and balanced.",
+          solution: `def isValid(s):
+  stack = []
+  mapping = {')': '(', ']': '[', '}': '{'}
+  for char in s:
+    if char in mapping:
+      top = stack.pop() if stack else '#'
+      if mapping[char] != top:
+        return False
+    else:
+      stack.append(char)
+  return not stack`,
+        },
+      ],
+      "Lec 2: Hard Problem": [
+        {
+          id: "n-meetings-in-one-room",
+          title: "N Meetings in One Room",
+          content:
+            "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
+          solution: `def maxMeetings(start, end, n):
+  meetings = sorted(zip(start, end), key=lambda x: x[1])
+  count = 1
+  end_time = meetings[0][1]
+  for i in range(1, n):
+    if meetings[i][0] > end_time:
+      count += 1
+      end_time = meetings[i][1]
+  return count`,
+        },
+        {
+          id: "jump-game",
+          title: "Jump Game",
+          content:
+            "Given an array where each element represents jump length, check if you can reach the end.",
+          solution: `def canJump(nums):
+  reach = 0
+  for i in range(len(nums)):
+    if i > reach:
+      return False
+    reach = max(reach, i + nums[i])
+  return True`,
+        },
+        {
+          id: "jump-game-2",
+          title: "Jump Game 2",
+          content:
+            "Return the minimum number of jumps needed to reach the last index.",
+          solution: `def jump(nums):
+  jumps = cur_end = cur_farthest = 0
+  for i in range(len(nums) - 1):
+    cur_farthest = max(cur_farthest, i + nums[i])
+    if i == cur_end:
+      jumps += 1
+      cur_end = cur_farthest
+  return jumps`,
+        },
+        {
+          id: "min-platforms",
+          title: "Minimum Number of Platforms Required for a Railway",
+          content:
+            "Given arrival and departure times, find the minimum number of platforms needed.",
+          solution: `def findPlatform(arr, dep, n):
+  arr.sort()
+  dep.sort()
+  plat_needed = result = 0
+  i = j = 0
+  while i < n and j < n:
+    if arr[i] <= dep[j]:
+      plat_needed += 1
+      i += 1
+    else:
+      plat_needed -= 1
+      j += 1
+    result = max(result, plat_needed)
+  return result`,
+        },
+        {
+          id: "job-sequencing",
+          title: "Job Sequencing Problem",
+          content:
+            "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
+          solution: `def jobScheduling(jobs, n):
+  jobs.sort(key=lambda x: x[2], reverse=True)
+  max_deadline = max(job[1] for job in jobs)
+  slots = [-1] * (max_deadline + 1)
+  count = profit = 0
+  for job in jobs:
+    for j in range(job[1], 0, -1):
+      if slots[j] == -1:
+        slots[j] = job[0]
+        count += 1
+        profit += job[2]
+        break
+  return count, profit`,
+        },
+        {
+          id: "candy",
+          title: "Candy",
+          content:
+            "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
+          solution: `def candy(ratings):
+  n = len(ratings)
+  candies = [1] * n
+  for i in range(1, n):
+    if ratings[i] > ratings[i - 1]:
+      candies[i] = candies[i - 1] + 1
+  for i in range(n - 2, -1, -1):
+    if ratings[i] > ratings[i + 1]:
+      candies[i] = max(candies[i], candies[i + 1] + 1)
+  return sum(candies)`,
+        },
+        {
+          id: "insert-interval",
+          title: "Insert Interval",
+          content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
+          solution: `def insert(intervals, new_interval):
+    res = []
+    for i in range(len(intervals)):
+        if new_interval[1] < intervals[i][0]:
+            res.append(new_interval)
+            return res + intervals[i:]
+        elif new_interval[0] > intervals[i][1]:
+            res.append(intervals[i])
+        else:
+            new_interval[0] = min(new_interval[0], intervals[i][0])
+            new_interval[1] = max(new_interval[1], intervals[i][1])
+    res.append(new_interval)
+    return res`,
+        },
+        {
+          id: "merge-intervals",
+          title: "Merge Intervals",
+          content: `Given a collection of intervals, merge all overlapping intervals.`,
+          solution: `def merge(intervals):
+    intervals.sort(key=lambda x: x[0])
+    merged = []
+    for interval in intervals:
+        if not merged or merged[-1][1] < interval[0]:
+            merged.append(interval)
+        else:
+            merged[-1][1] = max(merged[-1][1], interval[1])
+    return merged`,
+        },
+        {
+          id: "non-overlapping-intervals",
+          title: "Non-overlapping Intervals",
+          content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
+          solution: `def erase_overlap_intervals(intervals):
+    intervals.sort(key=lambda x: x[1])
+    end = float('-inf')
+    count = 0
+    for interval in intervals:
+        if interval[0] >= end:
+            end = interval[1]
+        else:
+            count += 1
+    return count`,
+        },
+        {
+          id: "sjf-scheduling",
+          title: "Shortest Job First (SJF) Scheduling",
+          content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
+          solution: `def sjf_scheduling(burst_times):
+    burst_times.sort()
+    wait_time = 0
+    total_wait = 0
+    for i in range(1, len(burst_times)):
+        wait_time += burst_times[i - 1]
+        total_wait += wait_time
+    avg_wait = total_wait / len(burst_times)
+    return avg_wait`,
+        },
+        {
+          id: "lru-page-replacement",
+          title: "Least Recently Used (LRU) Page Replacement",
+          content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
+          solution: `def lru(pages, capacity):
+    from collections import OrderedDict
+    cache = OrderedDict()
+    page_faults = 0
+    for page in pages:
+        if page not in cache:
+            page_faults += 1
+            if len(cache) == capacity:
+                cache.popitem(last=False)
+        else:
+            cache.move_to_end(page)
+        cache[page] = True
+    return page_faults`,
+        },
+      ],
+    },
+  },
+  {
+    stepTitle: "Step 5: Greedy Algorithm",
+    sections: {
+      "Lec 1: Medium Problem": [
+        {
+          id: "assign-cookies",
+          title: "Assign Cookies",
+          content:
+            "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
+          solution: `def findContentChildren(g, s):
+  g.sort()
+  s.sort()
+  i = j = 0
+  while i < len(g) and j < len(s):
+    if s[j] >= g[i]:
+      i += 1
+    j += 1
+  return i`,
+        },
+        {
+          id: "fractional-knapsack",
+          title: "Fractional Knapsack Problem",
+          content:
+            "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
+          solution: `def fractionalKnapsack(W, items):
+  items.sort(key=lambda x: x[1]/x[0], reverse=True)
+  total = 0
+  for wt, val in items:
+    if W >= wt:
+      W -= wt
+      total += val
+    else:
+      total += val * (W / wt)
+      break
+  return total`,
+        },
+        {
+          id: "minimum-coins",
+          title: "Greedy Algorithm to Find Minimum Number of Coins",
+          content:
+            "Given a value V and coin denominations, return the minimum number of coins needed.",
+          solution: `def minCoins(coins, V):
+  coins.sort(reverse=True)
+  count = 0
+  for coin in coins:
+    if V == 0:
+      break
+    if coin <= V:
+      count += V // coin
+      V %= coin
+  return count`,
+        },
+        {
+          id: "lemonade-change",
+          title: "Lemonade Change",
+          content:
+            "Customers are buying lemonade for $5. Determine if you can provide correct change.",
+          solution: `def lemonadeChange(bills):
+  five = ten = 0
+  for bill in bills:
+    if bill == 5:
+      five += 1
+    elif bill == 10:
+      if five == 0:
+        return False
+      five -= 1
+      ten += 1
+    else:
+      if ten > 0 and five > 0:
+        ten -= 1
+        five -= 1
+      elif five >= 3:
+        five -= 3
+      else:
+        return False
+  return True`,
+        },
+        {
+          id: "valid-parenthesis-checker",
+          title: "Valid Parenthesis Checker",
+          content:
+            "Given a string with parentheses, check if it's valid and balanced.",
+          solution: `def isValid(s):
+  stack = []
+  mapping = {')': '(', ']': '[', '}': '{'}
+  for char in s:
+    if char in mapping:
+      top = stack.pop() if stack else '#'
+      if mapping[char] != top:
+        return False
+    else:
+      stack.append(char)
+  return not stack`,
+        },
+      ],
+      "Lec 2: Hard Problem": [
+        {
+          id: "n-meetings-in-one-room",
+          title: "N Meetings in One Room",
+          content:
+            "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
+          solution: `def maxMeetings(start, end, n):
+  meetings = sorted(zip(start, end), key=lambda x: x[1])
+  count = 1
+  end_time = meetings[0][1]
+  for i in range(1, n):
+    if meetings[i][0] > end_time:
+      count += 1
+      end_time = meetings[i][1]
+  return count`,
+        },
+        {
+          id: "jump-game",
+          title: "Jump Game",
+          content:
+            "Given an array where each element represents jump length, check if you can reach the end.",
+          solution: `def canJump(nums):
+  reach = 0
+  for i in range(len(nums)):
+    if i > reach:
+      return False
+    reach = max(reach, i + nums[i])
+  return True`,
+        },
+        {
+          id: "jump-game-2",
+          title: "Jump Game 2",
+          content:
+            "Return the minimum number of jumps needed to reach the last index.",
+          solution: `def jump(nums):
+  jumps = cur_end = cur_farthest = 0
+  for i in range(len(nums) - 1):
+    cur_farthest = max(cur_farthest, i + nums[i])
+    if i == cur_end:
+      jumps += 1
+      cur_end = cur_farthest
+  return jumps`,
+        },
+        {
+          id: "min-platforms",
+          title: "Minimum Number of Platforms Required for a Railway",
+          content:
+            "Given arrival and departure times, find the minimum number of platforms needed.",
+          solution: `def findPlatform(arr, dep, n):
+  arr.sort()
+  dep.sort()
+  plat_needed = result = 0
+  i = j = 0
+  while i < n and j < n:
+    if arr[i] <= dep[j]:
+      plat_needed += 1
+      i += 1
+    else:
+      plat_needed -= 1
+      j += 1
+    result = max(result, plat_needed)
+  return result`,
+        },
+        {
+          id: "job-sequencing",
+          title: "Job Sequencing Problem",
+          content:
+            "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
+          solution: `def jobScheduling(jobs, n):
+  jobs.sort(key=lambda x: x[2], reverse=True)
+  max_deadline = max(job[1] for job in jobs)
+  slots = [-1] * (max_deadline + 1)
+  count = profit = 0
+  for job in jobs:
+    for j in range(job[1], 0, -1):
+      if slots[j] == -1:
+        slots[j] = job[0]
+        count += 1
+        profit += job[2]
+        break
+  return count, profit`,
+        },
+        {
+          id: "candy",
+          title: "Candy",
+          content:
+            "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
+          solution: `def candy(ratings):
+  n = len(ratings)
+  candies = [1] * n
+  for i in range(1, n):
+    if ratings[i] > ratings[i - 1]:
+      candies[i] = candies[i - 1] + 1
+  for i in range(n - 2, -1, -1):
+    if ratings[i] > ratings[i + 1]:
+      candies[i] = max(candies[i], candies[i + 1] + 1)
+  return sum(candies)`,
+        },
+        {
+          id: "insert-interval",
+          title: "Insert Interval",
+          content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
+          solution: `def insert(intervals, new_interval):
+    res = []
+    for i in range(len(intervals)):
+        if new_interval[1] < intervals[i][0]:
+            res.append(new_interval)
+            return res + intervals[i:]
+        elif new_interval[0] > intervals[i][1]:
+            res.append(intervals[i])
+        else:
+            new_interval[0] = min(new_interval[0], intervals[i][0])
+            new_interval[1] = max(new_interval[1], intervals[i][1])
+    res.append(new_interval)
+    return res`,
+        },
+        {
+          id: "merge-intervals",
+          title: "Merge Intervals",
+          content: `Given a collection of intervals, merge all overlapping intervals.`,
+          solution: `def merge(intervals):
+    intervals.sort(key=lambda x: x[0])
+    merged = []
+    for interval in intervals:
+        if not merged or merged[-1][1] < interval[0]:
+            merged.append(interval)
+        else:
+            merged[-1][1] = max(merged[-1][1], interval[1])
+    return merged`,
+        },
+        {
+          id: "non-overlapping-intervals",
+          title: "Non-overlapping Intervals",
+          content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
+          solution: `def erase_overlap_intervals(intervals):
+    intervals.sort(key=lambda x: x[1])
+    end = float('-inf')
+    count = 0
+    for interval in intervals:
+        if interval[0] >= end:
+            end = interval[1]
+        else:
+            count += 1
+    return count`,
+        },
+        {
+          id: "sjf-scheduling",
+          title: "Shortest Job First (SJF) Scheduling",
+          content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
+          solution: `def sjf_scheduling(burst_times):
+    burst_times.sort()
+    wait_time = 0
+    total_wait = 0
+    for i in range(1, len(burst_times)):
+        wait_time += burst_times[i - 1]
+        total_wait += wait_time
+    avg_wait = total_wait / len(burst_times)
+    return avg_wait`,
+        },
+        {
+          id: "lru-page-replacement",
+          title: "Least Recently Used (LRU) Page Replacement",
+          content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
+          solution: `def lru(pages, capacity):
+    from collections import OrderedDict
+    cache = OrderedDict()
+    page_faults = 0
+    for page in pages:
+        if page not in cache:
+            page_faults += 1
+            if len(cache) == capacity:
+                cache.popitem(last=False)
+        else:
+            cache.move_to_end(page)
+        cache[page] = True
+    return page_faults`,
+        },
+      ],
+    },
+  },
+  {
+    stepTitle: "Step 5: Greedy Algorithm",
+    sections: {
+      "Lec 1: Medium Problem": [
+        {
+          id: "assign-cookies",
+          title: "Assign Cookies",
+          content:
+            "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
+          solution: `def findContentChildren(g, s):
+  g.sort()
+  s.sort()
+  i = j = 0
+  while i < len(g) and j < len(s):
+    if s[j] >= g[i]:
+      i += 1
+    j += 1
+  return i`,
+        },
+        {
+          id: "fractional-knapsack",
+          title: "Fractional Knapsack Problem",
+          content:
+            "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
+          solution: `def fractionalKnapsack(W, items):
+  items.sort(key=lambda x: x[1]/x[0], reverse=True)
+  total = 0
+  for wt, val in items:
+    if W >= wt:
+      W -= wt
+      total += val
+    else:
+      total += val * (W / wt)
+      break
+  return total`,
+        },
+        {
+          id: "minimum-coins",
+          title: "Greedy Algorithm to Find Minimum Number of Coins",
+          content:
+            "Given a value V and coin denominations, return the minimum number of coins needed.",
+          solution: `def minCoins(coins, V):
+  coins.sort(reverse=True)
+  count = 0
+  for coin in coins:
+    if V == 0:
+      break
+    if coin <= V:
+      count += V // coin
+      V %= coin
+  return count`,
+        },
+        {
+          id: "lemonade-change",
+          title: "Lemonade Change",
+          content:
+            "Customers are buying lemonade for $5. Determine if you can provide correct change.",
+          solution: `def lemonadeChange(bills):
+  five = ten = 0
+  for bill in bills:
+    if bill == 5:
+      five += 1
+    elif bill == 10:
+      if five == 0:
+        return False
+      five -= 1
+      ten += 1
+    else:
+      if ten > 0 and five > 0:
+        ten -= 1
+        five -= 1
+      elif five >= 3:
+        five -= 3
+      else:
+        return False
+  return True`,
+        },
+        {
+          id: "valid-parenthesis-checker",
+          title: "Valid Parenthesis Checker",
+          content:
+            "Given a string with parentheses, check if it's valid and balanced.",
+          solution: `def isValid(s):
+  stack = []
+  mapping = {')': '(', ']': '[', '}': '{'}
+  for char in s:
+    if char in mapping:
+      top = stack.pop() if stack else '#'
+      if mapping[char] != top:
+        return False
+    else:
+      stack.append(char)
+  return not stack`,
+        },
+      ],
+      "Lec 2: Hard Problem": [
+        {
+          id: "n-meetings-in-one-room",
+          title: "N Meetings in One Room",
+          content:
+            "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
+          solution: `def maxMeetings(start, end, n):
+  meetings = sorted(zip(start, end), key=lambda x: x[1])
+  count = 1
+  end_time = meetings[0][1]
+  for i in range(1, n):
+    if meetings[i][0] > end_time:
+      count += 1
+      end_time = meetings[i][1]
+  return count`,
+        },
+        {
+          id: "jump-game",
+          title: "Jump Game",
+          content:
+            "Given an array where each element represents jump length, check if you can reach the end.",
+          solution: `def canJump(nums):
+  reach = 0
+  for i in range(len(nums)):
+    if i > reach:
+      return False
+    reach = max(reach, i + nums[i])
+  return True`,
+        },
+        {
+          id: "jump-game-2",
+          title: "Jump Game 2",
+          content:
+            "Return the minimum number of jumps needed to reach the last index.",
+          solution: `def jump(nums):
+  jumps = cur_end = cur_farthest = 0
+  for i in range(len(nums) - 1):
+    cur_farthest = max(cur_farthest, i + nums[i])
+    if i == cur_end:
+      jumps += 1
+      cur_end = cur_farthest
+  return jumps`,
+        },
+        {
+          id: "min-platforms",
+          title: "Minimum Number of Platforms Required for a Railway",
+          content:
+            "Given arrival and departure times, find the minimum number of platforms needed.",
+          solution: `def findPlatform(arr, dep, n):
+  arr.sort()
+  dep.sort()
+  plat_needed = result = 0
+  i = j = 0
+  while i < n and j < n:
+    if arr[i] <= dep[j]:
+      plat_needed += 1
+      i += 1
+    else:
+      plat_needed -= 1
+      j += 1
+    result = max(result, plat_needed)
+  return result`,
+        },
+        {
+          id: "job-sequencing",
+          title: "Job Sequencing Problem",
+          content:
+            "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
+          solution: `def jobScheduling(jobs, n):
+  jobs.sort(key=lambda x: x[2], reverse=True)
+  max_deadline = max(job[1] for job in jobs)
+  slots = [-1] * (max_deadline + 1)
+  count = profit = 0
+  for job in jobs:
+    for j in range(job[1], 0, -1):
+      if slots[j] == -1:
+        slots[j] = job[0]
+        count += 1
+        profit += job[2]
+        break
+  return count, profit`,
+        },
+        {
+          id: "candy",
+          title: "Candy",
+          content:
+            "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
+          solution: `def candy(ratings):
+  n = len(ratings)
+  candies = [1] * n
+  for i in range(1, n):
+    if ratings[i] > ratings[i - 1]:
+      candies[i] = candies[i - 1] + 1
+  for i in range(n - 2, -1, -1):
+    if ratings[i] > ratings[i + 1]:
+      candies[i] = max(candies[i], candies[i + 1] + 1)
+  return sum(candies)`,
+        },
+        {
+          id: "insert-interval",
+          title: "Insert Interval",
+          content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
+          solution: `def insert(intervals, new_interval):
+    res = []
+    for i in range(len(intervals)):
+        if new_interval[1] < intervals[i][0]:
+            res.append(new_interval)
+            return res + intervals[i:]
+        elif new_interval[0] > intervals[i][1]:
+            res.append(intervals[i])
+        else:
+            new_interval[0] = min(new_interval[0], intervals[i][0])
+            new_interval[1] = max(new_interval[1], intervals[i][1])
+    res.append(new_interval)
+    return res`,
+        },
+        {
+          id: "merge-intervals",
+          title: "Merge Intervals",
+          content: `Given a collection of intervals, merge all overlapping intervals.`,
+          solution: `def merge(intervals):
+    intervals.sort(key=lambda x: x[0])
+    merged = []
+    for interval in intervals:
+        if not merged or merged[-1][1] < interval[0]:
+            merged.append(interval)
+        else:
+            merged[-1][1] = max(merged[-1][1], interval[1])
+    return merged`,
+        },
+        {
+          id: "non-overlapping-intervals",
+          title: "Non-overlapping Intervals",
+          content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
+          solution: `def erase_overlap_intervals(intervals):
+    intervals.sort(key=lambda x: x[1])
+    end = float('-inf')
+    count = 0
+    for interval in intervals:
+        if interval[0] >= end:
+            end = interval[1]
+        else:
+            count += 1
+    return count`,
+        },
+        {
+          id: "sjf-scheduling",
+          title: "Shortest Job First (SJF) Scheduling",
+          content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
+          solution: `def sjf_scheduling(burst_times):
+    burst_times.sort()
+    wait_time = 0
+    total_wait = 0
+    for i in range(1, len(burst_times)):
+        wait_time += burst_times[i - 1]
+        total_wait += wait_time
+    avg_wait = total_wait / len(burst_times)
+    return avg_wait`,
+        },
+        {
+          id: "lru-page-replacement",
+          title: "Least Recently Used (LRU) Page Replacement",
+          content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
+          solution: `def lru(pages, capacity):
+    from collections import OrderedDict
+    cache = OrderedDict()
+    page_faults = 0
+    for page in pages:
+        if page not in cache:
+            page_faults += 1
+            if len(cache) == capacity:
+                cache.popitem(last=False)
+        else:
+            cache.move_to_end(page)
+        cache[page] = True
+    return page_faults`,
+        },
+      ],
+    },
+  },
+  {
+    stepTitle: "Step 5: Greedy Algorithm",
+    sections: {
+      "Lec 1: Medium Problem": [
+        {
+          id: "assign-cookies",
+          title: "Assign Cookies",
+          content:
+            "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
+          solution: `def findContentChildren(g, s):
+  g.sort()
+  s.sort()
+  i = j = 0
+  while i < len(g) and j < len(s):
+    if s[j] >= g[i]:
+      i += 1
+    j += 1
+  return i`,
+        },
+        {
+          id: "fractional-knapsack",
+          title: "Fractional Knapsack Problem",
+          content:
+            "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
+          solution: `def fractionalKnapsack(W, items):
+  items.sort(key=lambda x: x[1]/x[0], reverse=True)
+  total = 0
+  for wt, val in items:
+    if W >= wt:
+      W -= wt
+      total += val
+    else:
+      total += val * (W / wt)
+      break
+  return total`,
+        },
+        {
+          id: "minimum-coins",
+          title: "Greedy Algorithm to Find Minimum Number of Coins",
+          content:
+            "Given a value V and coin denominations, return the minimum number of coins needed.",
+          solution: `def minCoins(coins, V):
+  coins.sort(reverse=True)
+  count = 0
+  for coin in coins:
+    if V == 0:
+      break
+    if coin <= V:
+      count += V // coin
+      V %= coin
+  return count`,
+        },
+        {
+          id: "lemonade-change",
+          title: "Lemonade Change",
+          content:
+            "Customers are buying lemonade for $5. Determine if you can provide correct change.",
+          solution: `def lemonadeChange(bills):
+  five = ten = 0
+  for bill in bills:
+    if bill == 5:
+      five += 1
+    elif bill == 10:
+      if five == 0:
+        return False
+      five -= 1
+      ten += 1
+    else:
+      if ten > 0 and five > 0:
+        ten -= 1
+        five -= 1
+      elif five >= 3:
+        five -= 3
+      else:
+        return False
+  return True`,
+        },
+        {
+          id: "valid-parenthesis-checker",
+          title: "Valid Parenthesis Checker",
+          content:
+            "Given a string with parentheses, check if it's valid and balanced.",
+          solution: `def isValid(s):
+  stack = []
+  mapping = {')': '(', ']': '[', '}': '{'}
+  for char in s:
+    if char in mapping:
+      top = stack.pop() if stack else '#'
+      if mapping[char] != top:
+        return False
+    else:
+      stack.append(char)
+  return not stack`,
+        },
+      ],
+      "Lec 2: Hard Problem": [
+        {
+          id: "n-meetings-in-one-room",
+          title: "N Meetings in One Room",
+          content:
+            "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
+          solution: `def maxMeetings(start, end, n):
+  meetings = sorted(zip(start, end), key=lambda x: x[1])
+  count = 1
+  end_time = meetings[0][1]
+  for i in range(1, n):
+    if meetings[i][0] > end_time:
+      count += 1
+      end_time = meetings[i][1]
+  return count`,
+        },
+        {
+          id: "jump-game",
+          title: "Jump Game",
+          content:
+            "Given an array where each element represents jump length, check if you can reach the end.",
+          solution: `def canJump(nums):
+  reach = 0
+  for i in range(len(nums)):
+    if i > reach:
+      return False
+    reach = max(reach, i + nums[i])
+  return True`,
+        },
+        {
+          id: "jump-game-2",
+          title: "Jump Game 2",
+          content:
+            "Return the minimum number of jumps needed to reach the last index.",
+          solution: `def jump(nums):
+  jumps = cur_end = cur_farthest = 0
+  for i in range(len(nums) - 1):
+    cur_farthest = max(cur_farthest, i + nums[i])
+    if i == cur_end:
+      jumps += 1
+      cur_end = cur_farthest
+  return jumps`,
+        },
+        {
+          id: "min-platforms",
+          title: "Minimum Number of Platforms Required for a Railway",
+          content:
+            "Given arrival and departure times, find the minimum number of platforms needed.",
+          solution: `def findPlatform(arr, dep, n):
+  arr.sort()
+  dep.sort()
+  plat_needed = result = 0
+  i = j = 0
+  while i < n and j < n:
+    if arr[i] <= dep[j]:
+      plat_needed += 1
+      i += 1
+    else:
+      plat_needed -= 1
+      j += 1
+    result = max(result, plat_needed)
+  return result`,
+        },
+        {
+          id: "job-sequencing",
+          title: "Job Sequencing Problem",
+          content:
+            "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
+          solution: `def jobScheduling(jobs, n):
+  jobs.sort(key=lambda x: x[2], reverse=True)
+  max_deadline = max(job[1] for job in jobs)
+  slots = [-1] * (max_deadline + 1)
+  count = profit = 0
+  for job in jobs:
+    for j in range(job[1], 0, -1):
+      if slots[j] == -1:
+        slots[j] = job[0]
+        count += 1
+        profit += job[2]
+        break
+  return count, profit`,
+        },
+        {
+          id: "candy",
+          title: "Candy",
+          content:
+            "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
+          solution: `def candy(ratings):
+  n = len(ratings)
+  candies = [1] * n
+  for i in range(1, n):
+    if ratings[i] > ratings[i - 1]:
+      candies[i] = candies[i - 1] + 1
+  for i in range(n - 2, -1, -1):
+    if ratings[i] > ratings[i + 1]:
+      candies[i] = max(candies[i], candies[i + 1] + 1)
+  return sum(candies)`,
+        },
+        {
+          id: "insert-interval",
+          title: "Insert Interval",
+          content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
+          solution: `def insert(intervals, new_interval):
+    res = []
+    for i in range(len(intervals)):
+        if new_interval[1] < intervals[i][0]:
+            res.append(new_interval)
+            return res + intervals[i:]
+        elif new_interval[0] > intervals[i][1]:
+            res.append(intervals[i])
+        else:
+            new_interval[0] = min(new_interval[0], intervals[i][0])
+            new_interval[1] = max(new_interval[1], intervals[i][1])
+    res.append(new_interval)
+    return res`,
+        },
+        {
+          id: "merge-intervals",
+          title: "Merge Intervals",
+          content: `Given a collection of intervals, merge all overlapping intervals.`,
+          solution: `def merge(intervals):
+    intervals.sort(key=lambda x: x[0])
+    merged = []
+    for interval in intervals:
+        if not merged or merged[-1][1] < interval[0]:
+            merged.append(interval)
+        else:
+            merged[-1][1] = max(merged[-1][1], interval[1])
+    return merged`,
+        },
+        {
+          id: "non-overlapping-intervals",
+          title: "Non-overlapping Intervals",
+          content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
+          solution: `def erase_overlap_intervals(intervals):
+    intervals.sort(key=lambda x: x[1])
+    end = float('-inf')
+    count = 0
+    for interval in intervals:
+        if interval[0] >= end:
+            end = interval[1]
+        else:
+            count += 1
+    return count`,
+        },
+        {
+          id: "sjf-scheduling",
+          title: "Shortest Job First (SJF) Scheduling",
+          content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
+          solution: `def sjf_scheduling(burst_times):
+    burst_times.sort()
+    wait_time = 0
+    total_wait = 0
+    for i in range(1, len(burst_times)):
+        wait_time += burst_times[i - 1]
+        total_wait += wait_time
+    avg_wait = total_wait / len(burst_times)
+    return avg_wait`,
+        },
+        {
+          id: "lru-page-replacement",
+          title: "Least Recently Used (LRU) Page Replacement",
+          content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
+          solution: `def lru(pages, capacity):
+    from collections import OrderedDict
+    cache = OrderedDict()
+    page_faults = 0
+    for page in pages:
+        if page not in cache:
+            page_faults += 1
+            if len(cache) == capacity:
+                cache.popitem(last=False)
+        else:
+            cache.move_to_end(page)
+        cache[page] = True
+    return page_faults`,
+        },
+      ],
+    },
+  },
 ];
 
 export default steps;
