@@ -111,3 +111,29 @@
     background-color: #c7d2fe;
     color: #000;
 }
+
+/* =================== Responsive Design =================== */
+@media (max-width: 1024px) {
+  .step-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .step h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .step-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step h2 {
+    font-size: 18px;
+  }
+
+  .step-content {
+    padding: 10px;
+  }
+}
