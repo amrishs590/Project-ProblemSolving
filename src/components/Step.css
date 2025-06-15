@@ -14,6 +14,33 @@
     transition: all 0.3s ease;
 }
 
+.step-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 20px;
+}
+
+.step.open .step-content {
+    max-height: 2000px;
+    /* Big enough for long content */
+    padding: 15px 20px;
+}
+
+/* Optional: Smooth section space handling */
+.section.learn {
+    overflow: visible;
+    margin-bottom: 150px;
+    /* Ensure space for expanded content */
+}
+
+.step-content.open {
+    max-height: 1000px;
+    /* a large enough value */
+    padding: 20px;
+}
+
+
 .step:hover {
     transform: translateY(-2px);
 }

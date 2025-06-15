@@ -5,7 +5,7 @@
 
 #home {
     height: 775px;
-    background-color: lightskyblue;
+    /* background-color: lightskyblue; */
 }
 
 .section {
@@ -74,12 +74,19 @@
 }
 
  /* Learn Section */
-#learn {
+/* #learn {
     background-color: lightsalmon;
-}
+} */
  .learn {
     background-color: #ffffff;
 }
+.section.learn {
+  padding: 40px 20px;
+  overflow: visible; /* allow it to grow */
+  position: relative;
+  z-index: 1;
+}
+
 
 .section-title {
     text-align: center;
@@ -179,103 +186,20 @@
   margin-bottom: 20px;
   font-weight: bold;
 }
-/* 
-.contact-wrapper {
-  padding: 60px 30px;
-  background-color: #f9f9f9;
+/* Apply transition effect to headings and paragraphs */
+h1, h2, h3, h4, h5, h6, p {
+  transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  will-change: transform, text-shadow;
 }
 
-.contact-header {
-  text-align: center;
-  margin-bottom: 40px;
+/* On hover: scale and glow */
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover,
+p:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 10px rgba(0, 183, 255, 0.6);
 }
-
-.contact-header h1 {
-  font-size: 36px;
-  color: #333;
-}
-
-.contact-header p {
-  font-size: 18px;
-  color: #666;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-}
-
-@media (min-width: 768px) {
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.contact-box {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.contact-box h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #222;
-}
-
-.contact-info .info-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.contact-info .icon {
-  width: 24px;
-  height: 24px;
-  color: #e11d48;
-  margin-right: 15px;
-}
-
-.label {
-  font-weight: 600;
-}
-
-.contact-form label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  font-size: 14px;
-}
-
-.contact-form button {
-  background-color: #e11d48;
-  color: #fff;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s;
-}
-
-.contact-form button:hover {
-  background-color: #be123c;
-}
-
-.success-message {
-  margin-bottom: 15px;
-  color: green;
-  font-weight: 600;
-} */
