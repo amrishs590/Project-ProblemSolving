@@ -1,7 +1,4 @@
 /* General Layout */
-.Holder {
-    width: 100%;
-}
 
 #home {
     height: 775px;
@@ -16,8 +13,8 @@
 
 /* Hero Section */
 .hero {
-    background-color: #f8fafc;
-    /* background-color: lightcoral; */
+    /* background-color: #f8fafc; */
+    background-color: lightcoral;
     display: flex;
     align-items: center;
     justify-content: center;

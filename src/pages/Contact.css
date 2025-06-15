@@ -1,26 +1,62 @@
-.contact-section {
-  padding-top: 100px;
+.contact-wrapper {
+  width: 100vw;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
   background-color: #f3f4f6;
-  padding-left: 24px;
-  padding-right: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
-.contact-heading {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 24px;
+.contact-header {
   text-align: center;
-  color: #222;
+  padding: 40px 0 20px;
 }
 
+.contact-header h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.contact-header p {
+  color: #4b5563;
+  font-size: 16px;
+}
+
+/* 🔥 Important: Full-width, no center constraint */
+.contact-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🔥 Both sides equally stretched */
+.contact-box {
+  flex: 1;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* Lottie animation */
+.contact-animation {
+  width: 100%;
+  height: auto;
+}
+
+/* Form box styling */
 .contact-form {
-  max-width: 600px;
-  margin: 0 auto;
   background-color: #fff;
   border-radius: 12px;
   padding: 30px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-form label {
@@ -61,4 +97,29 @@
 
 .contact-form button:hover {
   background-color: #1d4ed8;
+}
+
+.success-message {
+  background-color: #dcfce7;
+  color: #15803d;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* 📱 Mobile fix */
+@media (max-width: 768px) {
+  .contact-grid {
+    flex-direction: column;
+  }
+
+  .contact-box {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .contact-animation {
+    max-width: 100%;
+  }
 }
