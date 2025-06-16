@@ -73,7 +73,7 @@ const QuestionPage = () => {
             cursor: "pointer",
           }}
         >
-          ⬅️ Back
+          Back
         </button>
 
         <div
@@ -142,7 +142,7 @@ const QuestionPage = () => {
                 cursor: currentIndex === 0 ? "not-allowed" : "pointer",
               }}
             >
-              ⬅️ Previous
+              Previous
             </button>
 
             <button
@@ -163,7 +163,7 @@ const QuestionPage = () => {
                     : "pointer",
               }}
             >
-              Next ➡️
+              Next
             </button>
           </div>
         </div>
