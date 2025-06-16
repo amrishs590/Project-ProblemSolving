@@ -33,7 +33,7 @@ const QuestionPage = () => {
         paddingTop: "60px",
         paddingBottom: "60px",
         minHeight: "100vh",
-        backgroundColor: "#f9f9f9",
+        background: "#f9f9f9",
       }}
     >
       <div
@@ -46,7 +46,7 @@ const QuestionPage = () => {
         {/* Top Layer - Question */}
         <div
           style={{
-            backgroundColor: "#f1f1f1",
+            background: "#f1f1f1",
             padding: "20px",
             borderRadius: "10px 10px 0 0",
             border: "1px solid #ccc",

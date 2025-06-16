@@ -30,18 +30,27 @@ const Steps = () => {
 
   return (
     <div className="step-container">
-      <h1 style={{ textAlign: "center", marginBottom: "20px", marginTop: "50px" }}>
+      <h1
+        style={{ textAlign: "center", marginBottom: "20px", marginTop: "50px" }}
+      >
         Problem Solving Steps
       </h1>
 
       <div className="step-grid">
         {steps.map((step, index) => (
-          <div key={index} className={`step ${openStepIndex === index ? "open" : ""}`}>
+          <div
+            key={index}
+            className={`step ${openStepIndex === index ? "open" : ""}`}
+          >
             <div className="step-header" onClick={() => toggleStep(index)}>
               <h2>{step.stepTitle}</h2>
             </div>
 
-            <div className={`step-content ${openStepIndex === index ? "open" : ""}`}>
+            <div
+              className={`step-content ${
+                openStepIndex === index ? "open" : ""
+              }`}
+            >
               {openStepIndex === index && (
                 <div className="step-body">
                   {Object.entries(step.sections).map(
@@ -54,7 +63,10 @@ const Steps = () => {
                               <Link
                                 to={`/question/${q.id}`}
                                 onClick={() =>
-                                  localStorage.setItem("selectedQuestionId", q.id)
+                                  localStorage.setItem(
+                                    "selectedQuestionId",
+                                    q.id
+                                  )
                                 }
                               >
                                 {q.title}
