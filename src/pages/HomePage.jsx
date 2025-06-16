@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import codingAnimation from "../assets/coding.json";
 import "./HomePage.css";
 
 const HomePage = () => {
+  useEffect(() => {
+    localStorage.removeItem("openStepIndex");
+  }, []);
   return (
     <>
       <div className="homepage-entire-section">

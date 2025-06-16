@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import steps from "../data/questions";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const QuestionPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // 👈 Add this
 
   let question = null;
 
@@ -43,6 +44,23 @@ const QuestionPage = () => {
           margin: "0 20px",
         }}
       >
+        {/* 🔙 Back Button */}
+        <button
+          onClick={() => navigate(-1)} // 👈 Goes back to previous page
+          style={{
+            marginBottom: "20px",
+            marginTop: "20px",
+            padding: "10px 16px",
+            backgroundColor: "#2563eb",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+          }}
+        >
+          Back
+        </button>
+
         {/* Top Layer - Question */}
         <div
           style={{
@@ -88,11 +106,7 @@ const QuestionPage = () => {
           >
             Solution
           </h2>
-          <SyntaxHighlighter
-            language="javascript"
-            style={oneDark}
-            showLineNumbers
-          >
+          <SyntaxHighlighter language="python" style={oneDark} showLineNumbers>
             {question.solution}
           </SyntaxHighlighter>
         </div>

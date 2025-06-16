@@ -9,18 +9,14 @@ const Steps = () => {
 
   // ⬇️ Load openStepIndex from localStorage on mount
   useEffect(() => {
-    const savedStepIndex = localStorage.getItem("openStepIndex");
-    if (savedStepIndex !== null) {
-      setOpenStepIndex(Number(savedStepIndex));
+    const saved = localStorage.getItem("openStepIndex");
+    if (saved !== null && saved !== "") {
+      const parsed = Number(saved);
+      if (!isNaN(parsed)) {
+        setOpenStepIndex(parsed);
+      }
     }
   }, []);
-
-  // ⬇️ Clear step index when route changes to another page
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem("openStepIndex");
-    };
-  }, [location.pathname]);
 
   const toggleStep = (index) => {
     const newIndex = openStepIndex === index ? null : index;

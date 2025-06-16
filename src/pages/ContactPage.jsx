@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import contactAnimation from "../assets/contact.json";
 import "./Contact.css";
 import "./HomePage.css";
 
 const ContactPage = () => {
+  useEffect(() => {
+    localStorage.removeItem("openStepIndex");
+  }, []);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
