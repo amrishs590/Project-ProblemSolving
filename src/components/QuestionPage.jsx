@@ -5,26 +5,45 @@ import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const QuestionPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // 👈 Add this
+  const navigate = useNavigate();
 
+  const stepIndex = localStorage.getItem("openStepIndex");
+  const currentStep = steps[stepIndex];
+
+  if (!currentStep) {
+    return <div className="p-4 text-red-500">Step not found!</div>;
+  }
+
+  let currentLectureQuestions = [];
+  let currentIndex = -1;
   let question = null;
 
-  for (let step of steps) {
-    for (let section in step.sections) {
-      for (let q of step.sections[section]) {
-        if (q.id === id) {
-          question = q;
-          break;
-        }
-      }
-      if (question) break;
+  // 🔍 Loop through each lecture to find the current question and its group
+  for (let [lectureTitle, questions] of Object.entries(currentStep.sections)) {
+    const index = questions.findIndex((q) => q.id === id);
+    if (index !== -1) {
+      currentLectureQuestions = questions;
+      currentIndex = index;
+      question = questions[index];
+      break;
     }
-    if (question) break;
   }
 
   if (!question) {
     return <div className="p-4 text-red-500">Question not found!</div>;
   }
+
+  const goToPrev = () => {
+    if (currentIndex > 0) {
+      navigate(`/question/${currentLectureQuestions[currentIndex - 1].id}`);
+    }
+  };
+
+  const goToNext = () => {
+    if (currentIndex < currentLectureQuestions.length - 1) {
+      navigate(`/question/${currentLectureQuestions[currentIndex + 1].id}`);
+    }
+  };
 
   return (
     <div
@@ -37,16 +56,9 @@ const QuestionPage = () => {
         background: "#f9f9f9",
       }}
     >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "900px",
-          margin: "0 20px",
-        }}
-      >
-        {/* 🔙 Back Button */}
+      <div style={{ width: "100%", maxWidth: "900px", margin: "0 20px" }}>
         <button
-          onClick={() => navigate(-1)} // 👈 Goes back to previous page
+          onClick={() => navigate("/learn")}
           style={{
             marginBottom: "20px",
             marginTop: "20px",
@@ -58,10 +70,9 @@ const QuestionPage = () => {
             cursor: "pointer",
           }}
         >
-          Back
+          ⬅️ Back
         </button>
 
-        {/* Top Layer - Question */}
         <div
           style={{
             background: "#f1f1f1",
@@ -86,7 +97,6 @@ const QuestionPage = () => {
           </p>
         </div>
 
-        {/* Bottom Layer - Solution */}
         <div
           style={{
             backgroundColor: "#fff",
@@ -109,6 +119,50 @@ const QuestionPage = () => {
           <SyntaxHighlighter language="python" style={oneDark} showLineNumbers>
             {question.solution}
           </SyntaxHighlighter>
+
+          <div
+            style={{
+              marginTop: "30px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <button
+              onClick={goToPrev}
+              disabled={currentIndex === 0}
+              style={{
+                padding: "10px 20px",
+                backgroundColor: currentIndex === 0 ? "#ccc" : "#2563eb",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: currentIndex === 0 ? "not-allowed" : "pointer",
+              }}
+            >
+              ⬅️ Previous
+            </button>
+
+            <button
+              onClick={goToNext}
+              disabled={currentIndex === currentLectureQuestions.length - 1}
+              style={{
+                padding: "10px 20px",
+                backgroundColor:
+                  currentIndex === currentLectureQuestions.length - 1
+                    ? "#ccc"
+                    : "#2563eb",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor:
+                  currentIndex === currentLectureQuestions.length - 1
+                    ? "not-allowed"
+                    : "pointer",
+              }}
+            >
+              Next ➡️
+            </button>
+          </div>
         </div>
       </div>
     </div>
