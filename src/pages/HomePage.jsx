@@ -17,19 +17,24 @@ const HomePage = () => {
               <p>
                 Welcome to <strong>DSA Pathway</strong> — a thoughtfully
                 structured platform for learning Data Structures and Algorithms.
-                <br />
-                <br />
+              </p>
+
+              <p>
                 Whether you're a beginner or preparing for interviews, explore
                 categorized problems, intuitive learning paths, and clean
                 solutions.
-                <br />
-                <br />
+              </p>
+
+              <p>
                 Strengthen your concepts step-by-step, from Arrays to Graphs,
                 with real coding challenges.
-                <br />
+              </p>
+
+              <p>
                 Start your journey today and become confident in
                 problem-solving!
               </p>
+
               <div className="homepage-buttons">
                 <button
                   className="btn-primary"
