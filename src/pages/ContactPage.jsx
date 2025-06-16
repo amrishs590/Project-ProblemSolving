@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Lottie from "lottie-react";
 import contactAnimation from "../assets/contact.json";
+import "./Contact.css";
 import "./HomePage.css";
 
 const ContactPage = () => {

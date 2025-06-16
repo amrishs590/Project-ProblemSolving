@@ -1,38 +1,47 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Step.css";
 import steps from "../data/questions";
 
 const Steps = () => {
   const [openStepIndex, setOpenStepIndex] = useState(null);
+  const location = useLocation(); // 🔁 Detect route change
+
+  // ⬇️ Load openStepIndex from localStorage on mount
+  useEffect(() => {
+    const savedStepIndex = localStorage.getItem("openStepIndex");
+    if (savedStepIndex !== null) {
+      setOpenStepIndex(Number(savedStepIndex));
+    }
+  }, []);
+
+  // ⬇️ Clear step index when route changes to another page
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem("openStepIndex");
+    };
+  }, [location.pathname]);
 
   const toggleStep = (index) => {
-    setOpenStepIndex(openStepIndex === index ? null : index);
+    const newIndex = openStepIndex === index ? null : index;
+    setOpenStepIndex(newIndex);
+    localStorage.setItem("openStepIndex", newIndex !== null ? newIndex : "");
   };
 
   return (
     <div className="step-container">
-      <h1
-        style={{ textAlign: "center", marginBottom: "20px", marginTop: "30px" }}
-      >
+      <h1 style={{ textAlign: "center", marginBottom: "20px", marginTop: "50px" }}>
         Problem Solving Steps
       </h1>
 
       <div className="step-grid">
         {steps.map((step, index) => (
-          <div
-            key={index}
-            className={`step ${openStepIndex === index ? "open" : ""}`}
-          >
+          <div key={index} className={`step ${openStepIndex === index ? "open" : ""}`}>
             <div className="step-header" onClick={() => toggleStep(index)}>
               <h2>{step.stepTitle}</h2>
             </div>
 
-            <div
-              className={`step-content ${
-                openStepIndex === index ? "open" : ""
-              }`}
-            >
+            <div className={`step-content ${openStepIndex === index ? "open" : ""}`}>
               {openStepIndex === index && (
                 <div className="step-body">
                   {Object.entries(step.sections).map(
@@ -42,7 +51,14 @@ const Steps = () => {
                         <ul>
                           {questions.map((q) => (
                             <li key={q.id}>
-                              <Link to={`/question/${q.id}`}>{q.title}</Link>
+                              <Link
+                                to={`/question/${q.id}`}
+                                onClick={() =>
+                                  localStorage.setItem("selectedQuestionId", q.id)
+                                }
+                              >
+                                {q.title}
+                              </Link>
                             </li>
                           ))}
                         </ul>

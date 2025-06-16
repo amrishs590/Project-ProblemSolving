@@ -5,38 +5,103 @@ import "./HomePage.css";
 
 const HomePage = () => {
   return (
-    <div className="Holder">
-      <section id="home" className="section hero">
-        <div className="hero-content">
-          <div className="hero-left">
-            <Lottie
-              animationData={codingAnimation}
-              loop
-              className="hero-animation"
-            />
+    <>
+      <div className="homepage-entire-section">
+        <section className="homepage-section">
+          <div className="homepage-container">
+            <div className="homepage-left">
+              <h1>Master DSA with Clarity</h1>
+              <p>
+                Welcome to <strong>DSA Pathway</strong> — a thoughtfully
+                structured platform for learning Data Structures and Algorithms.
+                <br />
+                <br />
+                Whether you're a beginner or preparing for interviews, explore
+                categorized problems, intuitive learning paths, and clean
+                solutions.
+                <br />
+                <br />
+                Strengthen your concepts step-by-step, from Arrays to Graphs,
+                with real coding challenges.
+                <br />
+                Start your journey today and become confident in
+                problem-solving!
+              </p>
+              <div className="homepage-buttons">
+                <button
+                  className="btn-primary"
+                  onClick={() => (window.location.href = "/learn")}
+                >
+                  Start Learning
+                </button>
+                <button
+                  className="btn-outline"
+                  onClick={() => {
+                    const roadmap = document.getElementById("roadmap-section");
+                    if (roadmap) {
+                      roadmap.scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      console.warn("Roadmap section not found!");
+                    }
+                  }}
+                >
+                  View Roadmap
+                </button>
+              </div>
+            </div>
+            <div className="homepage-right">
+              <Lottie
+                animationData={codingAnimation}
+                loop
+                className="homepage-animation"
+              />
+            </div>
           </div>
-          <div className="hero-right">
-            <h2>Welcome to DSA Pathway</h2>
-            <p>
-              A curated journey to mastering Data Structures and Algorithms.
-              <br />
-              <br />
-              Embark on a thoughtfully structured path where each step brings
-              clarity and confidence. DSA Pathway offers a refined learning
-              experience through categorized problems, intuitive visual steps,
-              and clean, well-crafted solutions.
-              <br />
-              <br />
-              Whether you're laying the foundation or advancing your expertise,
-              our platform transforms problem-solving into a focused and
-              rewarding pursuit.
-            </p>
+        </section>
+        <section id="roadmap-section" className="name-cards">
+          <div>
+            Array
+            <ul>
+              <li>Lec 1 : Easy Probelms</li>
+              <li>Lec 2 : Medium Problems </li>
+              <li>Lec 3 : Hard Problems</li>
+            </ul>
           </div>
+          <div>
+            Binary Search
+            <ul>
+              <li>Lec 1 : BS on 1D Array </li>
+              <li>Lec 2 : BS on Answers </li>
+              <li>Lec 3 : BS on 2D Array</li>
+            </ul>
+          </div>
+          <div>
+            Linked List
+            <ul>
+              <li>Lec 1 : Singly Linked List </li>
+              <li>Lec 2 : Doubly Linked List </li>
+              <li>Lec 3 : Problems in Linked List</li>
+            </ul>
+          </div>
+          <div>
+            Sliding Window
+            <ul>
+              <li>Lec 1 : Medium Problems </li>
+              <li>Lec 2 : Hard Problems </li>
+            </ul>
+          </div>
+        </section>
+        <div className="view-more-container">
+          <button
+            className="btn-primary"
+            onClick={() => (window.location.href = "/learn")}
+          >
+            View More Topics
+          </button>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 
 export default HomePage;
-

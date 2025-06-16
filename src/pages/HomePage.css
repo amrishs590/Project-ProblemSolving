@@ -1,249 +1,162 @@
-/* General Layout */
-
-#home {
-    height: 775px;
-    /* background-color: lightskyblue; */
+/* Global Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-.section {
-    height: 775px;
-    width: 100%;
-    box-sizing: border-box;
+.homepage-entire-section{
+background: linear-gradient(to right, #f0f9ff, #e0f2fe);
 }
-
 /* Hero Section */
-.hero {
-    /* background-color: #f8fafc; */
-    background-color: lightcoral;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    max-width: 1200px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-@media (min-width: 768px) {
-    .hero-content {
-        flex-direction: row;
-    }
-}
-
-.hero-left {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.hero-animation {
-    width: 350px;
-    max-width: 100%;
-}
-
-.hero-right {
-    flex: 1;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .hero-right {
-        text-align: left;
-    }
-}
-
-.hero-right h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #1e293b;
-}
-
-.hero-right p {
-    font-size: 1.2rem;
-    color: #475569;
-}
-
- /* Learn Section */
-/* #learn {
-    background-color: lightsalmon;
-} */
- .learn {
-    background-color: #ffffff;
-}
-.section.learn {
-  padding: 40px 20px;
-  overflow: visible; /* allow it to grow */
-  position: relative;
-  z-index: 1;
-}
-
-
-.section-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #1e293b;
-}
-
-/* Contact Section */
-
-.contact-wrapper {
-  padding: 60px 20px;
-  background-color: #f9f9f9;
-}
-
-.contact-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.contact-header h1 {
-  font-size: 2.5rem;
-}
-
-.contact-header p {
-  font-size: 1rem;
-  color: #666;
-}
-
-.contact-grid {
+.homepage-section {
+  /* background: linear-gradient(to right, #f0f9ff, #e0f2fe); */
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+}
+
+.homepage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
   gap: 40px;
 }
 
 @media (min-width: 768px) {
-  .contact-grid {
+  .homepage-container {
     flex-direction: row;
-    justify-content: space-between;
   }
 }
 
-.contact-box {
+.homepage-left {
   flex: 1;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
 
-.animation-box {
+@media (min-width: 768px) {
+  .homepage-left {
+    text-align: left;
+    padding-right: 30px;
+  }
+}
+
+.homepage-left h1 {
+  font-size: 3rem;
+  color: #0f172a;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.homepage-left p {
+  font-size: 1.2rem;
+  color: #334155;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.homepage-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .homepage-buttons {
+    justify-content: flex-start;
+  }
+}
+
+.btn-primary,
+.btn-outline {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1e40af;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #2563eb;
+  color: #2563eb;
+}
+
+.btn-outline:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+.homepage-right {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.contact-animation {
+.homepage-animation {
+  max-width: 450px;
   width: 100%;
-  max-width: 400px;
 }
 
-.contact-form label {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  font-size: 1rem;
-}
-
-.contact-form button {
-  background-color: #ef4444;
-  color: white;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.contact-form button:hover {
-  background-color: #dc2626;
-}
-
-.success-message {
-  background-color: #d1fae5;
-  color: #065f46;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-/* Apply transition effect to headings and paragraphs */
-h1, h2, h3, h4, h5, h6, p {
-  transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
-  will-change: transform, text-shadow;
-}
-
-/* On hover: scale and glow */
+/* Text Hover Animation */
 h1:hover,
-h2:hover,
-h3:hover,
-h4:hover,
-h5:hover,
-h6:hover,
 p:hover {
-  transform: scale(1.05);
-  text-shadow: 0 0 10px rgba(0, 183, 255, 0.6);
+  transform: scale(1.02);
+  text-shadow: 0 0 10px rgba(0, 183, 255, 0.5);
 }
 
-/* =================== Responsive Design =================== */
-@media (max-width: 1024px) {
-  .hero-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 30px;
-  }
-
-  .hero-right h2 {
-    font-size: 28px;
-  }
-
-  .hero-animation {
-    width: 300px;
-    margin: 0 auto;
-  }
-
-  .contact-grid {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .contact-box {
-    width: 100%;
-    margin-bottom: 20px;
-  }
+/* Name Card Section */
+.name-cards {
+  padding: 60px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-  .hero-right h2 {
-    font-size: 24px;
-  }
+.name-cards div {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1e293b;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
-  .hero-right p {
-    font-size: 14px;
-  }
+.name-cards div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
 
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-  }
+.name-cards ul {
+  margin-top: 10px;
+  padding-left: 20px;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+}
 
-  .section {
-    padding: 40px 20px;
-  }
+.view-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 60px;
 }
