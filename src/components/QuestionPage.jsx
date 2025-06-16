@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import steps from "../data/questions";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -9,7 +10,9 @@ const QuestionPage = () => {
 
   const stepIndex = localStorage.getItem("openStepIndex");
   const currentStep = steps[stepIndex];
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [id]);
   if (!currentStep) {
     return <div className="p-4 text-red-500">Step not found!</div>;
   }
