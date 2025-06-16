@@ -18,6 +18,13 @@ const Steps = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const scrollPos = localStorage.getItem("learnScrollPos");
+    if (scrollPos) {
+      window.scrollTo(0, parseInt(scrollPos));
+    }
+  }, []);
+
   const toggleStep = (index) => {
     const newIndex = openStepIndex === index ? null : index;
     setOpenStepIndex(newIndex);
@@ -58,12 +65,16 @@ const Steps = () => {
                             <li key={q.id}>
                               <Link
                                 to={`/question/${q.id}`}
-                                onClick={() =>
+                                onClick={() => {
                                   localStorage.setItem(
                                     "selectedQuestionId",
                                     q.id
-                                  )
-                                }
+                                  );
+                                  localStorage.setItem(
+                                    "learnScrollPos",
+                                    window.scrollY
+                                  ); // ✅ Save scroll
+                                }}
                               >
                                 {q.title}
                               </Link>
