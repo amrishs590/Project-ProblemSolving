@@ -50,6 +50,7 @@ const QuestionPage = () => {
             padding: "20px",
             borderRadius: "10px 10px 0 0",
             border: "1px solid #ccc",
+            color: "black",
           }}
         >
           <h1
