@@ -65,8 +65,7 @@ const steps = [
           content:
             "Given two sorted arrays of integers, find and return the union of the two arrays (unique elements present in either array).\n\nExample 1:\n- Input: arr1 = [1, 2, 3], arr2 = [2, 3, 4]\n- Output: [1, 2, 3, 4]\n\nExample 2:\n- Input: arr1 = [1, 1], arr2 = [1]\n- Output: [1]",
           solution:
-            "def findUnion(a, b):\n    i, j = 0, 0\n    n1, n2 = len(a), len(b)\n    ans = []\n    while i < n1 and j < n2:\n        if a[i] < b[j]:\n            if not ans or ans[-1] != a[i]:\n                ans.append(a[i])\n            i += 1\n        elif b[j] < a[i]:\n            if not ans or ans[-1] != b[j]:\n                ans.append(b[j])\n            j += 1\n        else:\n            if not ans or ans[-1] != a[i]:\n                ans.append(a[i])\n            i += 1\n            j += 1\n    while i < n1:\n        if not ans or ans[-1] != a[i]:\n            ans.append(a[i])\n        i += 1\n    while j < n2:\n        if not ans or ans[-1] != b[j]:\n            ans.append(b[j])\n        j += 1\n    return ans"
-,
+            "def findUnion(a, b):\n    i, j = 0, 0\n    n1, n2 = len(a), len(b)\n    ans = []\n    while i < n1 and j < n2:\n        if a[i] < b[j]:\n            if not ans or ans[-1] != a[i]:\n                ans.append(a[i])\n            i += 1\n        elif b[j] < a[i]:\n            if not ans or ans[-1] != b[j]:\n                ans.append(b[j])\n            j += 1\n        else:\n            if not ans or ans[-1] != a[i]:\n                ans.append(a[i])\n            i += 1\n            j += 1\n    while i < n1:\n        if not ans or ans[-1] != a[i]:\n            ans.append(a[i])\n        i += 1\n    while j < n2:\n        if not ans or ans[-1] != b[j]:\n            ans.append(b[j])\n        j += 1\n    return ans",
         },
         {
           id: "find-missing-number-in-array",
@@ -98,8 +97,7 @@ const steps = [
           content:
             "Given an array of integers (positive and negative) and a target sum K, find the length of the longest subarray that sums to K.\n\nExample 1:\n- Input: [1, -1, 5, -2, 3], K = 3\n- Output: 4  (Explanation: [1, -1, 5, -2] sums to 3)\n\nExample 2:\n- Input: [10, 5, 2, 7, 1, 9], K = 15\n- Output: 4  (Explanation: [5, 2, 7, 1] sums to 15)",
           solution:
-            "def longestSubarray(arr, k):\n    d = {}\n    sm = 0\n    ans = 0\n    for i in range(len(arr)):\n        sm = sm + arr[i]\n        if sm == k:\n            ans = i + 1\n        if k - sm in d:\n            ans = max(ans, i - d[k - sm] + 1)\n        if sm not in d:\n            d[sm] = i\n    return ans"
-
+            "def longestSubarray(arr, k):\n    d = {}\n    sm = 0\n    ans = 0\n    for i in range(len(arr)):\n        sm = sm + arr[i]\n        if sm == k:\n            ans = i + 1\n        if k - sm in d:\n            ans = max(ans, i - d[k - sm] + 1)\n        if sm not in d:\n            d[sm] = i\n    return ans",
         },
       ],
       "Lec 2 : Medium": [
@@ -109,7 +107,7 @@ const steps = [
           content:
             "Given an array of integers and a target number, find two numbers in the array that sum up to the target and return their indices (in any order). Assume exactly one solution exists.\n\nExample 1:\n- Input: nums = [2, 7, 11, 15], target = 9\n- Output: [0, 1]  (Explanation: nums[0] + nums[1] = 2 + 7 = 9)\n\nExample 2:\n- Input: nums = [3, 2, 4], target = 6\n- Output: [1, 2]  (Explanation: nums[1] + nums[2] = 2 + 4 = 6)",
           solution:
-            "def twoSum(nums: List[int], target: int) -> List[int]:\n    d = {}\n    for i in range(len(nums)):\n        if target - nums[i] in d:\n            return (i, d[target - nums[i]])\n        else:\n            d[nums[i]] = i" ,
+            "def twoSum(nums: List[int], target: int) -> List[int]:\n    d = {}\n    for i in range(len(nums)):\n        if target - nums[i] in d:\n            return (i, d[target - nums[i]])\n        else:\n            d[nums[i]] = i",
         },
         {
           id: "sort-array-of-0s-1s-2s",
@@ -206,7 +204,7 @@ const steps = [
           content:
             "Given an m x n matrix, return all elements of the matrix in spiral order.\n\nExample 1:\n- Input: [[1,2,3],[4,5,6],[7,8,9]]\n- Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]\n\nExample 2:\n- Input: [[1,2,3,4],[5,6,7,8],[9,10,11,12]]\n- Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]",
           solution:
-            "def spiralOrder(mat: List[List[int]]) -> List[int]:\n    m = len(mat)\n    n = len(mat[0])\n    ans = []\n    l = 0\n    r = n - 1\n    t = 0\n    b = m - 1\n    while t <= b and l <= r:\n        for i in range(l, r + 1):\n            ans.append(mat[t][i])\n        t += 1\n\n        for i in range(t, b + 1):\n            ans.append(mat[i][r])\n        r -= 1\n\n        if t <= b:\n            for i in range(r, l - 1, -1):\n                ans.append(mat[b][i])\n            b -= 1\n\n        if l <= r:\n            for i in range(b, t - 1, -1):\n                ans.append(mat[i][l])\n            l += 1\n    return ans"
+            "def spiralOrder(mat: List[List[int]]) -> List[int]:\n    m = len(mat)\n    n = len(mat[0])\n    ans = []\n    l = 0\n    r = n - 1\n    t = 0\n    b = m - 1\n    while t <= b and l <= r:\n        for i in range(l, r + 1):\n            ans.append(mat[t][i])\n        t += 1\n\n        for i in range(t, b + 1):\n            ans.append(mat[i][r])\n        r -= 1\n\n        if t <= b:\n            for i in range(r, l - 1, -1):\n                ans.append(mat[b][i])\n            b -= 1\n\n        if l <= r:\n            for i in range(b, t - 1, -1):\n                ans.append(mat[i][l])\n            l += 1\n    return ans",
         },
         {
           id: "count-subarrays-with-given-sum",
@@ -343,24 +341,24 @@ const steps = [
           title: "Implement Lower Bound (First Element Not Less Than X)",
           content:
             "Return the index of the first element in a sorted array which is not less than X.",
-          solution: "def lowerBound(arr, target):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] < target:\n            ans = l\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l"
-,
+          solution:
+            "def lowerBound(arr, target):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] < target:\n            ans = l\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l",
         },
         {
           id: "upper-bound",
           title: "Implement Upper Bound (First Element Greater Than X)",
           content:
             "Return the index of the first element in a sorted array which is strictly greater than X.",
-          solution: "def upperBound(arr, target):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] <= target:\n            ans = l\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l"
-,
+          solution:
+            "def upperBound(arr, target):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] <= target:\n            ans = l\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l",
         },
         {
           id: "search-insert-position",
           title: "Search Insert Position",
           content:
             "Return index if target found. If not, return the index where it would be inserted in order.",
-          solution: "def searchInsert(arr: List[int], target: int) -> int:\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (l + h) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n    return lower(arr, 0, len(arr) - 1, target)"
-,
+          solution:
+            "def searchInsert(arr: List[int], target: int) -> int:\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (l + h) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n    return lower(arr, 0, len(arr) - 1, target)",
         },
         {
           id: "floor-ceil",
@@ -387,8 +385,8 @@ const steps = [
           title: "First and Last Occurrence of a Number",
           content:
             "Find the first and last occurrence of a number in a sorted array.",
-          solution: "def searchRange(arr: List[int], k: int) -> List[int]:\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    def upper(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] > k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    if not arr:\n        return [-1, -1]\n\n    n = len(arr)\n    l = lower(arr, 0, n - 1, k)\n    u = upper(arr, 0, n - 1, k) - 1\n    if l <= u and l < n and arr[l] == k and arr[u] == k:\n        return [l, u]\n    return [-1, -1]"
-,
+          solution:
+            "def searchRange(arr: List[int], k: int) -> List[int]:\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    def upper(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] > k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    if not arr:\n        return [-1, -1]\n\n    n = len(arr)\n    l = lower(arr, 0, n - 1, k)\n    u = upper(arr, 0, n - 1, k) - 1\n    if l <= u and l < n and arr[l] == k and arr[u] == k:\n        return [l, u]\n    return [-1, -1]",
         },
         {
           id: "count-occurrences",
@@ -400,8 +398,8 @@ Output: 3
 
 Input: arr = [5, 7, 7, 8, 8, 10], target = 6
 Output: 0`,
-          solution: "def countFreq(arr, target):\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    def upper(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] > k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    n = len(arr)\n    l = lower(arr, 0, n - 1, target)\n    u = upper(arr, 0, n - 1, target) - 1\n    return u - l + 1"
-,
+          solution:
+            "def countFreq(arr, target):\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    def upper(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] > k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    n = len(arr)\n    l = lower(arr, 0, n - 1, target)\n    u = upper(arr, 0, n - 1, target) - 1\n    return u - l + 1",
         },
         {
           id: "search-rotated-array-1",
@@ -488,8 +486,8 @@ Output: 2
 
 Input: arr = [7, 9, 11, 12, 5]
 Output: 4`,
-          solution: "def findKRotation(arr):\n    l = 0\n    h = len(arr) - 1\n    while l < h:\n        mid = (h + l) // 2\n        if arr[mid] > arr[h]:\n            l = mid + 1\n        else:\n            h = mid\n    return l"
-,
+          solution:
+            "def findKRotation(arr):\n    l = 0\n    h = len(arr) - 1\n    while l < h:\n        mid = (h + l) // 2\n        if arr[mid] > arr[h]:\n            l = mid + 1\n        else:\n            h = mid\n    return l",
         },
         {
           id: "single-element-sorted",
@@ -500,8 +498,8 @@ Output: 2
 
 Input: arr = [3,3,7,7,10,11,11]
 Output: 10`,
-          solution: "def singleNonDuplicate(arr):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    if n <= 1: return arr[0]\n    if arr[0] != arr[1]: return arr[0]\n    if arr[n - 1] != arr[n - 2]: return arr[n - 1]\n\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] != arr[mid - 1] and arr[mid] != arr[mid + 1]:\n            return arr[mid]\n        elif arr[mid] == arr[mid - 1]:\n            if mid % 2 == 1:\n                l = mid + 1\n            else:\n                h = mid - 2\n        elif arr[mid] == arr[mid + 1]:\n            if mid % 2 == 0:\n                l = mid + 2\n            else:\n                h = mid - 1\n\n    return -1"
-
+          solution:
+            "def singleNonDuplicate(arr):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    if n <= 1: return arr[0]\n    if arr[0] != arr[1]: return arr[0]\n    if arr[n - 1] != arr[n - 2]: return arr[n - 1]\n\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] != arr[mid - 1] and arr[mid] != arr[mid + 1]:\n            return arr[mid]\n        elif arr[mid] == arr[mid - 1]:\n            if mid % 2 == 1:\n                l = mid + 1\n            else:\n                h = mid - 2\n        elif arr[mid] == arr[mid + 1]:\n            if mid % 2 == 0:\n                l = mid + 2\n            else:\n                h = mid - 1\n\n    return -1",
         },
         {
           id: "find-peak",
@@ -512,8 +510,8 @@ Output: 2 (index of 3)
 
 Input: arr = [1,2,1,3,5,6,4]
 Output: 1 or 5`,
-          solution: "def findPeakElement(nums):\n    l = 0\n    h = len(nums) - 1\n    if h == 0: return 0\n    if nums[0] > nums[1]: return 0\n    if nums[h] > nums[h - 1]: return h\n\n    while l <= h:\n        mid = (h + l) // 2\n        if nums[mid] > nums[mid - 1] and nums[mid] > nums[mid + 1]:\n            return mid\n        elif nums[mid] > nums[mid + 1]:\n            h = mid - 1\n        else:\n            l = mid + 1"
-,
+          solution:
+            "def findPeakElement(nums):\n    l = 0\n    h = len(nums) - 1\n    if h == 0: return 0\n    if nums[0] > nums[1]: return 0\n    if nums[h] > nums[h - 1]: return h\n\n    while l <= h:\n        mid = (h + l) // 2\n        if nums[mid] > nums[mid - 1] and nums[mid] > nums[mid + 1]:\n            return mid\n        elif nums[mid] > nums[mid + 1]:\n            h = mid - 1\n        else:\n            l = mid + 1",
         },
       ],
       "Lec 2: BS on Answers": [
@@ -563,28 +561,32 @@ Output: 1 or 5`,
           title: "Koko Eating Bananas",
           content:
             "Koko loves bananas and can eat at most H hours. Find the minimum eating speed K such that she can finish all bananas.",
-          solution: "def minEatingSpeed(piles: List[int], t: int) -> int:\n    def possible(piles, m, t):\n        cnt = 0\n        for i in piles:\n            cnt = cnt + math.ceil(i / m)\n            if cnt > t:\n                return 0\n        return 1\n\n    l = 1\n    h = max(piles)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(piles, mid, t):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans" ,
+          solution:
+            "def minEatingSpeed(piles: List[int], t: int) -> int:\n    def possible(piles, m, t):\n        cnt = 0\n        for i in piles:\n            cnt = cnt + math.ceil(i / m)\n            if cnt > t:\n                return 0\n        return 1\n\n    l = 1\n    h = max(piles)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(piles, mid, t):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
         },
         {
           id: "min-days-bouquets",
           title: "Minimum Days to Make M Bouquets",
           content:
             "Given a bloomDay array, find minimum days required to make m bouquets of k flowers in a row.",
-          solution: "def minDays(arr: List[int], m: int, k: int) -> int:\n    def possible(arr, mid, m, k):\n        cnt = 0\n        tot = 0\n        for i in range(len(arr)):\n            if arr[i] <= mid:\n                cnt += 1\n                if cnt >= k:\n                    tot += 1\n                    cnt = cnt % k\n            else:\n                cnt = 0\n        return tot >= m\n\n    l = min(arr)\n    h = max(arr)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(arr, mid, m, k):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans"
+          solution:
+            "def minDays(arr: List[int], m: int, k: int) -> int:\n    def possible(arr, mid, m, k):\n        cnt = 0\n        tot = 0\n        for i in range(len(arr)):\n            if arr[i] <= mid:\n                cnt += 1\n                if cnt >= k:\n                    tot += 1\n                    cnt = cnt % k\n            else:\n                cnt = 0\n        return tot >= m\n\n    l = min(arr)\n    h = max(arr)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(arr, mid, m, k):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
         },
         {
           id: "smallest-divisor",
           title: "Find the Smallest Divisor Given Threshold",
           content:
             "Find the smallest divisor such that the sum of the result of dividing elements by the divisor is less than or equal to threshold.",
-          solution: "def smallestDivisor(nums: List[int], threshold: int) -> int:\n    def possible(arr, mid, k):\n        sm = 0\n        for i in arr:\n            sm += math.ceil(i / mid)\n        return sm <= k\n\n    l = 1\n    h = max(nums)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(nums, mid, threshold):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
+          solution:
+            "def smallestDivisor(nums: List[int], threshold: int) -> int:\n    def possible(arr, mid, k):\n        sm = 0\n        for i in arr:\n            sm += math.ceil(i / mid)\n        return sm <= k\n\n    l = 1\n    h = max(nums)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(nums, mid, threshold):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
         },
         {
           id: "ship-packages",
           title: "Capacity to Ship Packages Within D Days",
           content:
             "Find the least weight capacity of a ship that will result in all packages being shipped within D days.",
-          solution: "def shipWithinDays(w: List[int], days: int) -> int:\n    def possible(arr, mid, days):\n        tot = 1\n        sm = 0\n        for i in arr:\n            sm += i\n            if sm > mid:\n                tot += 1\n                sm = i\n        return tot <= days\n\n    l = max(w)\n    h = sum(w)\n    ans = -1\n    while l <= h:\n        mid = (h + l) // 2\n        if possible(w, mid, days):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
+          solution:
+            "def shipWithinDays(w: List[int], days: int) -> int:\n    def possible(arr, mid, days):\n        tot = 1\n        sm = 0\n        for i in arr:\n            sm += i\n            if sm > mid:\n                tot += 1\n                sm = i\n        return tot <= days\n\n    l = max(w)\n    h = sum(w)\n    ans = -1\n    while l <= h:\n        mid = (h + l) // 2\n        if possible(w, mid, days):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
         },
         {
           id: "kth-missing-positive",
@@ -595,7 +597,8 @@ Output: 9
 
 Input: arr = [1,2,3,4], k = 2
 Output: 6`,
-          solution: "def findKthPositive(arr: List[int], k: int) -> int:\n    for i in arr:\n        if i <= k:\n            k += 1\n    return k",
+          solution:
+            "def findKthPositive(arr: List[int], k: int) -> int:\n    for i in arr:\n        if i <= k:\n            k += 1\n    return k",
         },
         {
           id: "aggressive-cows",
@@ -603,8 +606,8 @@ Output: 6`,
           content: `You are given an array of stall positions and the number of cows. Place the cows in stalls such that the minimum distance between any two of them is maximized.
 Input: positions = [1, 2, 4, 8, 9], cows = 3
 Output: 3`,
-          solution: "def aggressiveCows(stalls, k):\n    def possible(stalls, mid, k):\n        prev = stalls[0]\n        cows = 1\n        for i in range(1, len(stalls)):\n            if stalls[i] - prev >= mid:\n                cows += 1\n                prev = stalls[i]\n        return cows >= k\n\n    stalls.sort()\n    s = 1\n    e = max(stalls)\n    ans = -1\n    while s <= e:\n        mid = (s + e) // 2\n        if possible(stalls, mid, k):\n            ans = mid\n            s = mid + 1\n        else:\n            e = mid - 1\n    return ans"
-,
+          solution:
+            "def aggressiveCows(stalls, k):\n    def possible(stalls, mid, k):\n        prev = stalls[0]\n        cows = 1\n        for i in range(1, len(stalls)):\n            if stalls[i] - prev >= mid:\n                cows += 1\n                prev = stalls[i]\n        return cows >= k\n\n    stalls.sort()\n    s = 1\n    e = max(stalls)\n    ans = -1\n    while s <= e:\n        mid = (s + e) // 2\n        if possible(stalls, mid, k):\n            ans = mid\n            s = mid + 1\n        else:\n            e = mid - 1\n    return ans",
         },
         {
           id: "book-allocation",
@@ -612,7 +615,8 @@ Output: 3`,
           content: `Allocate books to students so that the maximum number of pages assigned to a student is minimized.
 Input: books = [12, 34, 67, 90], students = 2
 Output: 113`,
-          solution: "def findPages(self, arr, k):\n    def check(arr,mid):\n        stu = 1\n        sm = 0\n        for i in arr:\n            if sm + i > mid:\n                sm = i\n                stu += 1\n            else:\n                sm += i\n        return stu\n\n    if k > len(arr): return -1\n    l = max(arr)\n    h = sum(arr)\n    while l <= h:\n        mid = (h + l) // 2\n        if check(arr, mid) > k:\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l",
+          solution:
+            "def findPages(self, arr, k):\n    def check(arr,mid):\n        stu = 1\n        sm = 0\n        for i in arr:\n            if sm + i > mid:\n                sm = i\n                stu += 1\n            else:\n                sm += i\n        return stu\n\n    if k > len(arr): return -1\n    l = max(arr)\n    h = sum(arr)\n    while l <= h:\n        mid = (h + l) // 2\n        if check(arr, mid) > k:\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l",
         },
         {
           id: "split-array-largest-sum",
@@ -620,7 +624,8 @@ Output: 113`,
           content: `Split the array into m subarrays such that the largest sum among them is minimized.
 Input: nums = [7,2,5,10,8], m = 2
 Output: 18`,
-          solution: "def splitArray(nums, k):\n    def possible(arr, mid, k):\n        sm = 0\n        split = 1\n        for i in arr:\n            sm += i\n            if sm > mid:\n                split += 1\n                sm = i\n        return split <= k\n\n    l = max(nums)\n    h = sum(nums)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(nums, mid, k):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
+          solution:
+            "def splitArray(nums, k):\n    def possible(arr, mid, k):\n        sm = 0\n        split = 1\n        for i in arr:\n            sm += i\n            if sm > mid:\n                split += 1\n                sm = i\n        return split <= k\n\n    l = max(nums)\n    h = sum(nums)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(nums, mid, k):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
         },
         {
           id: "painters-partition",
@@ -628,7 +633,8 @@ Output: 18`,
           content: `Given a list of boards and number of painters, partition the boards among painters to minimize the maximum time taken.
 Input: boards = [10, 20, 30, 40], painters = 2
 Output: 60`,
-          solution: "class Solution:\n    def minTime (self, arr, k):\n        def check(arr, mid):\n            sm = 0\n            painter = 1\n            for i in arr:\n                if i + sm > mid:\n                    sm = i\n                    painter += 1\n                else:\n                    sm += i\n            return painter\n\n        if k > len(arr): return -1\n        l = max(arr)\n        h = sum(arr)\n        while l <= h:\n            mid = (h + l) // 2\n            if check(arr, mid) < k:\n                l = mid + 1\n            else:\n                h = mid - 1\n        return l",
+          solution:
+            "class Solution:\n    def minTime (self, arr, k):\n        def check(arr, mid):\n            sm = 0\n            painter = 1\n            for i in arr:\n                if i + sm > mid:\n                    sm = i\n                    painter += 1\n                else:\n                    sm += i\n            return painter\n\n        if k > len(arr): return -1\n        l = max(arr)\n        h = sum(arr)\n        while l <= h:\n            mid = (h + l) // 2\n            if check(arr, mid) < k:\n                l = mid + 1\n            else:\n                h = mid - 1\n        return l",
         },
         {
           id: "minimize-max-distance-gas-station",
@@ -1061,17 +1067,8 @@ Output: 6`,
           id: "remove-nth-node",
           title: "Remove Nth Node from the Back of the Linked List",
           content: `Remove the nth node from the end of the linked list.`,
-          solution: `def remove_nth_from_end(head, n):
-    dummy = ListNode(0, head)
-    left = right = dummy
-    for _ in range(n):
-        right = right.next
-    while right.next:
-        left = left.next
-        right = right.next
-    left.next = left.next.next
-    return dummy.next`,
-        },
+          solution: "def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:\n    slow = head\n    fast = head\n    for o in range(n):\n        fast = fast.next\n    if not fast:\n        return head.next\n    while fast.next:\n        slow = slow.next\n        fast = fast.next\n    slow.next = slow.next.next\n    return head"
+      },
         {
           id: "delete-middle-node",
           title: "Delete the Middle Node of Linked List",
@@ -1210,35 +1207,7 @@ def merge(l1, l2):
           id: "reverse-in-k-group",
           title: "Reverse Linked List in Group of Given Size K",
           content: `Reverse nodes of a linked list in groups of size K. If the number of nodes is not a multiple of K, leave the last group as is.`,
-          solution: `def reverse_k_group(head, k):
-    def get_kth(curr, k):
-        while curr and k > 0:
-            curr = curr.next
-            k -= 1
-        return curr
-
-    dummy = ListNode(0)
-    dummy.next = head
-    group_prev = dummy
-
-    while True:
-        kth = get_kth(group_prev, k)
-        if not kth:
-            break
-        group_next = kth.next
-
-        prev, curr = kth.next, group_prev.next
-        while curr != group_next:
-            tmp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = tmp
-
-        tmp = group_prev.next
-        group_prev.next = kth
-        group_prev = tmp
-
-    return dummy.next`,
+          solution: "def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:\n    def length(head):\n        cnt = 0\n        while head:\n            cnt +=1 \n            head = head.next\n        return cnt\n\n    def reverse(start,end):\n        prev = None\n        while start!=end:\n            nd = start.next\n            start.next = prev\n            prev = start\n            start = nd\n        return prev\n\n    LL = ListNode()\n    LL.next = head\n    curr = LL\n    len = length(head)\n    for i in range(len//k):\n        start = curr.next\n        end = start\n        for i in range(k):\n            end = end.next\n        rev_head = reverse(start,end)\n        curr.next = rev_head\n        start.next = end\n        curr = start\n    return LL.next",
         },
         {
           id: "rotate-linked-list",
