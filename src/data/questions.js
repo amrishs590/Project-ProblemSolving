@@ -9,7 +9,7 @@ const steps = [
           content:
             "Given an array of integers, find and return the largest element in the array.\n\nExample 1:\n- Input: [1, 5, 3]\n- Output: 5\n\nExample 2:\n- Input: [-2, -1, -5]\n- Output: -1",
           solution:
-            "def largest_element(arr):\n    # Initialize maximum as first element\n    max_val = arr[0]\n    for num in arr:\n        if num > max_val:\n            max_val = num\n    return max_val",
+            "def LargestNumber(arr):\n    mx = float('-inf')\n    for i in arr:\n        if i > mx:\n            mx = i\n    return mx",
         },
         {
           id: "second-largest-element-in-array-without-sorting",
@@ -33,7 +33,7 @@ const steps = [
           content:
             "Given a sorted array, remove the duplicates in-place and return the array containing only unique elements.\n\nExample 1:\n- Input: [1, 1, 2, 3, 3]\n- Output: [1, 2, 3]\n\nExample 2:\n- Input: [2, 2, 2]\n- Output: [2]",
           solution:
-            "def remove_duplicates(arr):\n    if not arr:\n        return []\n    write_index = 1\n    for i in range(1, len(arr)):\n        if arr[i] != arr[i-1]:\n            arr[write_index] = arr[i]\n            write_index += 1\n    return arr[:write_index]",
+            "def removeDuplicates(nums):\n    ind = 1\n    for i in range(1,len(nums)):\n        if nums[i]!=nums[i-1]:\n            nums[ind] = nums[i]\n            ind+=1\n    return num[:ind]",
         },
         {
           id: "left-rotate-array-by-d-places",
@@ -41,7 +41,7 @@ const steps = [
           content:
             "Given an array and a number D, left rotate the array by D places.\n\nExample 1:\n- Input: [1, 2, 3, 4, 5], D = 2\n- Output: [3, 4, 5, 1, 2]\n\nExample 2:\n- Input: [1, 2, 3], D = 3\n- Output: [1, 2, 3]",
           solution:
-            "def left_rotate(arr, d):\n    n = len(arr)\n    d = d % n  # handle rotations larger than array length\n    return arr[d:] + arr[:d]",
+            "def rotate(nums: List[int], k: int) -> None:\n    n = len(nums)\n    k = k % n\n    ans = [0] * n\n    for i in range(n):\n        ans[(i + k) % n] = nums[i]\n    for i in range(n):\n        nums[i] = ans[i]",
         },
         {
           id: "move-zeros-to-end",
@@ -49,7 +49,7 @@ const steps = [
           content:
             "Given an array, move all zeros to the end while maintaining the relative order of non-zero elements.\n\nExample 1:\n- Input: [0, 1, 0, 3, 12]\n- Output: [1, 3, 12, 0, 0]\n\nExample 2:\n- Input: [1, 0, 2]\n- Output: [1, 2, 0]",
           solution:
-            "def move_zeros(arr):\n    result = []\n    zero_count = 0\n    for num in arr:\n        if num != 0:\n            result.append(num)\n        else:\n            zero_count += 1\n    result.extend([0] * zero_count)\n    return result",
+            "def moveZeroes(nums: List[int]) -> None:\n    ind = 0\n    for i in range(len(nums)):\n        if nums[i] != 0:\n            nums[ind], nums[i] = nums[i], nums[ind]\n            ind += 1",
         },
         {
           id: "linear-search",
@@ -63,9 +63,10 @@ const steps = [
           id: "find-the-union",
           title: "Find the Union",
           content:
-            "Given two arrays of integers, find and return the union of the two arrays (unique elements present in either array).\n\nExample 1:\n- Input: arr1 = [1, 2, 3], arr2 = [2, 3, 4]\n- Output: [1, 2, 3, 4]\n\nExample 2:\n- Input: arr1 = [1, 1], arr2 = [1]\n- Output: [1]",
+            "Given two sorted arrays of integers, find and return the union of the two arrays (unique elements present in either array).\n\nExample 1:\n- Input: arr1 = [1, 2, 3], arr2 = [2, 3, 4]\n- Output: [1, 2, 3, 4]\n\nExample 2:\n- Input: arr1 = [1, 1], arr2 = [1]\n- Output: [1]",
           solution:
-            "def find_union(arr1, arr2):\n    return list(set(arr1) | set(arr2))",
+            "def findUnion(a, b):\n    i, j = 0, 0\n    n1, n2 = len(a), len(b)\n    ans = []\n    while i < n1 and j < n2:\n        if a[i] < b[j]:\n            if not ans or ans[-1] != a[i]:\n                ans.append(a[i])\n            i += 1\n        elif b[j] < a[i]:\n            if not ans or ans[-1] != b[j]:\n                ans.append(b[j])\n            j += 1\n        else:\n            if not ans or ans[-1] != a[i]:\n                ans.append(a[i])\n            i += 1\n            j += 1\n    while i < n1:\n        if not ans or ans[-1] != a[i]:\n            ans.append(a[i])\n        i += 1\n    while j < n2:\n        if not ans or ans[-1] != b[j]:\n            ans.append(b[j])\n        j += 1\n    return ans"
+,
         },
         {
           id: "find-missing-number-in-array",
@@ -97,7 +98,8 @@ const steps = [
           content:
             "Given an array of integers (positive and negative) and a target sum K, find the length of the longest subarray that sums to K.\n\nExample 1:\n- Input: [1, -1, 5, -2, 3], K = 3\n- Output: 4  (Explanation: [1, -1, 5, -2] sums to 3)\n\nExample 2:\n- Input: [10, 5, 2, 7, 1, 9], K = 15\n- Output: 4  (Explanation: [5, 2, 7, 1] sums to 15)",
           solution:
-            "def longest_subarray_sum_k(arr, k):\n    sum_index = {0: -1}\n    max_len = 0\n    curr_sum = 0\n    for i, num in enumerate(arr):\n        curr_sum += num\n        if curr_sum not in sum_index:\n            sum_index[curr_sum] = i\n        if curr_sum - k in sum_index:\n            max_len = max(max_len, i - sum_index[curr_sum - k])\n    return max_len",
+            "def longestSubarray(arr, k):\n    d = {}\n    sm = 0\n    ans = 0\n    for i in range(len(arr)):\n        sm = sm + arr[i]\n        if sm == k:\n            ans = i + 1\n        if k - sm in d:\n            ans = max(ans, i - d[k - sm] + 1)\n        if sm not in d:\n            d[sm] = i\n    return ans"
+
         },
       ],
       "Lec 2 : Medium": [
@@ -107,7 +109,7 @@ const steps = [
           content:
             "Given an array of integers and a target number, find two numbers in the array that sum up to the target and return their indices (in any order). Assume exactly one solution exists.\n\nExample 1:\n- Input: nums = [2, 7, 11, 15], target = 9\n- Output: [0, 1]  (Explanation: nums[0] + nums[1] = 2 + 7 = 9)\n\nExample 2:\n- Input: nums = [3, 2, 4], target = 6\n- Output: [1, 2]  (Explanation: nums[1] + nums[2] = 2 + 4 = 6)",
           solution:
-            "def two_sum(nums, target):\n    lookup = {}\n    for i, num in enumerate(nums):\n        if target - num in lookup:\n            return [lookup[target - num], i]\n        lookup[num] = i",
+            "def twoSum(nums: List[int], target: int) -> List[int]:\n    d = {}\n    for i in range(len(nums)):\n        if target - nums[i] in d:\n            return (i, d[target - nums[i]])\n        else:\n            d[nums[i]] = i" ,
         },
         {
           id: "sort-array-of-0s-1s-2s",
@@ -123,7 +125,7 @@ const steps = [
           content:
             "Given an array of size n, find the majority element. The majority element appears more than n/2 times. You may assume the array is non-empty and the majority element always exists.\n\nExample 1:\n- Input: [3, 2, 3]\n- Output: 3\n\nExample 2:\n- Input: [2, 2, 1, 1, 1, 2, 2]\n- Output: 2",
           solution:
-            "def majority_element(nums):\n    count = 0\n    candidate = None\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    return candidate",
+            "def majorityElement(nums: List[int]) -> int:\n    el = -1\n    cnt = 0\n    for i in range(len(nums)):\n        if cnt == 0:\n            el = nums[i]\n            cnt = 1\n        elif nums[i] != el:\n            cnt -= 1\n        else:\n            cnt += 1\n    return el",
         },
         {
           id: "kadane-maximum-subarray-sum",
@@ -131,7 +133,7 @@ const steps = [
           content:
             "Given an integer array, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. Use Kadane's algorithm.\n\nExample 1:\n- Input: [-2,1,-3,4,-1,2,1,-5,4]\n- Output: 6  (Explanation: [4,-1,2,1] has sum 6)\n\nExample 2:\n- Input: [1]\n- Output: 1",
           solution:
-            "def max_subarray(nums):\n    max_current = max_global = nums[0]\n    for x in nums[1:]:\n        max_current = max(x, max_current + x)\n        max_global = max(max_global, max_current)\n    return max_global",
+            "def KadaneAlgorithm(nums: List[int]) -> int:\n    mx = float('-inf')\n    sm = 0\n    for i in nums:\n        sm = sm + i\n        mx = max(mx, sm)\n        if sm < 0:\n            sm = 0\n    return mx",
         },
         {
           id: "print-subarray-with-maximum-sum",
@@ -139,7 +141,7 @@ const steps = [
           content:
             "Given an integer array, find a contiguous subarray with the maximum sum and return that subarray.\n\nExample 1:\n- Input: [-2,1,-3,4,-1,2,1,-5,4]\n- Output: [4, -1, 2, 1]  (This subarray has the maximum sum 6)\n\nExample 2:\n- Input: [1, 2, 3]\n- Output: [1, 2, 3]  (The whole array is maximum sum 6)",
           solution:
-            "def max_subarray(nums):\n    max_current = max_global = nums[0]\n    start = end = s = 0\n    for i in range(1, len(nums)):\n        if nums[i] > max_current + nums[i]:\n            max_current = nums[i]\n            s = i\n        else:\n            max_current += nums[i]\n        if max_current > max_global:\n            max_global = max_current\n            start = s\n            end = i\n    return nums[start:end+1]",
+            "def maxSubArray(nums: List[int]) -> int:\n    mx = float('-inf')\n    sm = 0\n    for i in nums:\n        sm = sm + i\n        mx = max(mx, sm)\n        if sm < 0:\n            sm = 0\n    return mx",
         },
         {
           id: "stock-buy-and-sell",
@@ -147,7 +149,7 @@ const steps = [
           content:
             "Given an array of stock prices where prices[i] is the price of a given stock on day i, maximize profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the maximum profit.\n\nExample 1:\n- Input: [7,1,5,3,6,4]\n- Output: 5  (Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6))\n\nExample 2:\n- Input: [7,6,4,3,1]\n- Output: 0  (No profit is possible)",
           solution:
-            "def max_profit(prices):\n    min_price = float('inf')\n    max_prof = 0\n    for price in prices:\n        min_price = min(min_price, price)\n        profit = price - min_price\n        max_prof = max(max_prof, profit)\n    return max_prof",
+            "def maxProfit(prices: List[int]) -> int:\n    cost = prices[0]\n    profit = 0\n    for i in range(1, len(prices)):\n        profit = max(profit, prices[i] - cost)\n        cost = min(cost, prices[i])\n    return profit",
         },
         {
           id: "rearrange-alternating-positive-negative",
@@ -156,7 +158,7 @@ const steps = [
           content:
             "Rearrange an array such that positive and negative numbers alternate. The relative order of positive and negative numbers should be preserved, and if extra positives or negatives remain, they should appear at the end.\n\nExample 1:\n- Input: [1, 2, -3, -4, 5, -6]\n- Output: [1, -3, 2, -4, 5, -6]\n\nExample 2:\n- Input: [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]\n- Output: [-5, 5, -2, 2, 4, 7, 1, 8, 0, -8]  (one possible solution)",
           solution:
-            "def rearrange_alternate(arr):\n    pos = [x for x in arr if x >= 0]\n    neg = [x for x in arr if x < 0]\n    result = []\n    for i in range(max(len(pos), len(neg))):\n        if i < len(pos):\n            result.append(pos[i])\n        if i < len(neg):\n            result.append(neg[i])\n    return result",
+            "def rearrangeArray(nums: List[int]) -> List[int]:\n    l = len(nums)\n    p = 0\n    n = 1\n    ans = [0] * l\n    for i in range(l):\n        if nums[i] > 0:\n            ans[p] = nums[i]\n            p += 2\n        else:\n            ans[n] = nums[i]\n            n += 2\n    return ans",
         },
         {
           id: "next-permutation",
@@ -164,7 +166,7 @@ const steps = [
           content:
             "Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers. If no such permutation is possible, rearrange it to the lowest possible order (sorted in ascending order).\n\nExample 1:\n- Input: [1, 2, 3]\n- Output: [1, 3, 2]\n\nExample 2:\n- Input: [3, 2, 1]\n- Output: [1, 2, 3]",
           solution:
-            "def next_permutation(nums):\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i+1]:\n        i -= 1\n    if i >= 0:\n        j = len(nums) - 1\n        while nums[j] <= nums[i]:\n            j -= 1\n        nums[i], nums[j] = nums[j], nums[i]\n    nums[i+1:] = reversed(nums[i+1:])\n    return nums",
+            "def nextPermutation(arr: List[int]) -> None:\n    def reverse(arr, s, e):\n        while s < e:\n            arr[s], arr[e] = arr[e], arr[s]\n            s += 1\n            e -= 1\n\n    pivot = -1\n    n = len(arr)\n    for i in range(n - 2, -1, -1):\n        if arr[i] < arr[i + 1]:\n            pivot = i\n            break\n    if pivot == -1:\n        arr[:] = arr[::-1]\n        return arr\n    for i in range(n - 1, pivot, -1):\n        if arr[i] > arr[pivot]:\n            arr[pivot], arr[i] = arr[i], arr[pivot]\n            break\n    reverse(arr, pivot + 1, n - 1)\n    return arr",
         },
         {
           id: "leaders-in-array",
@@ -172,7 +174,7 @@ const steps = [
           content:
             "An element of an array is a leader if it is strictly greater than all the elements to its right. Given an array, return all the leader elements.\n\nExample 1:\n- Input: [16, 17, 4, 3, 5, 2]\n- Output: [17, 5, 2]\n\nExample 2:\n- Input: [1, 2, 3, 4]\n- Output: [4]",
           solution:
-            "def find_leaders(arr):\n    leaders = []\n    max_from_right = float('-inf')\n    for num in reversed(arr):\n        if num > max_from_right:\n            leaders.append(num)\n            max_from_right = num\n    return list(reversed(leaders))",
+            "def leaders(arr):\n    mx = float('-inf')\n    ans = []\n    for i in range(len(arr) - 1, -1, -1):\n        if arr[i] >= mx:\n            ans.append(arr[i])\n            mx = arr[i]\n    return ans[::-1]",
         },
         {
           id: "longest-consecutive-sequence",
@@ -180,7 +182,7 @@ const steps = [
           content:
             "Given an unsorted array of integers, find the length of the longest consecutive elements sequence (sequence of increasing integers by 1). The consecutive elements can be in any order.\n\nExample 1:\n- Input: [100, 4, 200, 1, 3, 2]\n- Output: 4  (Explanation: The longest consecutive sequence is [1, 2, 3, 4])\n\nExample 2:\n- Input: [0, -1]\n- Output: 2  (Explanation: The sequence is [-1, 0])",
           solution:
-            "def longest_consecutive(nums):\n    num_set = set(nums)\n    longest = 0\n    for num in nums:\n        if num - 1 not in num_set:  # start of sequence\n            length = 0\n            while num in num_set:\n                num += 1\n                length += 1\n            longest = max(longest, length)\n    return longest",
+            "def longestConsecutive(arr: List[int]) -> int:\n    if not arr: return 0\n    arr.sort()\n    cnt = 1\n    mx = 1\n    i = 0\n    n = len(arr)\n    while i < (n - 1):\n        if arr[i] + 1 == arr[i + 1]:\n            cnt += 1\n            mx = max(mx, cnt)\n        elif arr[i] == arr[i + 1]:\n            pass\n        else:\n            cnt = 1\n        i += 1\n    return mx",
         },
         {
           id: "set-matrix-zeros",
@@ -188,7 +190,7 @@ const steps = [
           content:
             "Given an m x n matrix, if an element is 0, set its entire row and column to 0 in-place.\n\nExample 1:\n- Input: [[1,1,1],[1,0,1],[1,1,1]]\n- Output: [[1,0,1],[0,0,0],[1,0,1]]\n\nExample 2:\n- Input: [[0,1,2,0],[3,4,5,2],[1,3,1,5]]\n- Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]",
           solution:
-            "def set_matrix_zeroes(matrix):\n    rows = len(matrix)\n    cols = len(matrix[0])\n    zero_rows = set()\n    zero_cols = set()\n    for i in range(rows):\n        for j in range(cols):\n            if matrix[i][j] == 0:\n                zero_rows.add(i)\n                zero_cols.add(j)\n    for i in range(rows):\n        for j in range(cols):\n            if i in zero_rows or j in zero_cols:\n                matrix[i][j] = 0\n    return matrix",
+            "def setZeroes(matrix: List[List[int]]) -> None:\n    m = len(matrix)\n    n = len(matrix[0])\n    row = [0] * m\n    col = [0] * n\n    for i in range(m):\n        for j in range(n):\n            if matrix[i][j] == 0:\n                row[i] = 1\n                col[j] = 1\n    for i in range(m):\n        for j in range(n):\n            if row[i]:\n                matrix[i][j] = 0\n            if col[j]:\n                matrix[i][j] = 0",
         },
         {
           id: "rotate-matrix-90-degrees",
@@ -196,7 +198,7 @@ const steps = [
           content:
             "Given an n x n 2D matrix, rotate the matrix by 90 degrees clockwise in-place.\n\nExample 1:\n- Input: [[1,2,3],[4,5,6],[7,8,9]]\n- Output: [[7,4,1],[8,5,2],[9,6,3]]\n\nExample 2:\n- Input: [[1,2],[3,4]]\n- Output: [[3,1],[4,2]]",
           solution:
-            "def rotate_matrix(matrix):\n    n = len(matrix)\n    # Transpose\n    for i in range(n):\n        for j in range(i, n):\n            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]\n    # Reverse each row\n    for i in range(n):\n        matrix[i].reverse()\n    return matrix",
+            "def rotate_matrix(matrix):\n    n = len(matrix)\n    for i in range(n):\n        for j in range(i, n):\n            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]\n    for i in range(n):\n        matrix[i].reverse()\n    return matrix",
         },
         {
           id: "print-matrix-spiral-order",
@@ -204,7 +206,7 @@ const steps = [
           content:
             "Given an m x n matrix, return all elements of the matrix in spiral order.\n\nExample 1:\n- Input: [[1,2,3],[4,5,6],[7,8,9]]\n- Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]\n\nExample 2:\n- Input: [[1,2,3,4],[5,6,7,8],[9,10,11,12]]\n- Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]",
           solution:
-            "def spiral_order(matrix):\n    result = []\n    while matrix:\n        # take the first row\n        result += matrix.pop(0)\n        # take the last column\n        if matrix and matrix[0]:\n            for row in matrix:\n                result.append(row.pop())\n        # take the last row (if any) reversed\n        if matrix:\n            result += matrix.pop()[::-1]\n        # take the first column (if any) reversed\n        if matrix and matrix[0]:\n            for row in reversed(matrix):\n                result.append(row.pop(0))\n    return result",
+            "def spiralOrder(mat: List[List[int]]) -> List[int]:\n    m = len(mat)\n    n = len(mat[0])\n    ans = []\n    l = 0\n    r = n - 1\n    t = 0\n    b = m - 1\n    while t <= b and l <= r:\n        for i in range(l, r + 1):\n            ans.append(mat[t][i])\n        t += 1\n\n        for i in range(t, b + 1):\n            ans.append(mat[i][r])\n        r -= 1\n\n        if t <= b:\n            for i in range(r, l - 1, -1):\n                ans.append(mat[b][i])\n            b -= 1\n\n        if l <= r:\n            for i in range(b, t - 1, -1):\n                ans.append(mat[i][l])\n            l += 1\n    return ans"
         },
         {
           id: "count-subarrays-with-given-sum",
@@ -212,7 +214,7 @@ const steps = [
           content:
             "Given an array of integers and a target sum K, count the number of subarrays that sum to K.\n\nExample 1:\n- Input: [1, 1, 1], K = 2\n- Output: 2  (Subarrays [1,1] at indices [0,1] and [1,2])\n\nExample 2:\n- Input: [1, 2, 3], K = 3\n- Output: 2  (Subarrays [1,2] and [3])",
           solution:
-            "def count_subarrays_with_sum(arr, k):\n    count = 0\n    curr_sum = 0\n    freq = {0: 1}\n    for num in arr:\n        curr_sum += num\n        if (curr_sum - k) in freq:\n            count += freq[curr_sum - k]\n        freq[curr_sum] = freq.get(curr_sum, 0) + 1\n    return count",
+            "def subarraySum(nums: List[int], k: int) -> int:\n    sm = 0\n    d = {}\n    n = len(nums)\n    cnt = 0\n    for i in range(n):\n        sm = sm + nums[i]\n        if sm == k:\n            cnt += 1\n        if sm - k in d:\n            cnt = cnt + d[sm - k]\n        if sm not in d:\n            d[sm] = 1\n        else:\n            d[sm] += 1\n    return cnt",
         },
       ],
       "Lec 3 : Hard": [
@@ -254,7 +256,7 @@ const steps = [
           content:
             "Given an array of integers (that may include both positive and negative), find the length of the largest subarray with sum equal to 0.\n\nExample 1:\n- Input: [15, -2, 2, -8, 1, 7, 10, 23]\n- Output: 5  (Explanation: The subarray [-2, 2, -8, 1, 7] has sum 0 and length 5)\n\nExample 2:\n- Input: [1, 2, 3]\n- Output: 0",
           solution:
-            "def largest_zero_sum_subarray(arr):\n    sum_index = {0: -1}\n    curr_sum = 0\n    max_len = 0\n    for i, num in enumerate(arr):\n        curr_sum += num\n        if curr_sum not in sum_index:\n            sum_index[curr_sum] = i\n        else:\n            max_len = max(max_len, i - sum_index[curr_sum])\n    return max_len",
+            "def maxLen(arr):\n    sm = 0\n    mx = 0\n    d = {}\n    for i in range(len(arr)):\n        sm = sm + arr[i]\n        if sm == 0:\n            mx = i + 1\n        else:\n            if sm not in d:\n                d[sm] = i\n            else:\n                mx = max(mx, i - d[sm])\n    return mx",
         },
         {
           id: "count-subarrays-with-xor-k",
@@ -270,7 +272,7 @@ const steps = [
           content:
             "Given a collection of intervals, merge all overlapping intervals and return the merged intervals.\n\nExample 1:\n- Input: [[1, 3], [2, 6], [8, 10], [15, 18]]\n- Output: [[1, 6], [8, 10], [15, 18]]\n\nExample 2:\n- Input: [[1, 4], [4, 5]]\n- Output: [[1, 5]]",
           solution:
-            "def merge_intervals(intervals):\n    intervals.sort(key=lambda x: x[0])\n    merged = []\n    for interval in intervals:\n        if not merged or merged[-1][1] < interval[0]:\n            merged.append(interval)\n        else:\n            merged[-1][1] = max(merged[-1][1], interval[1])\n    return merged",
+            "def merge(intervals: List[List[int]]) -> List[List[int]]:\n    intervals.sort()\n    ans = []\n    for i in range(len(intervals)):\n        if i == 0 or not ans:\n            ans.append(intervals[i])\n            continue\n        last = ans[-1]\n        if last[-1] < intervals[i][0]:\n            ans.append(intervals[i])\n        else:\n            last[-1] = max(last[-1], intervals[i][-1])\n    return ans",
         },
         {
           id: "merge-two-sorted-arrays-without-extra-space",
@@ -278,7 +280,7 @@ const steps = [
           content:
             "Given two sorted arrays arr1 and arr2 of sizes m and n respectively, merge them so that arr1 contains the first m smallest elements and arr2 contains the remaining n elements, all in sorted order, without using extra space.\n\nExample 1:\n- Input: arr1 = [1, 3, 5], arr2 = [2, 4, 6]\n- Output: arr1 = [1, 2, 3], arr2 = [4, 5, 6]\n\nExample 2:\n- Input: arr1 = [1, 5, 9], arr2 = [2, 3, 10]\n- Output: arr1 = [1, 2, 3], arr2 = [5, 9, 10]",
           solution:
-            "def merge_sorted_arrays(arr1, arr2):\n    i = j = 0\n    while i < len(arr1) and j < len(arr2):\n        if arr1[i] > arr2[j]:\n            # Swap and insert the greater element into arr2 in sorted order\n            arr1[i], arr2[j] = arr2[j], arr1[i]\n            # Fix arr2 to remain sorted\n            k = j\n            while k+1 < len(arr2) and arr2[k] > arr2[k+1]:\n                arr2[k], arr2[k+1] = arr2[k+1], arr2[k]\n                k += 1\n        i += 1\n    return arr1, arr2",
+            "def merge(arr1: List[int], m: int, arr2: List[int], n: int) -> None:\n    p1, p2, p = m - 1, n - 1, m + n - 1\n    while p1 >= 0 and p2 >= 0:\n        if arr1[p1] > arr2[p2]:\n            arr1[p] = arr1[p1]\n            p1 -= 1\n        else:\n            arr1[p] = arr2[p2]\n            p2 -= 1\n        p -= 1\n    while p2 >= 0:\n        arr1[p] = arr2[p2]\n        p2 -= 1\n        p -= 1",
         },
         {
           id: "find-repeating-missing-number",
@@ -286,7 +288,7 @@ const steps = [
           content:
             "Given an array of size n containing numbers from 1 to n with exactly one number missing and one number repeated, find the repeating and missing numbers.\n\nExample 1:\n- Input: [3, 1, 3]\n- Output: (repeating = 3, missing = 2)\n\nExample 2:\n- Input: [4, 3, 6, 2, 1, 1]\n- Output: (repeating = 1, missing = 5)",
           solution:
-            "def find_repeating_missing(nums):\n    n = len(nums)\n    sum_n = n*(n+1)//2\n    sum_sq_n = n*(n+1)*(2*n+1)//6\n    sum_nums = sum(nums)\n    sum_sq_nums = sum(x*x for x in nums)\n    diff = sum_nums - sum_n  # repeating - missing\n    diff_sq = sum_sq_nums - sum_sq_n  # repeating^2 - missing^2\n    # Solve: repeating - missing = diff, repeating + missing = diff_sq / diff\n    sum_rm = diff_sq // diff\n    repeating = (diff + sum_rm) // 2\n    missing = sum_rm - repeating\n    return repeating, missing",
+            "def findTwoElement(arr):\n    n = len(arr)\n    sn = (n * (n + 1)) // 2\n    s2n = (n * (n + 1) * (2 * n + 1)) // 6\n\n    s1 = sum(arr)\n    s2 = 0\n    for u in arr:\n        s2 = s2 + u ** 2\n\n    s_diff = sn - s1\n    s2_diff = s2n - s2\n\n    tot = s2_diff // s_diff\n    x = (s_diff + tot) // 2\n    y = tot - x\n    return (y, x)",
         },
         {
           id: "count-inversions",
@@ -294,7 +296,7 @@ const steps = [
           content:
             "Given an array, count the number of inversions in the array. An inversion is a pair (i, j) such that i < j and arr[i] > arr[j].\n\nExample 1:\n- Input: [1, 20, 6, 4, 5]\n- Output: 5  (Inversions: (20,6), (20,4), (20,5), (6,4), (6,5))\n\nExample 2:\n- Input: [2, 4, 1, 3, 5]\n- Output: 3  (Inversions: (2,1), (4,1), (4,3))",
           solution:
-            "def count_inversions(arr):\n    def merge_sort_count(nums):\n        if len(nums) <= 1:\n            return nums, 0\n        mid = len(nums) // 2\n        left, left_inv = merge_sort_count(nums[:mid])\n        right, right_inv = merge_sort_count(nums[mid:])\n        merged = []\n        i = j = inv = 0\n        while i < len(left) and j < len(right):\n            if left[i] <= right[j]:\n                merged.append(left[i])\n                i += 1\n            else:\n                merged.append(right[j])\n                j += 1\n                inv += len(left) - i\n        merged += left[i:]\n        merged += right[j:]\n        return merged, left_inv + right_inv + inv\n    _, total_inv = merge_sort_count(arr)\n    return total_inv",
+            "def inversionCount(arr):\n    def merge(arr, l, mid, h):\n        ans = []\n        i = l\n        j = mid + 1\n        cnt = 0\n        while i <= mid and j <= h:\n            if arr[i] <= arr[j]:\n                ans.append(arr[i])\n                i += 1\n            else:\n                ans.append(arr[j])\n                cnt += (mid - i + 1)\n                j += 1\n        while i <= mid:\n            ans.append(arr[i])\n            i += 1\n        while j <= h:\n            ans.append(arr[j])\n            j += 1\n        for k in range(len(ans)):\n            arr[l + k] = ans[k]\n        return cnt\n\n    def mergesort(arr, l, h):\n        cnt = 0\n        if l == h:\n            return cnt\n        mid = (l + h) // 2\n        cnt += mergesort(arr, l, mid)\n        cnt += mergesort(arr, mid + 1, h)\n        cnt += merge(arr, l, mid, h)\n        return cnt\n\n    return mergesort(arr, 0, len(arr) - 1)",
         },
         {
           id: "reverse-pairs",
@@ -302,7 +304,7 @@ const steps = [
           content:
             "Given an array, count the number of reverse pairs. A reverse pair is a pair (i, j) such that i < j and nums[i] > 2 * nums[j].\n\nExample 1:\n- Input: [1, 3, 2, 3, 1]\n- Output: 2\n\nExample 2:\n- Input: [2, 4, 3, 5, 1]\n- Output: 3",
           solution:
-            "def reverse_pairs(nums):\n    def merge_sort(lo, hi):\n        if hi - lo <= 1:\n            return 0\n        mid = (lo + hi) // 2\n        count = merge_sort(lo, mid) + merge_sort(mid, hi)\n        j = mid\n        for i in range(lo, mid):\n            while j < hi and nums[i] > 2 * nums[j]:\n                j += 1\n            count += j - mid\n        nums[lo:hi] = sorted(nums[lo:hi])\n        return count\n    return merge_sort(0, len(nums))",
+            "def reversePairs(arr: List[int]) -> int:\n    def merge(arr, l, mid, h):\n        cnt = 0\n        j = mid + 1\n        for i in range(l, mid + 1):\n            while j <= h and arr[i] > 2 * arr[j]:\n                j += 1\n            cnt += (j - (mid + 1))\n\n        i = l\n        j = mid + 1\n        ans = []\n        while i <= mid and j <= h:\n            if arr[i] <= arr[j]:\n                ans.append(arr[i])\n                i += 1\n            else:\n                ans.append(arr[j])\n                j += 1\n\n        while i <= mid:\n            ans.append(arr[i])\n            i += 1\n        while j <= h:\n            ans.append(arr[j])\n            j += 1\n\n        for k in range(len(ans)):\n            arr[l + k] = ans[k]\n        return cnt\n\n    def mergesort(arr, l, h):\n        if l >= h:\n            return 0\n        mid = (l + h) // 2\n        cnt = mergesort(arr, l, mid)\n        cnt += mergesort(arr, mid + 1, h)\n        cnt += merge(arr, l, mid, h)\n        return cnt\n\n    return mergesort(arr, 0, len(arr) - 1)",
         },
         {
           id: "maximum-product-subarray",
@@ -310,7 +312,7 @@ const steps = [
           content:
             "Find the contiguous subarray within an array (containing at least one number) which has the largest product, and return that product.\n\nExample 1:\n- Input: [2, 3, -2, 4]\n- Output: 6  (The subarray [2, 3] has product 6)\n\nExample 2:\n- Input: [-2, 0, -1]\n- Output: 0  (The result is 0 because [-2], [-1] have products -2, -1 and we get 0 by taking [0])",
           solution:
-            "def max_product(nums):\n    max_prod = min_prod = result = nums[0]\n    for num in nums[1:]:\n        if num < 0:\n            max_prod, min_prod = min_prod, max_prod\n        max_prod = max(num, max_prod * num)\n        min_prod = min(num, min_prod * num)\n        result = max(result, max_prod)\n    return result",
+            "def maxProduct(nums: List[int]) -> int:\n    prefix = 1\n    suffix = 1\n    mx = float('-inf')\n    n = len(nums)\n    for i in range(n):\n        prefix *= nums[i]\n        mx = max(mx, prefix)\n        if prefix == 0:\n            prefix = 1\n    for i in range(n - 1, -1, -1):\n        suffix *= nums[i]\n        mx = max(mx, suffix)\n        if suffix == 0:\n            suffix = 1\n    return mx",
         },
       ],
     },
@@ -2069,7 +2071,7 @@ def merge(l1, l2):
     },
   },
   {
-    stepTitle: "Step 5: Greedy Algorithm",
+    stepTitle: "Step 5: Stack & Heap",
     sections: {
       "Lec 1: Medium Problem": [
         {
@@ -2344,7 +2346,7 @@ def merge(l1, l2):
     },
   },
   {
-    stepTitle: "Step 5: Greedy Algorithm",
+    stepTitle: "Step 5:  Binary Trees",
     sections: {
       "Lec 1: Medium Problem": [
         {
@@ -2619,7 +2621,7 @@ def merge(l1, l2):
     },
   },
   {
-    stepTitle: "Step 5: Greedy Algorithm",
+    stepTitle: "Step 5: Binary Search Trees",
     sections: {
       "Lec 1: Medium Problem": [
         {
@@ -2894,7 +2896,7 @@ def merge(l1, l2):
     },
   },
   {
-    stepTitle: "Step 5: Greedy Algorithm",
+    stepTitle: "Step 5:  Dynamic Programming",
     sections: {
       "Lec 1: Medium Problem": [
         {
