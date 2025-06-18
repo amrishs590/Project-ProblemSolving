@@ -343,45 +343,24 @@ const steps = [
           title: "Implement Lower Bound (First Element Not Less Than X)",
           content:
             "Return the index of the first element in a sorted array which is not less than X.",
-          solution: `def lower_bound(arr, x):
-    low, high = 0, len(arr)
-    while low < high:
-        mid = (low + high) // 2
-        if arr[mid] < x:
-            low = mid + 1
-        else:
-            high = mid
-    return low`,
+          solution: "def lowerBound(arr, target):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] < target:\n            ans = l\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l"
+,
         },
         {
           id: "upper-bound",
           title: "Implement Upper Bound (First Element Greater Than X)",
           content:
             "Return the index of the first element in a sorted array which is strictly greater than X.",
-          solution: `def upper_bound(arr, x):
-    low, high = 0, len(arr)
-    while low < high:
-        mid = (low + high) // 2
-        if arr[mid] <= x:
-            low = mid + 1
-        else:
-            high = mid
-    return low`,
+          solution: "def upperBound(arr, target):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] <= target:\n            ans = l\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l"
+,
         },
         {
           id: "search-insert-position",
           title: "Search Insert Position",
           content:
             "Return index if target found. If not, return the index where it would be inserted in order.",
-          solution: `def search_insert(arr, x):
-    low, high = 0, len(arr)
-    while low < high:
-        mid = (low + high) // 2
-        if arr[mid] < x:
-            low = mid + 1
-        else:
-            high = mid
-    return low`,
+          solution: "def searchInsert(arr: List[int], target: int) -> int:\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (l + h) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n    return lower(arr, 0, len(arr) - 1, target)"
+,
         },
         {
           id: "floor-ceil",
@@ -408,23 +387,8 @@ const steps = [
           title: "First and Last Occurrence of a Number",
           content:
             "Find the first and last occurrence of a number in a sorted array.",
-          solution: `def find_occurrences(arr, x):
-    def find(is_first):
-        low, high, result = 0, len(arr) - 1, -1
-        while low <= high:
-            mid = (low + high) // 2
-            if arr[mid] == x:
-                result = mid
-                if is_first:
-                    high = mid - 1
-                else:
-                    low = mid + 1
-            elif arr[mid] < x:
-                low = mid + 1
-            else:
-                high = mid - 1
-        return result
-    return find(True), find(False)`,
+          solution: "def searchRange(arr: List[int], k: int) -> List[int]:\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    def upper(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] > k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    if not arr:\n        return [-1, -1]\n\n    n = len(arr)\n    l = lower(arr, 0, n - 1, k)\n    u = upper(arr, 0, n - 1, k) - 1\n    if l <= u and l < n and arr[l] == k and arr[u] == k:\n        return [l, u]\n    return [-1, -1]"
+,
         },
         {
           id: "count-occurrences",
@@ -436,27 +400,8 @@ Output: 3
 
 Input: arr = [5, 7, 7, 8, 8, 10], target = 6
 Output: 0`,
-          solution: `def count_occurrences(arr, target):
-    def find_occurrence(find_first):
-        low, high = 0, len(arr) - 1
-        result = -1
-        while low <= high:
-            mid = (low + high) // 2
-            if arr[mid] == target:
-                result = mid
-                if find_first:
-                    high = mid - 1
-                else:
-                    low = mid + 1
-            elif arr[mid] < target:
-                low = mid + 1
-            else:
-                high = mid - 1
-        return result
-
-    first = find_occurrence(True)
-    last = find_occurrence(False)
-    return last - first + 1 if first != -1 else 0`,
+          solution: "def countFreq(arr, target):\n    def lower(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] >= k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    def upper(arr, l, h, k):\n        while l <= h:\n            mid = (h + l) // 2\n            if arr[mid] > k:\n                h = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n    n = len(arr)\n    l = lower(arr, 0, n - 1, target)\n    u = upper(arr, 0, n - 1, target) - 1\n    return u - l + 1"
+,
         },
         {
           id: "search-rotated-array-1",
@@ -543,20 +488,8 @@ Output: 2
 
 Input: arr = [7, 9, 11, 12, 5]
 Output: 4`,
-          solution: `def rotation_count(arr):
-    low, high = 0, len(arr) - 1
-    n = len(arr)
-    while low <= high:
-        mid = (low + high) // 2
-        next_ = (mid + 1) % n
-        prev = (mid + n - 1) % n
-        if arr[mid] <= arr[next_] and arr[mid] <= arr[prev]:
-            return mid
-        elif arr[mid] <= arr[high]:
-            high = mid - 1
-        elif arr[mid] >= arr[low]:
-            low = mid + 1
-    return 0`,
+          solution: "def findKRotation(arr):\n    l = 0\n    h = len(arr) - 1\n    while l < h:\n        mid = (h + l) // 2\n        if arr[mid] > arr[h]:\n            l = mid + 1\n        else:\n            h = mid\n    return l"
+,
         },
         {
           id: "single-element-sorted",
@@ -567,17 +500,8 @@ Output: 2
 
 Input: arr = [3,3,7,7,10,11,11]
 Output: 10`,
-          solution: `def single_non_duplicate(arr):
-    low, high = 0, len(arr) - 1
-    while low < high:
-        mid = (low + high) // 2
-        if mid % 2 == 1:
-            mid -= 1
-        if arr[mid] == arr[mid + 1]:
-            low = mid + 2
-        else:
-            high = mid
-    return arr[low]`,
+          solution: "def singleNonDuplicate(arr):\n    l = 0\n    n = len(arr)\n    h = n - 1\n    if n <= 1: return arr[0]\n    if arr[0] != arr[1]: return arr[0]\n    if arr[n - 1] != arr[n - 2]: return arr[n - 1]\n\n    while l <= h:\n        mid = (l + h) // 2\n        if arr[mid] != arr[mid - 1] and arr[mid] != arr[mid + 1]:\n            return arr[mid]\n        elif arr[mid] == arr[mid - 1]:\n            if mid % 2 == 1:\n                l = mid + 1\n            else:\n                h = mid - 2\n        elif arr[mid] == arr[mid + 1]:\n            if mid % 2 == 0:\n                l = mid + 2\n            else:\n                h = mid - 1\n\n    return -1"
+
         },
         {
           id: "find-peak",
@@ -588,15 +512,8 @@ Output: 2 (index of 3)
 
 Input: arr = [1,2,1,3,5,6,4]
 Output: 1 or 5`,
-          solution: `def find_peak_element(arr):
-    low, high = 0, len(arr) - 1
-    while low < high:
-        mid = (low + high) // 2
-        if arr[mid] > arr[mid + 1]:
-            high = mid
-        else:
-            low = mid + 1
-    return low`,
+          solution: "def findPeakElement(nums):\n    l = 0\n    h = len(nums) - 1\n    if h == 0: return 0\n    if nums[0] > nums[1]: return 0\n    if nums[h] > nums[h - 1]: return h\n\n    while l <= h:\n        mid = (h + l) // 2\n        if nums[mid] > nums[mid - 1] and nums[mid] > nums[mid + 1]:\n            return mid\n        elif nums[mid] > nums[mid + 1]:\n            h = mid - 1\n        else:\n            l = mid + 1"
+,
         },
       ],
       "Lec 2: BS on Answers": [
@@ -646,85 +563,28 @@ Output: 1 or 5`,
           title: "Koko Eating Bananas",
           content:
             "Koko loves bananas and can eat at most H hours. Find the minimum eating speed K such that she can finish all bananas.",
-          solution: `def min_eating_speed(piles, h):
-    import math
-    low, high = 1, max(piles)
-    while low <= high:
-        mid = (low + high) // 2
-        hours = sum(math.ceil(p / mid) for p in piles)
-        if hours <= h:
-            high = mid - 1
-        else:
-            low = mid + 1
-    return low`,
+          solution: "def minEatingSpeed(piles: List[int], t: int) -> int:\n    def possible(piles, m, t):\n        cnt = 0\n        for i in piles:\n            cnt = cnt + math.ceil(i / m)\n            if cnt > t:\n                return 0\n        return 1\n\n    l = 1\n    h = max(piles)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(piles, mid, t):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans" ,
         },
         {
           id: "min-days-bouquets",
           title: "Minimum Days to Make M Bouquets",
           content:
             "Given a bloomDay array, find minimum days required to make m bouquets of k flowers in a row.",
-          solution: `def min_days(bloomDay, m, k):
-    def can_make(day):
-        flow, bouq = 0, 0
-        for b in bloomDay:
-            flow = flow + 1 if b <= day else 0
-            if flow == k:
-                bouq += 1
-                flow = 0
-        return bouq >= m
-
-    if len(bloomDay) < m * k:
-        return -1
-
-    low, high = min(bloomDay), max(bloomDay)
-    while low <= high:
-        mid = (low + high) // 2
-        if can_make(mid):
-            high = mid - 1
-        else:
-            low = mid + 1
-    return low`,
+          solution: "def minDays(arr: List[int], m: int, k: int) -> int:\n    def possible(arr, mid, m, k):\n        cnt = 0\n        tot = 0\n        for i in range(len(arr)):\n            if arr[i] <= mid:\n                cnt += 1\n                if cnt >= k:\n                    tot += 1\n                    cnt = cnt % k\n            else:\n                cnt = 0\n        return tot >= m\n\n    l = min(arr)\n    h = max(arr)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(arr, mid, m, k):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans"
         },
         {
           id: "smallest-divisor",
           title: "Find the Smallest Divisor Given Threshold",
           content:
             "Find the smallest divisor such that the sum of the result of dividing elements by the divisor is less than or equal to threshold.",
-          solution: `def smallest_divisor(nums, threshold):
-    import math
-    low, high = 1, max(nums)
-    while low <= high:
-        mid = (low + high) // 2
-        total = sum(math.ceil(n / mid) for n in nums)
-        if total <= threshold:
-            high = mid - 1
-        else:
-            low = mid + 1
-    return low`,
+          solution: "def smallestDivisor(nums: List[int], threshold: int) -> int:\n    def possible(arr, mid, k):\n        sm = 0\n        for i in arr:\n            sm += math.ceil(i / mid)\n        return sm <= k\n\n    l = 1\n    h = max(nums)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(nums, mid, threshold):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
         },
         {
           id: "ship-packages",
           title: "Capacity to Ship Packages Within D Days",
           content:
             "Find the least weight capacity of a ship that will result in all packages being shipped within D days.",
-          solution: `def ship_within_days(weights, D):
-    def can_ship(cap):
-        days, total = 1, 0
-        for w in weights:
-            if total + w > cap:
-                days += 1
-                total = 0
-            total += w
-        return days <= D
-
-    low, high = max(weights), sum(weights)
-    while low <= high:
-        mid = (low + high) // 2
-        if can_ship(mid):
-            high = mid - 1
-        else:
-            low = mid + 1
-    return low`,
+          solution: "def shipWithinDays(w: List[int], days: int) -> int:\n    def possible(arr, mid, days):\n        tot = 1\n        sm = 0\n        for i in arr:\n            sm += i\n            if sm > mid:\n                tot += 1\n                sm = i\n        return tot <= days\n\n    l = max(w)\n    h = sum(w)\n    ans = -1\n    while l <= h:\n        mid = (h + l) // 2\n        if possible(w, mid, days):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
         },
         {
           id: "kth-missing-positive",
@@ -735,16 +595,7 @@ Output: 9
 
 Input: arr = [1,2,3,4], k = 2
 Output: 6`,
-          solution: `def find_kth_missing(arr, k):
-    left, right = 0, len(arr) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        missing = arr[mid] - mid - 1
-        if missing < k:
-            left = mid + 1
-        else:
-            right = mid - 1
-    return left + k`,
+          solution: "def findKthPositive(arr: List[int], k: int) -> int:\n    for i in arr:\n        if i <= k:\n            k += 1\n    return k",
         },
         {
           id: "aggressive-cows",
@@ -752,28 +603,8 @@ Output: 6`,
           content: `You are given an array of stall positions and the number of cows. Place the cows in stalls such that the minimum distance between any two of them is maximized.
 Input: positions = [1, 2, 4, 8, 9], cows = 3
 Output: 3`,
-          solution: `def aggressive_cows(positions, cows):
-    positions.sort()
-    def can_place(dist):
-        count, last = 1, positions[0]
-        for i in range(1, len(positions)):
-            if positions[i] - last >= dist:
-                count += 1
-                last = positions[i]
-            if count == cows:
-                return True
-        return False
-
-    low, high = 1, positions[-1] - positions[0]
-    result = 0
-    while low <= high:
-        mid = (low + high) // 2
-        if can_place(mid):
-            result = mid
-            low = mid + 1
-        else:
-            high = mid - 1
-    return result`,
+          solution: "def aggressiveCows(stalls, k):\n    def possible(stalls, mid, k):\n        prev = stalls[0]\n        cows = 1\n        for i in range(1, len(stalls)):\n            if stalls[i] - prev >= mid:\n                cows += 1\n                prev = stalls[i]\n        return cows >= k\n\n    stalls.sort()\n    s = 1\n    e = max(stalls)\n    ans = -1\n    while s <= e:\n        mid = (s + e) // 2\n        if possible(stalls, mid, k):\n            ans = mid\n            s = mid + 1\n        else:\n            e = mid - 1\n    return ans"
+,
         },
         {
           id: "book-allocation",
@@ -781,29 +612,7 @@ Output: 3`,
           content: `Allocate books to students so that the maximum number of pages assigned to a student is minimized.
 Input: books = [12, 34, 67, 90], students = 2
 Output: 113`,
-          solution: `def book_allocation(books, students):
-    def is_possible(max_pages):
-        required, current = 1, 0
-        for pages in books:
-            if pages > max_pages:
-                return False
-            if current + pages > max_pages:
-                required += 1
-                current = pages
-            else:
-                current += pages
-        return required <= students
-
-    low, high = max(books), sum(books)
-    result = high
-    while low <= high:
-        mid = (low + high) // 2
-        if is_possible(mid):
-            result = mid
-            high = mid - 1
-        else:
-            low = mid + 1
-    return result`,
+          solution: "def findPages(self, arr, k):\n    def check(arr,mid):\n        stu = 1\n        sm = 0\n        for i in arr:\n            if sm + i > mid:\n                sm = i\n                stu += 1\n            else:\n                sm += i\n        return stu\n\n    if k > len(arr): return -1\n    l = max(arr)\n    h = sum(arr)\n    while l <= h:\n        mid = (h + l) // 2\n        if check(arr, mid) > k:\n            l = mid + 1\n        else:\n            h = mid - 1\n    return l",
         },
         {
           id: "split-array-largest-sum",
@@ -811,27 +620,7 @@ Output: 113`,
           content: `Split the array into m subarrays such that the largest sum among them is minimized.
 Input: nums = [7,2,5,10,8], m = 2
 Output: 18`,
-          solution: `def split_array(nums, m):
-    def is_valid(max_sum):
-        count, total = 1, 0
-        for num in nums:
-            if total + num > max_sum:
-                count += 1
-                total = num
-            else:
-                total += num
-        return count <= m
-
-    low, high = max(nums), sum(nums)
-    result = high
-    while low <= high:
-        mid = (low + high) // 2
-        if is_valid(mid):
-            result = mid
-            high = mid - 1
-        else:
-            low = mid + 1
-    return result`,
+          solution: "def splitArray(nums, k):\n    def possible(arr, mid, k):\n        sm = 0\n        split = 1\n        for i in arr:\n            sm += i\n            if sm > mid:\n                split += 1\n                sm = i\n        return split <= k\n\n    l = max(nums)\n    h = sum(nums)\n    ans = -1\n    while l <= h:\n        mid = (l + h) // 2\n        if possible(nums, mid, k):\n            ans = mid\n            h = mid - 1\n        else:\n            l = mid + 1\n    return ans",
         },
         {
           id: "painters-partition",
@@ -839,29 +628,7 @@ Output: 18`,
           content: `Given a list of boards and number of painters, partition the boards among painters to minimize the maximum time taken.
 Input: boards = [10, 20, 30, 40], painters = 2
 Output: 60`,
-          solution: `def painters_partition(boards, painters):
-    def is_feasible(limit):
-        total, count = 0, 1
-        for board in boards:
-            if total + board > limit:
-                count += 1
-                total = board
-                if count > painters:
-                    return False
-            else:
-                total += board
-        return True
-
-    low, high = max(boards), sum(boards)
-    result = high
-    while low <= high:
-        mid = (low + high) // 2
-        if is_feasible(mid):
-            result = mid
-            high = mid - 1
-        else:
-            low = mid + 1
-    return result`,
+          solution: "class Solution:\n    def minTime (self, arr, k):\n        def check(arr, mid):\n            sm = 0\n            painter = 1\n            for i in arr:\n                if i + sm > mid:\n                    sm = i\n                    painter += 1\n                else:\n                    sm += i\n            return painter\n\n        if k > len(arr): return -1\n        l = max(arr)\n        h = sum(arr)\n        while l <= h:\n            mid = (h + l) // 2\n            if check(arr, mid) < k:\n                l = mid + 1\n            else:\n                h = mid - 1\n        return l",
         },
         {
           id: "minimize-max-distance-gas-station",
