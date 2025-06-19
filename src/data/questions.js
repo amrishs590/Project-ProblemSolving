@@ -1067,8 +1067,9 @@ Output: 6`,
           id: "remove-nth-node",
           title: "Remove Nth Node from the Back of the Linked List",
           content: `Remove the nth node from the end of the linked list.`,
-          solution: "def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:\n    slow = head\n    fast = head\n    for o in range(n):\n        fast = fast.next\n    if not fast:\n        return head.next\n    while fast.next:\n        slow = slow.next\n        fast = fast.next\n    slow.next = slow.next.next\n    return head"
-      },
+          solution:
+            "def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:\n    slow = head\n    fast = head\n    for o in range(n):\n        fast = fast.next\n    if not fast:\n        return head.next\n    while fast.next:\n        slow = slow.next\n        fast = fast.next\n    slow.next = slow.next.next\n    return head",
+        },
         {
           id: "delete-middle-node",
           title: "Delete the Middle Node of Linked List",
@@ -1207,7 +1208,8 @@ def merge(l1, l2):
           id: "reverse-in-k-group",
           title: "Reverse Linked List in Group of Given Size K",
           content: `Reverse nodes of a linked list in groups of size K. If the number of nodes is not a multiple of K, leave the last group as is.`,
-          solution: "def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:\n    def length(head):\n        cnt = 0\n        while head:\n            cnt +=1 \n            head = head.next\n        return cnt\n\n    def reverse(start,end):\n        prev = None\n        while start!=end:\n            nd = start.next\n            start.next = prev\n            prev = start\n            start = nd\n        return prev\n\n    LL = ListNode()\n    LL.next = head\n    curr = LL\n    len = length(head)\n    for i in range(len//k):\n        start = curr.next\n        end = start\n        for i in range(k):\n            end = end.next\n        rev_head = reverse(start,end)\n        curr.next = rev_head\n        start.next = end\n        curr = start\n    return LL.next",
+          solution:
+            "def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:\n    def length(head):\n        cnt = 0\n        while head:\n            cnt +=1 \n            head = head.next\n        return cnt\n\n    def reverse(start,end):\n        prev = None\n        while start!=end:\n            nd = start.next\n            start.next = prev\n            prev = start\n            start = nd\n        return prev\n\n    LL = ListNode()\n    LL.next = head\n    curr = LL\n    len = length(head)\n    for i in range(len//k):\n        start = curr.next\n        end = start\n        for i in range(k):\n            end = end.next\n        rev_head = reverse(start,end)\n        curr.next = rev_head\n        start.next = end\n        curr = start\n    return LL.next",
         },
         {
           id: "rotate-linked-list",
@@ -1304,14 +1306,16 @@ def merge(l1, l2):
           title: "Longest Substring Without Repeating Characters",
           content:
             "Given a string, find the length of the longest substring without repeating characters.",
-          solution: "def lengthOfLongestSubstring(s: str) -> int:\n    d = defaultdict(int)\n    r = 0\n    l = 0\n    n = len(s)\n    mx = 0\n    while r < n:\n        d[s[r]] += 1\n        while d[s[r]] > 1:\n            d[s[l]] -= 1\n            if d[s[l]] == 0:\n                del d[s[l]]\n            l += 1\n        mx = max(mx, r - l + 1)\n        r += 1\n    return mx",
+          solution:
+            "def lengthOfLongestSubstring(s: str) -> int:\n    d = defaultdict(int)\n    r = 0\n    l = 0\n    n = len(s)\n    mx = 0\n    while r < n:\n        d[s[r]] += 1\n        while d[s[r]] > 1:\n            d[s[l]] -= 1\n            if d[s[l]] == 0:\n                del d[s[l]]\n            l += 1\n        mx = max(mx, r - l + 1)\n        r += 1\n    return mx",
         },
         {
           id: "max-consecutive-ones-iii",
           title: "Max Consecutive Ones III",
           content:
             "Given a binary array and an integer k, return the maximum number of consecutive 1's with at most k 0's flipped.",
-          solution: "def longestOnes(nums: List[int], k: int) -> int:\n    l = 0\n    r = 0\n    mx = 0\n    zero = 0\n    n = len(nums)\n    while r < n:\n        if nums[r] == 0:\n            zero += 1\n        while zero > k:\n            if nums[l] == 0:\n                zero -= 1\n            l += 1\n        mx = max(mx, r - l + 1)\n        r += 1\n    return mx",
+          solution:
+            "def longestOnes(nums: List[int], k: int) -> int:\n    l = 0\n    r = 0\n    mx = 0\n    zero = 0\n    n = len(nums)\n    while r < n:\n        if nums[r] == 0:\n            zero += 1\n        while zero > k:\n            if nums[l] == 0:\n                zero -= 1\n            l += 1\n        mx = max(mx, r - l + 1)\n        r += 1\n    return mx",
         },
         {
           id: "fruit-into-baskets",
@@ -1337,33 +1341,38 @@ def merge(l1, l2):
           title: "Longest Repeating Character Replacement",
           content:
             "Return the length of the longest substring where you can replace at most k characters to make all characters the same.",
-          solution: "def characterReplacement(s: str, k: int) -> int:\n    mx = 0\n    fr = 0\n    d = {}\n    l = 0\n    for i in range(len(s)):\n        if s[i] in d:\n            d[s[i]] += 1\n        else:\n            d[s[i]] = 1\n\n        fr = max(fr, d[s[i]])\n        if (i - l + 1) - fr > k:\n            d[s[l]] -= 1\n            l += 1\n        mx = max(mx, i - l + 1)\n    return mx",
+          solution:
+            "def characterReplacement(s: str, k: int) -> int:\n    mx = 0\n    fr = 0\n    d = {}\n    l = 0\n    for i in range(len(s)):\n        if s[i] in d:\n            d[s[i]] += 1\n        else:\n            d[s[i]] = 1\n\n        fr = max(fr, d[s[i]])\n        if (i - l + 1) - fr > k:\n            d[s[l]] -= 1\n            l += 1\n        mx = max(mx, i - l + 1)\n    return mx",
         },
         {
           id: "binary-subarray-sum",
           title: "Binary Subarray With Sum",
           content:
             "Given a binary array and an integer goal, return the number of subarrays with sum equal to goal.",
-          solution: "def numSubarraysWithSum(nums: List[int], goal: int) -> int:\n    def solve(nums, goal):\n        if goal < 0:\n            return 0\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        sm = 0\n        while r < n:\n            sm += nums[r]\n            while sm > goal:\n                sm -= nums[l]\n                l += 1\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, goal) - solve(nums, goal - 1)",
+          solution:
+            "def numSubarraysWithSum(nums: List[int], goal: int) -> int:\n    def solve(nums, goal):\n        if goal < 0:\n            return 0\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        sm = 0\n        while r < n:\n            sm += nums[r]\n            while sm > goal:\n                sm -= nums[l]\n                l += 1\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, goal) - solve(nums, goal - 1)",
         },
         {
           id: "count-nice-subarrays",
           title: "Count Number of Nice Subarrays",
           content:
             "Given an array of integers and an integer k, return the number of subarrays with exactly k odd numbers.",
-          solution: "def numberOfSubarrays(nums: List[int], k: int) -> int:\n    def solve(nums, goal):\n        if goal < 0:\n            return 0\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        sm = 0\n        while r < n:\n            sm += nums[r] % 2\n            while sm > goal:\n                sm -= nums[l] % 2\n                l += 1\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, k) - solve(nums, k - 1)",
+          solution:
+            "def numberOfSubarrays(nums: List[int], k: int) -> int:\n    def solve(nums, goal):\n        if goal < 0:\n            return 0\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        sm = 0\n        while r < n:\n            sm += nums[r] % 2\n            while sm > goal:\n                sm -= nums[l] % 2\n                l += 1\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, k) - solve(nums, k - 1)",
         },
         {
           id: "substring-with-all-three-characters",
           title: "Number of Substrings Containing All Three Characters",
           content: `Given a string s containing only characters 'a', 'b' and 'c', return the number of substrings containing at least one occurrence of all three characters.`,
-          solution: "def numberOfSubstrings(s: str) -> int:\n    pos = [-1, -1, -1]\n    cnt = 0\n    r = 0\n    n = len(s)\n    while r < n:\n        if s[r] in \"abc\":\n            pos[ord(s[r]) - 97] = r\n        if pos[0] != -1 and pos[1] != -1 and pos[2] != -1:\n            cnt += 1 + min(pos)\n        r += 1\n    return cnt",
+          solution:
+            'def numberOfSubstrings(s: str) -> int:\n    pos = [-1, -1, -1]\n    cnt = 0\n    r = 0\n    n = len(s)\n    while r < n:\n        if s[r] in "abc":\n            pos[ord(s[r]) - 97] = r\n        if pos[0] != -1 and pos[1] != -1 and pos[2] != -1:\n            cnt += 1 + min(pos)\n        r += 1\n    return cnt',
         },
         {
           id: "max-points-from-cards",
           title: "Maximum Points You Can Obtain from Cards",
           content: `Given an array of card points and an integer k, return the maximum score obtainable by choosing k cards from either end of the array.`,
-          solution: "def maxScore(nums: List[int], k: int) -> int:\n    n = len(nums)\n    r = n - 1\n    sm = sum(nums[:k])\n    mx = sm\n    for i in range(k - 1, -1, -1):\n        sm = sm - nums[i]\n        sm = sm + nums[r]\n        mx = max(mx, sm)\n        r -= 1\n    return mx",
+          solution:
+            "def maxScore(nums: List[int], k: int) -> int:\n    n = len(nums)\n    r = n - 1\n    sm = sum(nums[:k])\n    mx = sm\n    for i in range(k - 1, -1, -1):\n        sm = sm - nums[i]\n        sm = sm + nums[r]\n        mx = max(mx, sm)\n        r -= 1\n    return mx",
         },
       ],
       "Lec 2: Hard Problem": [
@@ -1372,21 +1381,24 @@ def merge(l1, l2):
           title: "Longest Substring with At Most K Distinct Characters",
           content:
             "Given a string and an integer k, return the length of the longest substring with at most k distinct characters.",
-          solution: "def longestKSubstr(s, k):\n    l = 0\n    r = 0\n    n = len(s)\n    d = {}\n    mx = 0\n    while r < n:\n        if s[r] in d:\n            d[s[r]] += 1\n        else:\n            d[s[r]] = 1\n\n        while len(d) > k:\n            d[s[l]] -= 1\n            if d[s[l]] == 0:\n                del d[s[l]]\n            l += 1\n\n        if len(d) == k:\n            mx = max(mx, r - l + 1)\n        r += 1\n\n    return mx if mx else -1",
+          solution:
+            "def longestKSubstr(s, k):\n    l = 0\n    r = 0\n    n = len(s)\n    d = {}\n    mx = 0\n    while r < n:\n        if s[r] in d:\n            d[s[r]] += 1\n        else:\n            d[s[r]] = 1\n\n        while len(d) > k:\n            d[s[l]] -= 1\n            if d[s[l]] == 0:\n                del d[s[l]]\n            l += 1\n\n        if len(d) == k:\n            mx = max(mx, r - l + 1)\n        r += 1\n\n    return mx if mx else -1",
         },
         {
           id: "subarray-k-diff-integers",
           title: "Subarray with K Different Integers",
           content:
             "Return the number of subarrays with exactly k distinct integers.",
-          solution:"def subarraysWithKDistinct(nums: List[int], k: int) -> int:\n    def solve(nums, k):\n        d = {}\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        while r < n:\n            if nums[r] not in d:\n                d[nums[r]] = 1\n            else:\n                d[nums[r]] += 1\n\n            while len(d) > k:\n                d[nums[l]] -= 1\n                if d[nums[l]] == 0:\n                    del d[nums[l]]\n                l += 1\n\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, k) - solve(nums, k - 1)",
+          solution:
+            "def subarraysWithKDistinct(nums: List[int], k: int) -> int:\n    def solve(nums, k):\n        d = {}\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        while r < n:\n            if nums[r] not in d:\n                d[nums[r]] = 1\n            else:\n                d[nums[r]] += 1\n\n            while len(d) > k:\n                d[nums[l]] -= 1\n                if d[nums[l]] == 0:\n                    del d[nums[l]]\n                l += 1\n\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, k) - solve(nums, k - 1)",
         },
         {
           id: "min-window-substring",
           title: "Minimum Window Substring",
           content:
             "Given strings s and t, return the minimum window in s which contains all characters of t.",
-          solution: "def minWindow(S: str, T: str) -> str:\n    st = -1\n    mnLen = float('inf')\n    n = len(S)\n    m = len(T)\n    l = 0\n    r = 0\n    d = defaultdict(int)\n    for i in T:\n        d[i] += 1\n    cnt = 0\n    while r < n:\n        if d[S[r]] > 0:\n            cnt += 1\n        d[S[r]] -= 1\n        while cnt == m:\n            if r - l + 1 < mnLen:\n                mnLen = r - l + 1\n                st = l\n            d[S[l]] += 1\n            if d[S[l]] > 0:\n                cnt -= 1\n            l += 1\n        r += 1\n    return S[st:st + mnLen] if st != -1 else \"\"",
+          solution:
+            "def minWindow(S: str, T: str) -> str:\n    st = -1\n    mnLen = float('inf')\n    n = len(S)\n    m = len(T)\n    l = 0\n    r = 0\n    d = defaultdict(int)\n    for i in T:\n        d[i] += 1\n    cnt = 0\n    while r < n:\n        if d[S[r]] > 0:\n            cnt += 1\n        d[S[r]] -= 1\n        while cnt == m:\n            if r - l + 1 < mnLen:\n                mnLen = r - l + 1\n                st = l\n            d[S[l]] += 1\n            if d[S[l]] > 0:\n                cnt -= 1\n            l += 1\n        r += 1\n    return S[st:st + mnLen] if st != -1 else \"\"",
         },
         {
           id: "min-window-subsequence",
@@ -1430,14 +1442,16 @@ def merge(l1, l2):
           title: "Assign Cookies",
           content:
             "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
-          solution: "def findContentChildren(g: List[int], s: List[int]) -> int:\n    g.sort()\n    s.sort()\n    j = 0\n    i = 0\n    n1 = len(g)\n    n2 = len(s)\n    cnt = 0\n    while i < n1 and j < n2:\n        if g[i] <= s[j]:\n            cnt += 1\n            i += 1\n        j += 1\n    return cnt",
+          solution:
+            "def findContentChildren(g: List[int], s: List[int]) -> int:\n    g.sort()\n    s.sort()\n    j = 0\n    i = 0\n    n1 = len(g)\n    n2 = len(s)\n    cnt = 0\n    while i < n1 and j < n2:\n        if g[i] <= s[j]:\n            cnt += 1\n            i += 1\n        j += 1\n    return cnt",
         },
         {
           id: "fractional-knapsack",
           title: "Fractional Knapsack Problem",
           content:
             "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
-          solution: "import heapq\n\ndef fractionalknapsack(val, wt, cap):\n    n = len(val)\n    lis = []\n    \n    for i in range(n):\n        price = (val[i]*1.0) / wt[i]\n        lis.append((-price, i))\n    heapq.heapify(lis)\n    \n    sm = 0\n    while lis and cap > 0:\n        amt, ind = lis[0]\n        if wt[ind] <= cap:\n            sm = sm + val[ind]\n            cap = cap - wt[ind]\n            heapq.heappop(lis)\n        else:\n            sm = sm + (cap * (amt * -1))\n            cap = 0\n    return sm",
+          solution:
+            "import heapq\n\ndef fractionalknapsack(val, wt, cap):\n    n = len(val)\n    lis = []\n    \n    for i in range(n):\n        price = (val[i]*1.0) / wt[i]\n        lis.append((-price, i))\n    heapq.heapify(lis)\n    \n    sm = 0\n    while lis and cap > 0:\n        amt, ind = lis[0]\n        if wt[ind] <= cap:\n            sm = sm + val[ind]\n            cap = cap - wt[ind]\n            heapq.heappop(lis)\n        else:\n            sm = sm + (cap * (amt * -1))\n            cap = 0\n    return sm",
         },
         {
           id: "minimum-coins",
@@ -1460,14 +1474,16 @@ def merge(l1, l2):
           title: "Lemonade Change",
           content:
             "Customers are buying lemonade for $5. Determine if you can provide correct change.",
-          solution: "def lemonadeChange(bills: List[int]) -> bool:\n    d = {5: 0, 10: 0, 20: 0}\n    for i in bills:\n        if i == 5:\n            d[i] += 1\n        elif i == 10:\n            if d[5] < 1:\n                return False\n            d[i] += 1\n            d[5] -= 1\n        elif i == 20:\n            if not ((d[10] >= 1 and d[5] >= 1) or (d[5] >= 3)):\n                return False\n            d[20] += 1\n            if d[10] >= 1 and d[5] >= 1:\n                d[10] -= 1\n                d[5] -= 1\n            else:\n                d[5] -= 3\n    return True",
+          solution:
+            "def lemonadeChange(bills: List[int]) -> bool:\n    d = {5: 0, 10: 0, 20: 0}\n    for i in bills:\n        if i == 5:\n            d[i] += 1\n        elif i == 10:\n            if d[5] < 1:\n                return False\n            d[i] += 1\n            d[5] -= 1\n        elif i == 20:\n            if not ((d[10] >= 1 and d[5] >= 1) or (d[5] >= 3)):\n                return False\n            d[20] += 1\n            if d[10] >= 1 and d[5] >= 1:\n                d[10] -= 1\n                d[5] -= 1\n            else:\n                d[5] -= 3\n    return True",
         },
         {
           id: "valid-parenthesis-checker",
           title: "Valid Parenthesis Checker",
           content:
             "Given a string with parentheses, check if it's valid and balanced.",
-          solution: "def checkValidString(s: str) -> bool:\n    st = []\n    star = []\n    for i in range(len(s)):\n        if s[i] == '(':\n            st.append(i)\n        elif s[i] == '*':\n            star.append(i)\n        else:\n            if st:\n                st.pop()\n            elif star:\n                star.pop()\n            else:\n                return False\n    while st and star:\n        if st[-1] < star[-1]:\n            st.pop()\n            star.pop()\n        else:\n            return False\n    return not st",
+          solution:
+            "def checkValidString(s: str) -> bool:\n    st = []\n    star = []\n    for i in range(len(s)):\n        if s[i] == '(':\n            st.append(i)\n        elif s[i] == '*':\n            star.append(i)\n        else:\n            if st:\n                st.pop()\n            elif star:\n                star.pop()\n            else:\n                return False\n    while st and star:\n        if st[-1] < star[-1]:\n            st.pop()\n            star.pop()\n        else:\n            return False\n    return not st",
         },
       ],
       "Lec 2: Hard Problem": [
@@ -1476,1172 +1492,2102 @@ def merge(l1, l2):
           title: "N Meetings in One Room",
           content:
             "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
-          solution: "def maximumMeetings(start, end):\n    pair = []\n    for i in range(len(start)):\n        pair.append((start[i], end[i]))\n    pair.sort(key=lambda x: x[1])\n    cnt = 0\n    last = -1\n    for s, e in pair:\n        if last < s:\n            last = e\n            cnt += 1\n    return cnt",
+          solution:
+            "def maximumMeetings(start, end):\n    pair = []\n    for i in range(len(start)):\n        pair.append((start[i], end[i]))\n    pair.sort(key=lambda x: x[1])\n    cnt = 0\n    last = -1\n    for s, e in pair:\n        if last < s:\n            last = e\n            cnt += 1\n    return cnt",
         },
         {
           id: "jump-game",
           title: "Jump Game",
           content:
             "Given an array where each element represents jump length, check if you can reach the end.",
-          solution: "def canJump(nums: List[int]) -> bool:\n    n = len(nums)\n    mx = 0\n    for i in range(n):\n        if i > mx:\n            return False\n        mx = max(mx, i + nums[i])\n    return True",
+          solution:
+            "def canJump(nums: List[int]) -> bool:\n    n = len(nums)\n    mx = 0\n    for i in range(n):\n        if i > mx:\n            return False\n        mx = max(mx, i + nums[i])\n    return True",
         },
         {
           id: "jump-game-2",
           title: "Jump Game 2",
           content:
             "Return the minimum number of jumps needed to reach the last index.",
-          solution: "def jump(nums: List[int]) -> int:\n    l = 0\n    r = 0\n    far = 0\n    ans = 0\n    while r < len(nums) - 1:\n        for i in range(l, r + 1):\n            far = max(far, i + nums[i])\n        l = r + 1\n        r = far\n        ans += 1\n    return ans",
+          solution:
+            "def jump(nums: List[int]) -> int:\n    l = 0\n    r = 0\n    far = 0\n    ans = 0\n    while r < len(nums) - 1:\n        for i in range(l, r + 1):\n            far = max(far, i + nums[i])\n        l = r + 1\n        r = far\n        ans += 1\n    return ans",
         },
         {
           id: "min-platforms",
           title: "Minimum Number of Platforms Required for a Railway",
           content:
             "Given arrival and departure times, find the minimum number of platforms needed.",
-          solution: "def minimumPlatform(arr, dep):\n    arr.sort()\n    dep.sort()\n    i = 0\n    j = 0\n    mx = 0\n    cnt = 0\n    while i < len(arr):\n        if arr[i] <= dep[j]:\n            cnt += 1\n            i += 1\n        else:\n            cnt -= 1\n            j += 1\n        mx = max(mx, cnt)\n    return mx",
+          solution:
+            "def minimumPlatform(arr, dep):\n    arr.sort()\n    dep.sort()\n    i = 0\n    j = 0\n    mx = 0\n    cnt = 0\n    while i < len(arr):\n        if arr[i] <= dep[j]:\n            cnt += 1\n            i += 1\n        else:\n            cnt -= 1\n            j += 1\n        mx = max(mx, cnt)\n    return mx",
         },
         {
           id: "job-sequencing",
           title: "Job Sequencing Problem",
           content:
             "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
-          solution: "def job_sequencing(id, deadline, profit):\n    n = len(id)\n    jobs = []\n    for i in range(n):\n        jobs.append((profit[i], deadline[i], id[i]))\n    jobs.sort(reverse=True)\n\n    max_deadline = max(deadline)\n    slots = [-1] * (max_deadline + 1)\n    count = 0\n    total_profit = 0\n\n    for p, d, job_id in jobs:\n        for j in range(d, 0, -1):\n            if slots[j] == -1:\n                slots[j] = job_id\n                count += 1\n                total_profit += p\n                break\n\n    return [count, total_profit]",
+          solution:
+            "def job_sequencing(id, deadline, profit):\n    n = len(id)\n    jobs = []\n    for i in range(n):\n        jobs.append((profit[i], deadline[i], id[i]))\n    jobs.sort(reverse=True)\n\n    max_deadline = max(deadline)\n    slots = [-1] * (max_deadline + 1)\n    count = 0\n    total_profit = 0\n\n    for p, d, job_id in jobs:\n        for j in range(d, 0, -1):\n            if slots[j] == -1:\n                slots[j] = job_id\n                count += 1\n                total_profit += p\n                break\n\n    return [count, total_profit]",
         },
         {
           id: "candy",
           title: "Candy",
           content:
             "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
-          solution: "def candy(arr: List[int]) -> int:\n    # Method - 2 (Slope Method)\n    n = len(arr)\n    sm = 1\n    curr = 1\n    i = 1\n    while i < n:\n        while i < n and arr[i] > arr[i - 1]:\n            curr += 1\n            sm += curr\n            i += 1\n        curr = 1\n        while i < n and arr[i] == arr[i - 1]:\n            sm += 1\n            i += 1\n        dec = 0\n        while i < n and arr[i] < arr[i - 1]:\n            dec += 1\n            sm += dec\n            i += 1\n        sm -= min(curr, dec)\n        curr = 1\n    return sm\n\n    # Method - 1 (Brute Force)\n    # n = len(arr)\n    # ans = [1] * n\n    # for i in range(1, n):\n    #     if arr[i] > arr[i - 1]:\n    #         ans[i] = ans[i - 1] + 1\n    # sm = ans[-1]\n    # for i in range(n - 2, -1, -1):\n    #     if arr[i] > arr[i + 1]:\n    #         ans[i] = max(ans[i], ans[i + 1] + 1)\n    #     sm += ans[i]\n    # return sm",
+          solution:
+            "def candy(arr: List[int]) -> int:\n    # Method - 2 (Slope Method)\n    n = len(arr)\n    sm = 1\n    curr = 1\n    i = 1\n    while i < n:\n        while i < n and arr[i] > arr[i - 1]:\n            curr += 1\n            sm += curr\n            i += 1\n        curr = 1\n        while i < n and arr[i] == arr[i - 1]:\n            sm += 1\n            i += 1\n        dec = 0\n        while i < n and arr[i] < arr[i - 1]:\n            dec += 1\n            sm += dec\n            i += 1\n        sm -= min(curr, dec)\n        curr = 1\n    return sm\n\n    # Method - 1 (Brute Force)\n    # n = len(arr)\n    # ans = [1] * n\n    # for i in range(1, n):\n    #     if arr[i] > arr[i - 1]:\n    #         ans[i] = ans[i - 1] + 1\n    # sm = ans[-1]\n    # for i in range(n - 2, -1, -1):\n    #     if arr[i] > arr[i + 1]:\n    #         ans[i] = max(ans[i], ans[i + 1] + 1)\n    #     sm += ans[i]\n    # return sm",
         },
         {
           id: "insert-interval",
           title: "Insert Interval",
           content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
-          solution: "def insert(intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:\n    intervals = intervals + [newInterval]\n    intervals.sort()\n    ans = [] \n    for i in intervals:\n        if not ans:\n            ans.append(i)\n            continue\n        if not((ans[-1][1] < i[0]) or (i[1] < ans[-1][0])):\n            mn = min(ans[-1][0], i[0])\n            mx = max(ans[-1][1], i[1])\n            ans.pop()\n            ans.append([mn, mx])\n        else:\n            ans.append(i)\n    return ans",
+          solution:
+            "def insert(intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:\n    intervals = intervals + [newInterval]\n    intervals.sort()\n    ans = [] \n    for i in intervals:\n        if not ans:\n            ans.append(i)\n            continue\n        if not((ans[-1][1] < i[0]) or (i[1] < ans[-1][0])):\n            mn = min(ans[-1][0], i[0])\n            mx = max(ans[-1][1], i[1])\n            ans.pop()\n            ans.append([mn, mx])\n        else:\n            ans.append(i)\n    return ans",
         },
         {
           id: "merge-intervals",
           title: "Merge Intervals",
           content: `Given a collection of intervals, merge all overlapping intervals.`,
-          solution: "def merge(intervals: List[List[int]]) -> List[List[int]]:\n    intervals.sort()\n    ans = []\n    for i in range(len(intervals)):\n        if i == 0 or not ans:\n            ans.append(intervals[i])\n            continue\n        last = ans[-1]\n        if last[-1] < intervals[i][0]:\n            ans.append(intervals[i])\n        else:\n            last[-1] = max(last[-1], intervals[i][-1])\n    return ans",
+          solution:
+            "def merge(intervals: List[List[int]]) -> List[List[int]]:\n    intervals.sort()\n    ans = []\n    for i in range(len(intervals)):\n        if i == 0 or not ans:\n            ans.append(intervals[i])\n            continue\n        last = ans[-1]\n        if last[-1] < intervals[i][0]:\n            ans.append(intervals[i])\n        else:\n            last[-1] = max(last[-1], intervals[i][-1])\n    return ans",
         },
         {
           id: "non-overlapping-intervals",
           title: "Non-overlapping Intervals",
           content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
-          solution: "def eraseOverlapIntervals(intervals: List[List[int]]) -> int:\n    intervals.sort(key = lambda x: x[1])\n    last = float('-inf')\n    cnt = 0\n    for i in intervals:\n        if last <= i[0]:\n            last = i[1]\n            cnt += 1\n    return len(intervals) - cnt",
+          solution:
+            "def eraseOverlapIntervals(intervals: List[List[int]]) -> int:\n    intervals.sort(key = lambda x: x[1])\n    last = float('-inf')\n    cnt = 0\n    for i in intervals:\n        if last <= i[0]:\n            last = i[1]\n            cnt += 1\n    return len(intervals) - cnt",
         },
         {
           id: "sjf-scheduling",
           title: "Shortest Job First (SJF) Scheduling",
           content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
-          solution: "import math\n\ndef solve(bt):\n    # Code here\n    bt.sort()\n    sm = 0\n    ans = 0\n    n = len(bt)\n    for i in range(n - 1):\n        sm = sm + bt[i]\n        # print(sm, ans)\n        ans += sm\n    # print(ans)\n    return math.floor(ans / n)",
+          solution:
+            "import math\n\ndef solve(bt):\n    # Code here\n    bt.sort()\n    sm = 0\n    ans = 0\n    n = len(bt)\n    for i in range(n - 1):\n        sm = sm + bt[i]\n        # print(sm, ans)\n        ans += sm\n    # print(ans)\n    return math.floor(ans / n)",
         },
         {
           id: "lru-page-replacement",
           title: "Least Recently Used (LRU) Page Replacement",
           content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
-          solution: "def pageFaults(n, c, pages):\n    arr = []\n    cnt = 0\n    for i in pages:\n        if i in arr:\n            arr.remove(i)\n        else:\n            cnt += 1\n            if len(arr) == c:\n                arr.pop(0)\n        arr.append(i)\n    return cnt",
+          solution:
+            "def pageFaults(n, c, pages):\n    arr = []\n    cnt = 0\n    for i in pages:\n        if i in arr:\n            arr.remove(i)\n        else:\n            cnt += 1\n            if len(arr) == c:\n                arr.pop(0)\n        arr.append(i)\n    return cnt",
         },
       ],
     },
   },
   {
-    stepTitle: "Step 5: Stack & Heap",
+    stepTitle: "Step 6: Stack & Queue",
     sections: {
-      "Lec 1: Medium Problem": [
+      "Lec 1 : Basic Implementation of Stack and Queue": [
         {
-          id: "assign-cookies",
-          title: "Assign Cookies",
+          id: "implement-stack-using-arrays",
+          title: "Implement Stack using Arrays",
           content:
-            "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
-          solution: `def findContentChildren(g, s):
-  g.sort()
-  s.sort()
-  i = j = 0
-  while i < len(g) and j < len(s):
-    if s[j] >= g[i]:
-      i += 1
-    j += 1
-  return i`,
+            "Implement a basic stack using an array with push, pop, top, and isEmpty operations.",
+          solution: `class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, x):
+        self.stack.append(x)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()
+
+    def top(self):
+        if not self.is_empty():
+            return self.stack[-1]
+
+    def is_empty(self):
+        return len(self.stack) == 0`,
         },
         {
-          id: "fractional-knapsack",
-          title: "Fractional Knapsack Problem",
+          id: "implement-queue-using-arrays",
+          title: "Implement Queue using Arrays",
           content:
-            "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
-          solution: `def fractionalKnapsack(W, items):
-  items.sort(key=lambda x: x[1]/x[0], reverse=True)
-  total = 0
-  for wt, val in items:
-    if W >= wt:
-      W -= wt
-      total += val
-    else:
-      total += val * (W / wt)
-      break
-  return total`,
+            "Implement a basic queue using an array with enqueue, dequeue, front, and isEmpty operations.",
+          solution: `class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, x):
+        self.queue.append(x)
+
+    def dequeue(self):
+        if not self.is_empty():
+            return self.queue.pop(0)
+
+    def front(self):
+        if not self.is_empty():
+            return self.queue[0]
+
+    def is_empty(self):
+        return len(self.queue) == 0`,
         },
         {
-          id: "minimum-coins",
-          title: "Greedy Algorithm to Find Minimum Number of Coins",
-          content:
-            "Given a value V and coin denominations, return the minimum number of coins needed.",
-          solution: `def minCoins(coins, V):
-  coins.sort(reverse=True)
-  count = 0
-  for coin in coins:
-    if V == 0:
-      break
-    if coin <= V:
-      count += V // coin
-      V %= coin
-  return count`,
+          id: "implement-stack-using-queue",
+          title: "Implement Stack using Queue",
+          content: "Implement a stack using one or two queues.",
+          solution: `from collections import deque
+
+class StackUsingQueue:
+    def __init__(self):
+        self.q = deque()
+
+    def push(self, x):
+        self.q.append(x)
+        for _ in range(len(self.q) - 1):
+            self.q.append(self.q.popleft())
+
+    def pop(self):
+        if self.q:
+            return self.q.popleft()
+
+    def top(self):
+        if self.q:
+            return self.q[0]
+
+    def is_empty(self):
+        return len(self.q) == 0`,
         },
         {
-          id: "lemonade-change",
-          title: "Lemonade Change",
-          content:
-            "Customers are buying lemonade for $5. Determine if you can provide correct change.",
-          solution: `def lemonadeChange(bills):
-  five = ten = 0
-  for bill in bills:
-    if bill == 5:
-      five += 1
-    elif bill == 10:
-      if five == 0:
-        return False
-      five -= 1
-      ten += 1
-    else:
-      if ten > 0 and five > 0:
-        ten -= 1
-        five -= 1
-      elif five >= 3:
-        five -= 3
-      else:
-        return False
-  return True`,
+          id: "implement-queue-using-stack",
+          title: "Implement Queue using Stack",
+          content: "Implement a queue using two stacks.",
+          solution: `class QueueUsingStack:
+    def __init__(self):
+        self.in_stack = []
+        self.out_stack = []
+
+    def enqueue(self, x):
+        self.in_stack.append(x)
+
+    def dequeue(self):
+        if not self.out_stack:
+            while self.in_stack:
+                self.out_stack.append(self.in_stack.pop())
+        if self.out_stack:
+            return self.out_stack.pop()
+
+    def front(self):
+        if not self.out_stack:
+            while self.in_stack:
+                self.out_stack.append(self.in_stack.pop())
+        if self.out_stack:
+            return self.out_stack[-1]
+
+    def is_empty(self):
+        return not self.in_stack and not self.out_stack`,
         },
         {
-          id: "valid-parenthesis-checker",
-          title: "Valid Parenthesis Checker",
+          id: "implement-stack-using-linked-list",
+          title: "Implement Stack using Linked List",
+          content: "Implement a stack using a singly linked list.",
+          solution: `class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def push(self, x):
+        new_node = Node(x)
+        new_node.next = self.top
+        self.top = new_node
+
+    def pop(self):
+        if self.top:
+            val = self.top.data
+            self.top = self.top.next
+            return val
+
+    def peek(self):
+        if self.top:
+            return self.top.data
+
+    def is_empty(self):
+        return self.top is None`,
+        },
+        {
+          id: "implement-queue-using-linked-list",
+          title: "Implement Queue using Linked List",
           content:
-            "Given a string with parentheses, check if it's valid and balanced.",
-          solution: `def isValid(s):
-  stack = []
-  mapping = {')': '(', ']': '[', '}': '{'}
-  for char in s:
-    if char in mapping:
-      top = stack.pop() if stack else '#'
-      if mapping[char] != top:
-        return False
-    else:
-      stack.append(char)
-  return not stack`,
+            "Implement a queue using a singly linked list with front and rear pointers.",
+          solution: `class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Queue:
+    def __init__(self):
+        self.front = self.rear = None
+
+    def enqueue(self, x):
+        new_node = Node(x)
+        if not self.rear:
+            self.front = self.rear = new_node
+        else:
+            self.rear.next = new_node
+            self.rear = new_node
+
+    def dequeue(self):
+        if self.front:
+            val = self.front.data
+            self.front = self.front.next
+            if not self.front:
+                self.rear = None
+            return val
+
+    def is_empty(self):
+        return self.front is None`,
+        },
+        {
+          id: "check-for-balanced-parenthesis",
+          title: "Check for Balanced Parenthesis",
+          content:
+            "Given an expression, check if the parenthesis are balanced using a stack.",
+          solution: `def is_balanced(expr):
+    stack = []
+    pairs = {')': '(', ']': '[', '}': '{'}
+    for ch in expr:
+        if ch in '([{':
+            stack.append(ch)
+        elif ch in ')]}':
+            if not stack or stack[-1] != pairs[ch]:
+                return False
+            stack.pop()
+    return not stack`,
+        },
+        {
+          id: "implement-min-stack",
+          title: "Implement Min Stack",
+          content:
+            "Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.",
+          solution: `class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, x):
+        self.stack.append(x)
+        if not self.min_stack or x <= self.min_stack[-1]:
+            self.min_stack.append(x)
+
+    def pop(self):
+        if self.stack:
+            val = self.stack.pop()
+            if val == self.min_stack[-1]:
+                self.min_stack.pop()
+
+    def top(self):
+        if self.stack:
+            return self.stack[-1]
+
+    def get_min(self):
+        if self.min_stack:
+            return self.min_stack[-1]`,
         },
       ],
-      "Lec 2: Hard Problem": [
+      "Lec 2 : Postfix/Prefix Convertion Lec 2: Hard Problem": [
         {
-          id: "n-meetings-in-one-room",
-          title: "N Meetings in One Room",
+          id: "infix-to-postfix-conversion",
+          title: "Infix to Postfix Conversion using Stack",
           content:
-            "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
-          solution: `def maxMeetings(start, end, n):
-  meetings = sorted(zip(start, end), key=lambda x: x[1])
-  count = 1
-  end_time = meetings[0][1]
-  for i in range(1, n):
-    if meetings[i][0] > end_time:
-      count += 1
-      end_time = meetings[i][1]
-  return count`,
-        },
-        {
-          id: "jump-game",
-          title: "Jump Game",
-          content:
-            "Given an array where each element represents jump length, check if you can reach the end.",
-          solution: `def canJump(nums):
-  reach = 0
-  for i in range(len(nums)):
-    if i > reach:
-      return False
-    reach = max(reach, i + nums[i])
-  return True`,
-        },
-        {
-          id: "jump-game-2",
-          title: "Jump Game 2",
-          content:
-            "Return the minimum number of jumps needed to reach the last index.",
-          solution: `def jump(nums):
-  jumps = cur_end = cur_farthest = 0
-  for i in range(len(nums) - 1):
-    cur_farthest = max(cur_farthest, i + nums[i])
-    if i == cur_end:
-      jumps += 1
-      cur_end = cur_farthest
-  return jumps`,
-        },
-        {
-          id: "min-platforms",
-          title: "Minimum Number of Platforms Required for a Railway",
-          content:
-            "Given arrival and departure times, find the minimum number of platforms needed.",
-          solution: `def findPlatform(arr, dep, n):
-  arr.sort()
-  dep.sort()
-  plat_needed = result = 0
-  i = j = 0
-  while i < n and j < n:
-    if arr[i] <= dep[j]:
-      plat_needed += 1
-      i += 1
-    else:
-      plat_needed -= 1
-      j += 1
-    result = max(result, plat_needed)
-  return result`,
-        },
-        {
-          id: "job-sequencing",
-          title: "Job Sequencing Problem",
-          content:
-            "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
-          solution: `def jobScheduling(jobs, n):
-  jobs.sort(key=lambda x: x[2], reverse=True)
-  max_deadline = max(job[1] for job in jobs)
-  slots = [-1] * (max_deadline + 1)
-  count = profit = 0
-  for job in jobs:
-    for j in range(job[1], 0, -1):
-      if slots[j] == -1:
-        slots[j] = job[0]
-        count += 1
-        profit += job[2]
-        break
-  return count, profit`,
-        },
-        {
-          id: "candy",
-          title: "Candy",
-          content:
-            "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
-          solution: `def candy(ratings):
-  n = len(ratings)
-  candies = [1] * n
-  for i in range(1, n):
-    if ratings[i] > ratings[i - 1]:
-      candies[i] = candies[i - 1] + 1
-  for i in range(n - 2, -1, -1):
-    if ratings[i] > ratings[i + 1]:
-      candies[i] = max(candies[i], candies[i + 1] + 1)
-  return sum(candies)`,
-        },
-        {
-          id: "insert-interval",
-          title: "Insert Interval",
-          content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
-          solution: `def insert(intervals, new_interval):
-    res = []
-    for i in range(len(intervals)):
-        if new_interval[1] < intervals[i][0]:
-            res.append(new_interval)
-            return res + intervals[i:]
-        elif new_interval[0] > intervals[i][1]:
-            res.append(intervals[i])
+            "Convert a given infix expression (e.g., A+B*C) to postfix using a stack.\nOperator precedence and associativity should be considered.",
+          solution: `def infix_to_postfix(expression):
+    precedence = {'+':1, '-':1, '*':2, '/':2, '^':3}
+    stack = []
+    result = []
+    for char in expression:
+        if char.isalnum():
+            result.append(char)
+        elif char == '(':
+            stack.append(char)
+        elif char == ')':
+            while stack and stack[-1] != '(':
+                result.append(stack.pop())
+            stack.pop()
         else:
-            new_interval[0] = min(new_interval[0], intervals[i][0])
-            new_interval[1] = max(new_interval[1], intervals[i][1])
-    res.append(new_interval)
+            while stack and stack[-1] != '(' and precedence[char] <= precedence.get(stack[-1], 0):
+                result.append(stack.pop())
+            stack.append(char)
+    while stack:
+        result.append(stack.pop())
+    return ''.join(result)`,
+        },
+        {
+          id: "prefix-to-infix-conversion",
+          title: "Prefix to Infix Conversion",
+          content:
+            "Convert a given prefix expression to its equivalent infix expression using a stack.",
+          solution: `def prefix_to_infix(expression):
+    stack = []
+    for char in reversed(expression):
+        if char.isalnum():
+            stack.append(char)
+        else:
+            a = stack.pop()
+            b = stack.pop()
+            stack.append(f"({a}{char}{b})")
+    return stack[-1]`,
+        },
+        {
+          id: "prefix-to-postfix-conversion",
+          title: "Prefix to Postfix Conversion",
+          content:
+            "Convert a given prefix expression to its equivalent postfix expression using a stack.",
+          solution: `def prefix_to_postfix(expression):
+    stack = []
+    for char in reversed(expression):
+        if char.isalnum():
+            stack.append(char)
+        else:
+            a = stack.pop()
+            b = stack.pop()
+            stack.append(f"{a}{b}{char}")
+    return stack[-1]`,
+        },
+        {
+          id: "postfix-to-prefix-conversion",
+          title: "Postfix to Prefix Conversion",
+          content:
+            "Convert a given postfix expression to its equivalent prefix expression using a stack.",
+          solution: `def postfix_to_prefix(expression):
+    stack = []
+    for char in expression:
+        if char.isalnum():
+            stack.append(char)
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            stack.append(f"{char}{a}{b}")
+    return stack[-1]`,
+        },
+        {
+          id: "postfix-to-infix-conversion",
+          title: "Postfix to Infix Conversion",
+          content:
+            "Convert a given postfix expression to its equivalent infix expression using a stack.",
+          solution: `def postfix_to_infix(expression):
+    stack = []
+    for char in expression:
+        if char.isalnum():
+            stack.append(char)
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            stack.append(f"({a}{char}{b})")
+    return stack[-1]`,
+        },
+        {
+          id: "infix-to-prefix-conversion",
+          title: "Convert Infix to Prefix Notation",
+          content:
+            "Convert a given infix expression to prefix by reversing and adapting the infix-to-postfix logic.",
+          solution: `def infix_to_prefix(expression):
+    def reverse(expr):
+        expr = expr[::-1]
+        expr = list(expr)
+        for i in range(len(expr)):
+            if expr[i] == '(':
+                expr[i] = ')'
+            elif expr[i] == ')':
+                expr[i] = '('
+        return ''.join(expr)
+
+    def infix_to_postfix(expression):
+        precedence = {'+':1, '-':1, '*':2, '/':2, '^':3}
+        stack = []
+        result = []
+        for char in expression:
+            if char.isalnum():
+                result.append(char)
+            elif char == '(':
+                stack.append(char)
+            elif char == ')':
+                while stack and stack[-1] != '(':
+                    result.append(stack.pop())
+                stack.pop()
+            else:
+                while stack and stack[-1] != '(' and precedence[char] <= precedence.get(stack[-1], 0):
+                    result.append(stack.pop())
+                stack.append(char)
+        while stack:
+            result.append(stack.pop())
+        return ''.join(result)
+
+    reversed_expr = reverse(expression)
+    postfix = infix_to_postfix(reversed_expr)
+    prefix = postfix[::-1]
+    return prefix`,
+        },
+      ],
+      "Lec 3 : Monotonic Stack": [
+        {
+          id: "next-greater-element",
+          title: "Next Greater Element",
+          content:
+            "Given an array, for each element find the next greater element to its right. If there is none, return -1.",
+          solution: `def next_greater_elements(nums):
+    stack = []
+    res = [-1] * len(nums)
+    for i in range(len(nums) - 1, -1, -1):
+        while stack and stack[-1] <= nums[i]:
+            stack.pop()
+        if stack:
+            res[i] = stack[-1]
+        stack.append(nums[i])
     return res`,
         },
         {
-          id: "merge-intervals",
-          title: "Merge Intervals",
-          content: `Given a collection of intervals, merge all overlapping intervals.`,
-          solution: `def merge(intervals):
-    intervals.sort(key=lambda x: x[0])
-    merged = []
-    for interval in intervals:
-        if not merged or merged[-1][1] < interval[0]:
-            merged.append(interval)
-        else:
-            merged[-1][1] = max(merged[-1][1], interval[1])
-    return merged`,
+          id: "next-greater-element-2",
+          title: "Next Greater Element 2",
+          content:
+            "Circular version of Next Greater Element. For each element, find the next greater in the array considering circular rotation.",
+          solution: `def next_greater_elements_2(nums):
+    n = len(nums)
+    res = [-1] * n
+    stack = []
+    for i in range(2 * n - 1, -1, -1):
+        while stack and stack[-1] <= nums[i % n]:
+            stack.pop()
+        if stack:
+            res[i % n] = stack[-1]
+        stack.append(nums[i % n])
+    return res`,
         },
         {
-          id: "non-overlapping-intervals",
-          title: "Non-overlapping Intervals",
-          content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
-          solution: `def erase_overlap_intervals(intervals):
-    intervals.sort(key=lambda x: x[1])
-    end = float('-inf')
-    count = 0
-    for interval in intervals:
-        if interval[0] >= end:
-            end = interval[1]
-        else:
-            count += 1
-    return count`,
+          id: "next-smaller-element",
+          title: "Next Smaller Element",
+          content:
+            "For each element in the array, find the next smaller element to the right.",
+          solution: `def next_smaller_elements(nums):
+    stack = []
+    res = [-1] * len(nums)
+    for i in range(len(nums) - 1, -1, -1):
+        while stack and stack[-1] >= nums[i]:
+            stack.pop()
+        if stack:
+            res[i] = stack[-1]
+        stack.append(nums[i])
+    return res`,
         },
         {
-          id: "sjf-scheduling",
-          title: "Shortest Job First (SJF) Scheduling",
-          content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
-          solution: `def sjf_scheduling(burst_times):
-    burst_times.sort()
-    wait_time = 0
-    total_wait = 0
-    for i in range(1, len(burst_times)):
-        wait_time += burst_times[i - 1]
-        total_wait += wait_time
-    avg_wait = total_wait / len(burst_times)
-    return avg_wait`,
+          id: "number-of-next-greater-elements-to-the-right",
+          title: "Number of Next Greater Elements to the Right",
+          content:
+            "Find number of elements to the right that are greater for each element in the array.",
+          solution: `def count_next_greater(nums):
+    stack = []
+    res = [0] * len(nums)
+    for i in range(len(nums)-1, -1, -1):
+        count = 0
+        while stack and nums[i] >= stack[-1][0]:
+            count += stack[-1][1] + 1
+            stack.pop()
+        res[i] = count
+        stack.append((nums[i], count))
+    return res`,
         },
         {
-          id: "lru-page-replacement",
-          title: "Least Recently Used (LRU) Page Replacement",
-          content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
-          solution: `def lru(pages, capacity):
-    from collections import OrderedDict
-    cache = OrderedDict()
-    page_faults = 0
-    for page in pages:
-        if page not in cache:
-            page_faults += 1
-            if len(cache) == capacity:
-                cache.popitem(last=False)
+          id: "trapping-rainwater",
+          title: "Trapping Rainwater",
+          content:
+            "Given elevation map, compute how much water it can trap after raining.",
+          solution: `def trap(height):
+    stack = []
+    water = 0
+    for i, h in enumerate(height):
+        while stack and height[stack[-1]] < h:
+            top = stack.pop()
+            if not stack:
+                break
+            dist = i - stack[-1] - 1
+            bounded = min(h, height[stack[-1]]) - height[top]
+            water += dist * bounded
+        stack.append(i)
+    return water`,
+        },
+        {
+          id: "sum-of-subarray-minimums",
+          title: "Sum of Subarray Minimums",
+          content:
+            "Return the sum of the minimum of all subarrays. Use monotonic stack to optimize.",
+          solution: `def sum_subarray_mins(arr):
+    MOD = 10**9 + 7
+    stack = []
+    res = 0
+    for i in range(len(arr)+1):
+        cur = 0 if i == len(arr) else arr[i]
+        while stack and arr[stack[-1]] > cur:
+            j = stack.pop()
+            k = stack[-1] if stack else -1
+            res += arr[j] * (i - j) * (j - k)
+        stack.append(i)
+    return res % MOD`,
+        },
+        {
+          id: "asteroid-collision",
+          title: "Asteroid Collision",
+          content:
+            "Simulate asteroid collisions. Use stack to keep track of remaining asteroids after each collision.",
+          solution: `def asteroid_collision(asteroids):
+    stack = []
+    for a in asteroids:
+        while stack and a < 0 < stack[-1]:
+            if stack[-1] < -a:
+                stack.pop()
+                continue
+            elif stack[-1] == -a:
+                stack.pop()
+            break
         else:
-            cache.move_to_end(page)
-        cache[page] = True
-    return page_faults`,
+            stack.append(a)
+    return stack`,
+        },
+        {
+          id: "sum-of-subarray-ranges",
+          title: "Sum of Subarray Ranges",
+          content:
+            "Return the sum of ranges (max - min) of all subarrays. Use monotonic stack to optimize.",
+          solution: `def sub_array_ranges(nums):
+    def get_contribution(nums, is_min):
+        stack = []
+        res = 0
+        for i in range(len(nums)+1):
+            cur = float('-inf') if not is_min else float('inf')
+            val = nums[i] if i < len(nums) else cur
+            while stack and (nums[stack[-1]] > val if is_min else nums[stack[-1]] < val):
+                j = stack.pop()
+                k = stack[-1] if stack else -1
+                res += nums[j] * (i - j) * (j - k)
+            stack.append(i)
+        return res
+
+    return get_contribution(nums, False) - get_contribution(nums, True)`,
+        },
+        {
+          id: "remove-k-digits",
+          title: "Remove K Digits",
+          content:
+            "Given a number string and an integer k, remove k digits to get the smallest possible number.",
+          solution: `def remove_k_digits(num, k):
+    stack = []
+    for digit in num:
+        while stack and k > 0 and stack[-1] > digit:
+            stack.pop()
+            k -= 1
+        stack.append(digit)
+    final = stack[:-k] if k else stack
+    return ''.join(final).lstrip('0') or '0'`,
+        },
+        {
+          id: "largest-rectangle-in-a-histogram",
+          title: "Largest Rectangle in a Histogram",
+          content:
+            "Given histogram heights, return area of the largest rectangle that can be formed.",
+          solution: `def largest_rectangle_area(heights):
+    stack = []
+    max_area = 0
+    heights.append(0)
+    for i, h in enumerate(heights):
+        while stack and heights[stack[-1]] > h:
+            height = heights[stack.pop()]
+            width = i if not stack else i - stack[-1] - 1
+            max_area = max(max_area, height * width)
+        stack.append(i)
+    return max_area`,
+        },
+        {
+          id: "maximal-rectangles",
+          title: "Maximal Rectangles",
+          content:
+            "Given a 2D binary matrix filled with 0s and 1s, find the largest rectangle containing only 1s.",
+          solution: `def maximal_rectangle(matrix):
+    if not matrix:
+        return 0
+    n = len(matrix[0])
+    heights = [0] * n
+    max_area = 0
+
+    def largest_rectangle_area(heights):
+        stack = []
+        max_area = 0
+        heights.append(0)
+        for i, h in enumerate(heights):
+            while stack and heights[stack[-1]] > h:
+                height = heights[stack.pop()]
+                width = i if not stack else i - stack[-1] - 1
+                max_area = max(max_area, height * width)
+            stack.append(i)
+        heights.pop()
+        return max_area
+
+    for row in matrix:
+        for i in range(n):
+            heights[i] = heights[i] + 1 if row[i] == '1' else 0
+        max_area = max(max_area, largest_rectangle_area(heights))
+    return max_area`,
+        },
+      ],
+      "Lec 4 : Problems on Stack & Queue": [
+        {
+          id: "sliding-window-maximum",
+          title: "Sliding Window Maximum",
+          content:
+            "Given an array and an integer k, return the maximum value in each sliding window of size k.",
+          solution: `from collections import deque
+
+def max_sliding_window(nums, k):
+    q = deque()
+    res = []
+    for i, num in enumerate(nums):
+        while q and nums[q[-1]] < num:
+            q.pop()
+        q.append(i)
+        if q[0] == i - k:
+            q.popleft()
+        if i >= k - 1:
+            res.append(nums[q[0]])
+    return res`,
+        },
+        {
+          id: "stock-span-problem",
+          title: "Stock Span Problem",
+          content:
+            "Given an array of stock prices, for each day find the number of consecutive previous days where the price is less than or equal to today's price.",
+          solution: `def stock_span(prices):
+    stack = []
+    span = [0] * len(prices)
+    for i, price in enumerate(prices):
+        while stack and prices[stack[-1]] <= price:
+            stack.pop()
+        span[i] = i + 1 if not stack else i - stack[-1]
+        stack.append(i)
+    return span`,
+        },
+        {
+          id: "celebrity-problem",
+          title: "The Celebrity Problem",
+          content:
+            "In a party of N people, a celebrity is known by everyone but knows no one. Find the celebrity using a stack.",
+          solution: `def find_celebrity(M):
+    n = len(M)
+    stack = list(range(n))
+    while len(stack) > 1:
+        a = stack.pop()
+        b = stack.pop()
+        if M[a][b] == 1:
+            stack.append(b)
+        else:
+            stack.append(a)
+    if not stack:
+        return -1
+    candidate = stack.pop()
+    for i in range(n):
+        if i != candidate and (M[candidate][i] == 1 or M[i][candidate] == 0):
+            return -1
+    return candidate`,
+        },
+        {
+          id: "lru-cache",
+          title: "LRU Cache (IMPORTANT)",
+          content:
+            "Design a Least Recently Used (LRU) Cache with get and put operations in O(1) time using OrderedDict or Doubly Linked List with HashMap.",
+          solution: `from collections import OrderedDict
+
+class LRUCache:
+    def __init__(self, capacity):
+        self.cache = OrderedDict()
+        self.capacity = capacity
+
+    def get(self, key):
+        if key not in self.cache:
+            return -1
+        self.cache.move_to_end(key)
+        return self.cache[key]
+
+    def put(self, key, value):
+        if key in self.cache:
+            self.cache.move_to_end(key)
+        self.cache[key] = value
+        if len(self.cache) > self.capacity:
+            self.cache.popitem(last=False)`,
+        },
+        {
+          id: "lfu-cache",
+          title: "LFU Cache",
+          content:
+            "Design a Least Frequently Used (LFU) Cache with get and put operations in O(1) time.",
+          solution: `from collections import defaultdict, OrderedDict
+
+class LFUCache:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.key_to_val_freq = {}
+        self.freq_to_keys = defaultdict(OrderedDict)
+        self.min_freq = 0
+
+    def _update_freq(self, key):
+        val, freq = self.key_to_val_freq[key]
+        del self.freq_to_keys[freq][key]
+        if not self.freq_to_keys[freq]:
+            del self.freq_to_keys[freq]
+            if self.min_freq == freq:
+                self.min_freq += 1
+        self.freq_to_keys[freq+1][key] = None
+        self.key_to_val_freq[key] = (val, freq+1)
+
+    def get(self, key):
+        if key not in self.key_to_val_freq:
+            return -1
+        self._update_freq(key)
+        return self.key_to_val_freq[key][0]
+
+    def put(self, key, value):
+        if self.capacity == 0:
+            return
+        if key in self.key_to_val_freq:
+            self.key_to_val_freq[key] = (value, self.key_to_val_freq[key][1])
+            self._update_freq(key)
+            return
+        if len(self.key_to_val_freq) >= self.capacity:
+            old_key, _ = self.freq_to_keys[self.min_freq].popitem(last=False)
+            del self.key_to_val_freq[old_key]
+        self.freq_to_keys[1][key] = None
+        self.key_to_val_freq[key] = (value, 1)
+        self.min_freq = 1`,
         },
       ],
     },
   },
   {
-    stepTitle: "Step 5:  Binary Trees",
+    stepTitle: "Step 7: Heap",
     sections: {
-      "Lec 1: Medium Problem": [
+      "Lec 1 : Implementation of Heap": [
         {
-          id: "assign-cookies",
-          title: "Assign Cookies",
+          id: "min-heap-max-heap-implementation",
+          title: "Min Heap and Max Heap Implementation",
           content:
-            "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
-          solution: `def findContentChildren(g, s):
-  g.sort()
-  s.sort()
-  i = j = 0
-  while i < len(g) and j < len(s):
-    if s[j] >= g[i]:
-      i += 1
-    j += 1
-  return i`,
+            "Implement a Min Heap and Max Heap using Python's `heapq` module. Python provides a min-heap by default. Max-heap can be implemented by negating values.",
+          solution: `import heapq
+
+# Min Heap
+min_heap = []
+heapq.heappush(min_heap, 3)
+heapq.heappush(min_heap, 1)
+heapq.heappush(min_heap, 2)
+min_val = heapq.heappop(min_heap)
+
+# Max Heap
+max_heap = []
+heapq.heappush(max_heap, -3)
+heapq.heappush(max_heap, -1)
+heapq.heappush(max_heap, -2)
+max_val = -heapq.heappop(max_heap)`,
         },
         {
-          id: "fractional-knapsack",
-          title: "Fractional Knapsack Problem",
+          id: "check-if-array-is-min-heap",
+          title: "Check if an Array Represents a Min-Heap or Not",
           content:
-            "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
-          solution: `def fractionalKnapsack(W, items):
-  items.sort(key=lambda x: x[1]/x[0], reverse=True)
-  total = 0
-  for wt, val in items:
-    if W >= wt:
-      W -= wt
-      total += val
-    else:
-      total += val * (W / wt)
-      break
-  return total`,
+            "Given an array, check if it represents a valid Min-Heap (i.e., for every node i, arr[i] ≤ arr[2i + 1] and arr[i] ≤ arr[2i + 2]).",
+          solution: `def is_min_heap(arr):
+    n = len(arr)
+    for i in range((n - 2) // 2 + 1):
+        left = 2 * i + 1
+        right = 2 * i + 2
+        if left < n and arr[i] > arr[left]:
+            return False
+        if right < n and arr[i] > arr[right]:
+            return False
+    return True`,
         },
         {
-          id: "minimum-coins",
-          title: "Greedy Algorithm to Find Minimum Number of Coins",
+          id: "convert-min-heap-to-max-heap",
+          title: "Convert Min Heap to Max Heap",
           content:
-            "Given a value V and coin denominations, return the minimum number of coins needed.",
-          solution: `def minCoins(coins, V):
-  coins.sort(reverse=True)
-  count = 0
-  for coin in coins:
-    if V == 0:
-      break
-    if coin <= V:
-      count += V // coin
-      V %= coin
-  return count`,
-        },
-        {
-          id: "lemonade-change",
-          title: "Lemonade Change",
-          content:
-            "Customers are buying lemonade for $5. Determine if you can provide correct change.",
-          solution: `def lemonadeChange(bills):
-  five = ten = 0
-  for bill in bills:
-    if bill == 5:
-      five += 1
-    elif bill == 10:
-      if five == 0:
-        return False
-      five -= 1
-      ten += 1
-    else:
-      if ten > 0 and five > 0:
-        ten -= 1
-        five -= 1
-      elif five >= 3:
-        five -= 3
-      else:
-        return False
-  return True`,
-        },
-        {
-          id: "valid-parenthesis-checker",
-          title: "Valid Parenthesis Checker",
-          content:
-            "Given a string with parentheses, check if it's valid and balanced.",
-          solution: `def isValid(s):
-  stack = []
-  mapping = {')': '(', ']': '[', '}': '{'}
-  for char in s:
-    if char in mapping:
-      top = stack.pop() if stack else '#'
-      if mapping[char] != top:
-        return False
-    else:
-      stack.append(char)
-  return not stack`,
+            "Convert a given min-heap array to a max-heap in-place using bottom-up heapify.",
+          solution: `def heapify(arr, n, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+    if left < n and arr[left] > arr[largest]:
+        largest = left
+    if right < n and arr[right] > arr[largest]:
+        largest = right
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def convert_min_to_max_heap(arr):
+    n = len(arr)
+    for i in range(n//2 - 1, -1, -1):
+        heapify(arr, n, i)
+    return arr`,
         },
       ],
-      "Lec 2: Hard Problem": [
+      "Lec 2 : Medium Problems": [
         {
-          id: "n-meetings-in-one-room",
-          title: "N Meetings in One Room",
+          id: "kth-largest-element-in-an-array",
+          title: "Kth Largest Element in an Array [Use Priority Queue]",
           content:
-            "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
-          solution: `def maxMeetings(start, end, n):
-  meetings = sorted(zip(start, end), key=lambda x: x[1])
-  count = 1
-  end_time = meetings[0][1]
-  for i in range(1, n):
-    if meetings[i][0] > end_time:
-      count += 1
-      end_time = meetings[i][1]
-  return count`,
+            "Find the kth largest element in an array using a min-heap (priority queue) of size k.",
+          solution: `import heapq
+
+def find_kth_largest(nums, k):
+    min_heap = nums[:k]
+    heapq.heapify(min_heap)
+    for num in nums[k:]:
+        if num > min_heap[0]:
+            heapq.heappushpop(min_heap, num)
+    return min_heap[0]`,
         },
         {
-          id: "jump-game",
-          title: "Jump Game",
+          id: "kth-smallest-element-in-an-array",
+          title: "Kth Smallest Element in an Array [Use Priority Queue]",
           content:
-            "Given an array where each element represents jump length, check if you can reach the end.",
-          solution: `def canJump(nums):
-  reach = 0
-  for i in range(len(nums)):
-    if i > reach:
-      return False
-    reach = max(reach, i + nums[i])
-  return True`,
+            "Find the kth smallest element using a max-heap of size k (by negating values in Python).",
+          solution: `import heapq
+
+def find_kth_smallest(nums, k):
+    max_heap = [-num for num in nums[:k]]
+    heapq.heapify(max_heap)
+    for num in nums[k:]:
+        if -num > max_heap[0]:
+            heapq.heappushpop(max_heap, -num)
+    return -max_heap[0]`,
         },
         {
-          id: "jump-game-2",
-          title: "Jump Game 2",
+          id: "sort-k-sorted-array",
+          title: "Sort K Sorted Array",
           content:
-            "Return the minimum number of jumps needed to reach the last index.",
-          solution: `def jump(nums):
-  jumps = cur_end = cur_farthest = 0
-  for i in range(len(nums) - 1):
-    cur_farthest = max(cur_farthest, i + nums[i])
-    if i == cur_end:
-      jumps += 1
-      cur_end = cur_farthest
-  return jumps`,
+            "Sort an array where every element is at most k distance away from its sorted position using a min-heap.",
+          solution: `import heapq
+
+def sort_k_sorted_array(arr, k):
+    heap = arr[:k+1]
+    heapq.heapify(heap)
+    result = []
+    for i in range(k+1, len(arr)):
+        result.append(heapq.heappushpop(heap, arr[i]))
+    while heap:
+        result.append(heapq.heappop(heap))
+    return result`,
         },
         {
-          id: "min-platforms",
-          title: "Minimum Number of Platforms Required for a Railway",
+          id: "merge-m-sorted-lists",
+          title: "Merge M Sorted Lists",
           content:
-            "Given arrival and departure times, find the minimum number of platforms needed.",
-          solution: `def findPlatform(arr, dep, n):
-  arr.sort()
-  dep.sort()
-  plat_needed = result = 0
-  i = j = 0
-  while i < n and j < n:
-    if arr[i] <= dep[j]:
-      plat_needed += 1
-      i += 1
-    else:
-      plat_needed -= 1
-      j += 1
-    result = max(result, plat_needed)
-  return result`,
+            "Merge M sorted linked lists into a single sorted list using a min-heap.",
+          solution: `import heapq
+
+def merge_k_sorted_lists(lists):
+    heap = []
+    for i, lst in enumerate(lists):
+        if lst:
+            heapq.heappush(heap, (lst[0], i, 0))
+    result = []
+    while heap:
+        val, list_idx, element_idx = heapq.heappop(heap)
+        result.append(val)
+        if element_idx + 1 < len(lists[list_idx]):
+            next_val = lists[list_idx][element_idx + 1]
+            heapq.heappush(heap, (next_val, list_idx, element_idx + 1))
+    return result`,
         },
         {
-          id: "job-sequencing",
-          title: "Job Sequencing Problem",
+          id: "replace-each-array-element-by-its-rank",
+          title: "Replace Each Array Element by Its Corresponding Rank",
           content:
-            "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
-          solution: `def jobScheduling(jobs, n):
-  jobs.sort(key=lambda x: x[2], reverse=True)
-  max_deadline = max(job[1] for job in jobs)
-  slots = [-1] * (max_deadline + 1)
-  count = profit = 0
-  for job in jobs:
-    for j in range(job[1], 0, -1):
-      if slots[j] == -1:
-        slots[j] = job[0]
-        count += 1
-        profit += job[2]
-        break
-  return count, profit`,
+            "Replace each element in an array with its rank when sorted. Equal elements get the same rank.",
+          solution: `def array_rank_transform(arr):
+    sorted_unique = sorted(set(arr))
+    rank_map = {num: i+1 for i, num in enumerate(sorted_unique)}
+    return [rank_map[num] for num in arr]`,
         },
         {
-          id: "candy",
-          title: "Candy",
+          id: "task-scheduler",
+          title: "Task Scheduler",
           content:
-            "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
-          solution: `def candy(ratings):
-  n = len(ratings)
-  candies = [1] * n
-  for i in range(1, n):
-    if ratings[i] > ratings[i - 1]:
-      candies[i] = candies[i - 1] + 1
-  for i in range(n - 2, -1, -1):
-    if ratings[i] > ratings[i + 1]:
-      candies[i] = max(candies[i], candies[i + 1] + 1)
-  return sum(candies)`,
+            "Given a list of tasks with cooldown `n`, return the least number of units of time that the CPU will take to finish all tasks.",
+          solution: `from collections import Counter
+import heapq
+
+def least_interval(tasks, n):
+    freq = Counter(tasks)
+    max_heap = [-cnt for cnt in freq.values()]
+    heapq.heapify(max_heap)
+    time = 0
+    while max_heap:
+        temp = []
+        for _ in range(n+1):
+            if max_heap:
+                cnt = heapq.heappop(max_heap)
+                if cnt + 1 < 0:
+                    temp.append(cnt + 1)
+            time += 1
+            if not max_heap and not temp:
+                break
+        for item in temp:
+            heapq.heappush(max_heap, item)
+    return time`,
         },
         {
-          id: "insert-interval",
-          title: "Insert Interval",
-          content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
-          solution: `def insert(intervals, new_interval):
-    res = []
-    for i in range(len(intervals)):
-        if new_interval[1] < intervals[i][0]:
-            res.append(new_interval)
-            return res + intervals[i:]
-        elif new_interval[0] > intervals[i][1]:
-            res.append(intervals[i])
-        else:
-            new_interval[0] = min(new_interval[0], intervals[i][0])
-            new_interval[1] = max(new_interval[1], intervals[i][1])
-    res.append(new_interval)
-    return res`,
+          id: "hands-of-straights",
+          title: "Hands of Straights",
+          content:
+            "Determine if a hand of cards can be rearranged into groups of consecutive cards of groupSize.",
+          solution: `from collections import Counter
+import heapq
+
+def is_n_straight_hand(hand, groupSize):
+    if len(hand) % groupSize != 0:
+        return False
+    freq = Counter(hand)
+    min_heap = list(freq.keys())
+    heapq.heapify(min_heap)
+    while min_heap:
+        first = min_heap[0]
+        for i in range(first, first + groupSize):
+            if freq[i] == 0:
+                return False
+            freq[i] -= 1
+            if freq[i] == 0 and i != min_heap[0]:
+                heapq.heappop(min_heap)
+        if freq[min_heap[0]] == 0:
+            heapq.heappop(min_heap)
+    return True`,
+        },
+      ],
+      "Lec 3 : Hard Problems": [
+        {
+          id: "design-twitter",
+          title: "Design Twitter",
+          content:
+            "Design a simplified version of Twitter. Implement postTweet, getNewsFeed, follow, and unfollow. Use heap for efficient news feed retrieval.",
+          solution: `import heapq
+from collections import defaultdict, deque
+
+class Twitter:
+    def __init__(self):
+        self.time = 0
+        self.tweets = defaultdict(deque)
+        self.following = defaultdict(set)
+
+    def postTweet(self, userId, tweetId):
+        self.tweets[userId].appendleft((self.time, tweetId))
+        self.time -= 1
+
+    def getNewsFeed(self, userId):
+        heap = []
+        self.following[userId].add(userId)
+        for uid in self.following[userId]:
+            for t in list(self.tweets[uid])[:10]:
+                heapq.heappush(heap, t)
+        return [tweetId for time, tweetId in heapq.nlargest(10, heap)]
+
+    def follow(self, followerId, followeeId):
+        self.following[followerId].add(followeeId)
+
+    def unfollow(self, followerId, followeeId):
+        if followeeId in self.following[followerId] and followeeId != followerId:
+            self.following[followerId].remove(followeeId)`,
         },
         {
-          id: "merge-intervals",
-          title: "Merge Intervals",
-          content: `Given a collection of intervals, merge all overlapping intervals.`,
-          solution: `def merge(intervals):
-    intervals.sort(key=lambda x: x[0])
-    merged = []
-    for interval in intervals:
-        if not merged or merged[-1][1] < interval[0]:
-            merged.append(interval)
-        else:
-            merged[-1][1] = max(merged[-1][1], interval[1])
-    return merged`,
+          id: "connect-n-ropes-with-minimal-cost",
+          title: "Connect n Ropes with Minimal Cost",
+          content:
+            "Given n ropes with different lengths, connect them with minimal total cost. Always connect the two shortest ropes using a min-heap.",
+          solution: `import heapq
+
+def connect_ropes(ropes):
+    heapq.heapify(ropes)
+    total = 0
+    while len(ropes) > 1:
+        first = heapq.heappop(ropes)
+        second = heapq.heappop(ropes)
+        cost = first + second
+        total += cost
+        heapq.heappush(ropes, cost)
+    return total`,
         },
         {
-          id: "non-overlapping-intervals",
-          title: "Non-overlapping Intervals",
-          content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
-          solution: `def erase_overlap_intervals(intervals):
-    intervals.sort(key=lambda x: x[1])
-    end = float('-inf')
-    count = 0
-    for interval in intervals:
-        if interval[0] >= end:
-            end = interval[1]
-        else:
-            count += 1
-    return count`,
+          id: "kth-largest-element-in-a-stream",
+          title: "Kth Largest Element in a Stream of Running Integers",
+          content:
+            "Design a class to continuously return the kth largest element from a stream of numbers.",
+          solution: `import heapq
+
+class KthLargest:
+    def __init__(self, k, nums):
+        self.k = k
+        self.heap = nums[:]
+        heapq.heapify(self.heap)
+        while len(self.heap) > k:
+            heapq.heappop(self.heap)
+
+    def add(self, val):
+        heapq.heappush(self.heap, val)
+        if len(self.heap) > self.k:
+            heapq.heappop(self.heap)
+        return self.heap[0]`,
         },
         {
-          id: "sjf-scheduling",
-          title: "Shortest Job First (SJF) Scheduling",
-          content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
-          solution: `def sjf_scheduling(burst_times):
-    burst_times.sort()
-    wait_time = 0
-    total_wait = 0
-    for i in range(1, len(burst_times)):
-        wait_time += burst_times[i - 1]
-        total_wait += wait_time
-    avg_wait = total_wait / len(burst_times)
-    return avg_wait`,
+          id: "maximum-sum-combination",
+          title: "Maximum Sum Combination",
+          content:
+            "Given two arrays A and B of size N, find the N maximum sum combinations from elements of both arrays.",
+          solution: `import heapq
+
+def max_sum_combinations(A, B, N):
+    A.sort(reverse=True)
+    B.sort(reverse=True)
+    heap = []
+    visited = set()
+    heapq.heappush(heap, (-(A[0] + B[0]), 0, 0))
+    visited.add((0, 0))
+    result = []
+    for _ in range(N):
+        sum_val, i, j = heapq.heappop(heap)
+        result.append(-sum_val)
+        if i + 1 < len(A) and (i + 1, j) not in visited:
+            heapq.heappush(heap, (-(A[i+1] + B[j]), i+1, j))
+            visited.add((i+1, j))
+        if j + 1 < len(B) and (i, j + 1) not in visited:
+            heapq.heappush(heap, (-(A[i] + B[j+1]), i, j+1))
+            visited.add((i, j+1))
+    return result`,
         },
         {
-          id: "lru-page-replacement",
-          title: "Least Recently Used (LRU) Page Replacement",
-          content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
-          solution: `def lru(pages, capacity):
-    from collections import OrderedDict
-    cache = OrderedDict()
-    page_faults = 0
-    for page in pages:
-        if page not in cache:
-            page_faults += 1
-            if len(cache) == capacity:
-                cache.popitem(last=False)
-        else:
-            cache.move_to_end(page)
-        cache[page] = True
-    return page_faults`,
+          id: "find-median-from-data-stream",
+          title: "Find Median from Data Stream",
+          content:
+            "Design a data structure to continuously add numbers and return the median in O(log n) time using two heaps.",
+          solution: `import heapq
+
+class MedianFinder:
+    def __init__(self):
+        self.small = []  # Max heap
+        self.large = []  # Min heap
+
+    def addNum(self, num):
+        heapq.heappush(self.small, -num)
+        heapq.heappush(self.large, -heapq.heappop(self.small))
+        if len(self.small) < len(self.large):
+            heapq.heappush(self.small, -heapq.heappop(self.large))
+
+    def findMedian(self):
+        if len(self.small) > len(self.large):
+            return -self.small[0]
+        return (-self.small[0] + self.large[0]) / 2`,
+        },
+        {
+          id: "k-most-frequent-elements",
+          title: "K Most Frequent Elements",
+          content:
+            "Return the k most frequent elements in an array using a frequency map and min-heap.",
+          solution: `from collections import Counter
+import heapq
+
+def top_k_frequent(nums, k):
+    freq = Counter(nums)
+    return [item for item, _ in heapq.nlargest(k, freq.items(), key=lambda x: x[1])]`,
         },
       ],
     },
   },
   {
-    stepTitle: "Step 5: Binary Search Trees",
+    stepTitle: "Step 8: Binary Tree",
     sections: {
-      "Lec 1: Medium Problem": [
+      "Lec 1 : Traversals in Trees": [
         {
-          id: "assign-cookies",
-          title: "Assign Cookies",
-          content:
-            "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
-          solution: `def findContentChildren(g, s):
-  g.sort()
-  s.sort()
-  i = j = 0
-  while i < len(g) and j < len(s):
-    if s[j] >= g[i]:
-      i += 1
-    j += 1
-  return i`,
+          id: "introduction-to-trees",
+          title: "Introduction to Trees",
+          content: "",
+          solution:
+            "A binary tree is a hierarchical data structure in which each node has at most two children: left and right. Trees are widely used in hierarchical representations, such as file systems and expression parsing. Below are the key types of binary trees:\n\n1. **Full Binary Tree**:\n   - Every node has either 0 or 2 children.\n   - No node has only one child.\n\n2. **Complete Binary Tree**:\n   - All levels are completely filled except possibly the last.\n   - All nodes in the last level are as far left as possible.\n\n3. **Perfect Binary Tree**:\n   - All internal nodes have 2 children.\n   - All leaf nodes are at the same level.\n   - Number of nodes = `2^h - 1` where h is the height of the tree.\n\n4. **Skewed Binary Tree**:\n   - A tree where all the nodes are either only in the left or right subtree.\n   - Types:\n     - **Left Skewed Tree**: Every node has only a left child.\n     - **Right Skewed Tree**: Every node has only a right child.\n\nThese tree types help in analyzing time and space complexity of different operations in tree-based algorithms.",
         },
         {
-          id: "fractional-knapsack",
-          title: "Fractional Knapsack Problem",
+          id: "binary-tree-representation-in-python",
+          title: "Binary Tree Representation in Python",
           content:
-            "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
-          solution: `def fractionalKnapsack(W, items):
-  items.sort(key=lambda x: x[1]/x[0], reverse=True)
-  total = 0
-  for wt, val in items:
-    if W >= wt:
-      W -= wt
-      total += val
-    else:
-      total += val * (W / wt)
-      break
-  return total`,
+            "Implement a binary tree using classes in Python. Each node contains a value and pointers to its left and right children.",
+          solution: `class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None`,
         },
         {
-          id: "minimum-coins",
-          title: "Greedy Algorithm to Find Minimum Number of Coins",
-          content:
-            "Given a value V and coin denominations, return the minimum number of coins needed.",
-          solution: `def minCoins(coins, V):
-  coins.sort(reverse=True)
-  count = 0
-  for coin in coins:
-    if V == 0:
-      break
-    if coin <= V:
-      count += V // coin
-      V %= coin
-  return count`,
+          id: "binary-tree-representation-in-cpp",
+          title: "Binary Tree Representation in C++",
+          content: "Implement a binary tree using classes and pointers in C++.",
+          solution: `struct Node {
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};`,
         },
         {
-          id: "lemonade-change",
-          title: "Lemonade Change",
+          id: "binary-tree-traversals",
+          title: "Binary Tree Traversals in Binary Tree",
           content:
-            "Customers are buying lemonade for $5. Determine if you can provide correct change.",
-          solution: `def lemonadeChange(bills):
-  five = ten = 0
-  for bill in bills:
-    if bill == 5:
-      five += 1
-    elif bill == 10:
-      if five == 0:
-        return False
-      five -= 1
-      ten += 1
-    else:
-      if ten > 0 and five > 0:
-        ten -= 1
-        five -= 1
-      elif five >= 3:
-        five -= 3
-      else:
-        return False
-  return True`,
+            "Learn about the three main types of depth-first traversal in a binary tree: Inorder (Left, Root, Right), Preorder (Root, Left, Right), and Postorder (Left, Right, Root). These are fundamental operations used in many tree algorithms.",
+          solution: `# Define the basic structure for a binary tree node
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+# Create a sample tree:
+#       1
+#      / \\
+#     2   3
+#    / \\
+#   4   5
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+# Preorder: Root -> Left -> Right
+def preorder(node):
+    if node:
+        print(node.val, end=' ')
+        preorder(node.left)
+        preorder(node.right)
+
+# Inorder: Left -> Root -> Right
+def inorder(node):
+    if node:
+        inorder(node.left)
+        print(node.val, end=' ')
+        inorder(node.right)
+
+# Postorder: Left -> Right -> Root
+def postorder(node):
+    if node:
+        postorder(node.left)
+        postorder(node.right)
+        print(node.val, end=' ')
+
+# Output each traversal
+print("Preorder Traversal:")
+preorder(root)      # Output: 1 2 4 5 3
+
+print("\\nInorder Traversal:")
+inorder(root)       # Output: 4 2 5 1 3
+
+print("\\nPostorder Traversal:")
+postorder(root)     # Output: 4 5 2 3 1`,
         },
         {
-          id: "valid-parenthesis-checker",
-          title: "Valid Parenthesis Checker",
+          id: "preorder-traversal",
+          title: "Preorder Traversal of Binary Tree",
           content:
-            "Given a string with parentheses, check if it's valid and balanced.",
-          solution: `def isValid(s):
-  stack = []
-  mapping = {')': '(', ']': '[', '}': '{'}
-  for char in s:
-    if char in mapping:
-      top = stack.pop() if stack else '#'
-      if mapping[char] != top:
-        return False
-    else:
-      stack.append(char)
-  return not stack`,
+            "Traverse the binary tree in preorder (Root → Left → Right).",
+          solution: `def preorder(root):
+    if root:
+        print(root.val)
+        preorder(root.left)
+        preorder(root.right)`,
+        },
+        {
+          id: "inorder-traversal",
+          title: "Inorder Traversal of Binary Tree",
+          content: "Traverse the binary tree in inorder (Left → Root → Right).",
+          solution: `def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.val)
+        inorder(root.right)`,
+        },
+        {
+          id: "postorder-traversal",
+          title: "Post-order Traversal of Binary Tree",
+          content:
+            "Traverse the binary tree in postorder (Left → Right → Root).",
+          solution: `def postorder(root):
+    if root:
+        postorder(root.left)
+        postorder(root.right)
+        print(root.val)`,
+        },
+        {
+          id: "level-order-traversal",
+          title: "Level Order Traversal / Level Order Traversal in Spiral Form",
+          content:
+            "Print nodes level by level. For spiral order, alternate direction each level.",
+          solution: `from collections import deque
+
+def level_order(root):
+    if not root: return
+    queue = deque([root])
+    while queue:
+        node = queue.popleft()
+        print(node.val)
+        if node.left: queue.append(node.left)
+        if node.right: queue.append(node.right)
+
+def spiral_order(root):
+    if not root: return
+    dq = deque([root])
+    left_to_right = True
+    while dq:
+        level = []
+        for _ in range(len(dq)):
+            if left_to_right:
+                node = dq.popleft()
+                level.append(node.val)
+                if node.left: dq.append(node.left)
+                if node.right: dq.append(node.right)
+            else:
+                node = dq.pop()
+                level.append(node.val)
+                if node.right: dq.appendleft(node.right)
+                if node.left: dq.appendleft(node.left)
+        print(level)
+        left_to_right = not left_to_right`,
+        },
+        {
+          id: "iterative-preorder-traversal",
+          title: "Iterative Preorder Traversal of Binary Tree",
+          content: "Implement preorder traversal using a stack.",
+          solution: `def iterative_preorder(root):
+    if not root: return
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        print(node.val)
+        if node.right: stack.append(node.right)
+        if node.left: stack.append(node.left)`,
+        },
+        {
+          id: "iterative-inorder-traversal",
+          title: "Iterative Inorder Traversal of Binary Tree",
+          content: "Implement inorder traversal using a stack.",
+          solution: `def iterative_inorder(root):
+    stack = []
+    current = root
+    while current or stack:
+        while current:
+            stack.append(current)
+            current = current.left
+        current = stack.pop()
+        print(current.val)
+        current = current.right`,
+        },
+        {
+          id: "postorder-2-stacks",
+          title: "Post-order Traversal of Binary Tree using 2 Stacks",
+          content: "Use two stacks to simulate postorder traversal.",
+          solution: `def postorder_two_stacks(root):
+    if not root: return
+    s1, s2 = [root], []
+    while s1:
+        node = s1.pop()
+        s2.append(node)
+        if node.left: s1.append(node.left)
+        if node.right: s1.append(node.right)
+    while s2:
+        print(s2.pop().val)`,
+        },
+        {
+          id: "postorder-1-stack",
+          title: "Post-order Traversal of Binary Tree using 1 Stack",
+          content: "Use a single stack to perform postorder traversal.",
+          solution: `def postorder_one_stack(root):
+    stack = []
+    last_visited = None
+    current = root
+    while stack or current:
+        if current:
+            stack.append(current)
+            current = current.left
+        else:
+            peek = stack[-1]
+            if peek.right and last_visited != peek.right:
+                current = peek.right
+            else:
+                print(peek.val)
+                last_visited = stack.pop()`,
+        },
+        {
+          id: "all-three-traversals-one-pass",
+          title: "Preorder, Inorder, and Postorder Traversal in One Traversal",
+          content:
+            "Perform all three traversals in a single traversal using stack and state tracking.",
+          solution: `def all_traversals(root):
+    if not root: return [], [], []
+    pre, ino, post = [], [], []
+    stack = [(root, 1)]
+    while stack:
+        node, num = stack.pop()
+        if num == 1:
+            pre.append(node.val)
+            stack.append((node, 2))
+            if node.left: stack.append((node.left, 1))
+        elif num == 2:
+            ino.append(node.val)
+            stack.append((node, 3))
+            if node.right: stack.append((node.right, 1))
+        else:
+            post.append(node.val)
+    return pre, ino, post`,
         },
       ],
-      "Lec 2: Hard Problem": [
+      "Lec 2 : Medium Problems": [
         {
-          id: "n-meetings-in-one-room",
-          title: "N Meetings in One Room",
+          id: "height-of-a-binary-tree",
+          title: "Height of a Binary Tree",
           content:
-            "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
-          solution: `def maxMeetings(start, end, n):
-  meetings = sorted(zip(start, end), key=lambda x: x[1])
-  count = 1
-  end_time = meetings[0][1]
-  for i in range(1, n):
-    if meetings[i][0] > end_time:
-      count += 1
-      end_time = meetings[i][1]
-  return count`,
+            "Find the height (or depth) of a binary tree — the number of nodes along the longest path from the root node down to the farthest leaf node.",
+          solution: `def height(root):
+    if not root:
+        return 0
+    return 1 + max(height(root.left), height(root.right))`,
         },
         {
-          id: "jump-game",
-          title: "Jump Game",
+          id: "check-if-binary-tree-is-height-balanced",
+          title: "Check if the Binary Tree is Height-Balanced or Not",
           content:
-            "Given an array where each element represents jump length, check if you can reach the end.",
-          solution: `def canJump(nums):
-  reach = 0
-  for i in range(len(nums)):
-    if i > reach:
-      return False
-    reach = max(reach, i + nums[i])
-  return True`,
+            "A binary tree is height-balanced if, for every node, the height difference of its left and right subtrees is at most 1.",
+          solution: `def is_balanced(root):
+    def check(node):
+        if not node: return 0, True
+        lh, lb = check(node.left)
+        rh, rb = check(node.right)
+        return 1 + max(lh, rh), lb and rb and abs(lh - rh) <= 1
+    _, result = check(root)
+    return result`,
         },
         {
-          id: "jump-game-2",
-          title: "Jump Game 2",
+          id: "diameter-of-binary-tree",
+          title: "Diameter of Binary Tree",
           content:
-            "Return the minimum number of jumps needed to reach the last index.",
-          solution: `def jump(nums):
-  jumps = cur_end = cur_farthest = 0
-  for i in range(len(nums) - 1):
-    cur_farthest = max(cur_farthest, i + nums[i])
-    if i == cur_end:
-      jumps += 1
-      cur_end = cur_farthest
-  return jumps`,
+            "The diameter of a binary tree is the length of the longest path between any two nodes in a tree.",
+          solution: `def diameter(root):
+    res = [0]
+    def dfs(node):
+        if not node: return 0
+        lh = dfs(node.left)
+        rh = dfs(node.right)
+        res[0] = max(res[0], lh + rh)
+        return 1 + max(lh, rh)
+    dfs(root)
+    return res[0]`,
         },
         {
-          id: "min-platforms",
-          title: "Minimum Number of Platforms Required for a Railway",
+          id: "maximum-path-sum",
+          title: "Maximum Path Sum",
           content:
-            "Given arrival and departure times, find the minimum number of platforms needed.",
-          solution: `def findPlatform(arr, dep, n):
-  arr.sort()
-  dep.sort()
-  plat_needed = result = 0
-  i = j = 0
-  while i < n and j < n:
-    if arr[i] <= dep[j]:
-      plat_needed += 1
-      i += 1
-    else:
-      plat_needed -= 1
-      j += 1
-    result = max(result, plat_needed)
-  return result`,
+            "Find the path in the binary tree which yields the maximum sum. The path may start and end at any node.",
+          solution: `def max_path_sum(root):
+    res = [float('-inf')]
+    def dfs(node):
+        if not node: return 0
+        left = max(0, dfs(node.left))
+        right = max(0, dfs(node.right))
+        res[0] = max(res[0], left + right + node.val)
+        return node.val + max(left, right)
+    dfs(root)
+    return res[0]`,
         },
         {
-          id: "job-sequencing",
-          title: "Job Sequencing Problem",
+          id: "check-if-two-trees-are-identical",
+          title: "Check if Two Trees are Identical or Not",
           content:
-            "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
-          solution: `def jobScheduling(jobs, n):
-  jobs.sort(key=lambda x: x[2], reverse=True)
-  max_deadline = max(job[1] for job in jobs)
-  slots = [-1] * (max_deadline + 1)
-  count = profit = 0
-  for job in jobs:
-    for j in range(job[1], 0, -1):
-      if slots[j] == -1:
-        slots[j] = job[0]
-        count += 1
-        profit += job[2]
-        break
-  return count, profit`,
+            "Check if two binary trees are structurally identical and have the same node values.",
+          solution: `def is_identical(p, q):
+    if not p and not q: return True
+    if not p or not q: return False
+    return (p.val == q.val and 
+            is_identical(p.left, q.left) and 
+            is_identical(p.right, q.right))`,
         },
         {
-          id: "candy",
-          title: "Candy",
+          id: "zigzag-traversal",
+          title: "Zig Zag Traversal of Binary Tree",
           content:
-            "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
-          solution: `def candy(ratings):
-  n = len(ratings)
-  candies = [1] * n
-  for i in range(1, n):
-    if ratings[i] > ratings[i - 1]:
-      candies[i] = candies[i - 1] + 1
-  for i in range(n - 2, -1, -1):
-    if ratings[i] > ratings[i + 1]:
-      candies[i] = max(candies[i], candies[i + 1] + 1)
-  return sum(candies)`,
-        },
-        {
-          id: "insert-interval",
-          title: "Insert Interval",
-          content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
-          solution: `def insert(intervals, new_interval):
-    res = []
-    for i in range(len(intervals)):
-        if new_interval[1] < intervals[i][0]:
-            res.append(new_interval)
-            return res + intervals[i:]
-        elif new_interval[0] > intervals[i][1]:
-            res.append(intervals[i])
-        else:
-            new_interval[0] = min(new_interval[0], intervals[i][0])
-            new_interval[1] = max(new_interval[1], intervals[i][1])
-    res.append(new_interval)
+            "Traverse the binary tree in a zigzag (spiral) level order: left-to-right then right-to-left alternately.",
+          solution: `from collections import deque
+
+def zigzag_level_order(root):
+    if not root: return []
+    res, dq, left_to_right = [], deque([root]), True
+    while dq:
+        level = []
+        for _ in range(len(dq)):
+            node = dq.popleft()
+            level.append(node.val)
+            if node.left: dq.append(node.left)
+            if node.right: dq.append(node.right)
+        if not left_to_right:
+            level.reverse()
+        res.append(level)
+        left_to_right = not left_to_right
     return res`,
         },
         {
-          id: "merge-intervals",
-          title: "Merge Intervals",
-          content: `Given a collection of intervals, merge all overlapping intervals.`,
-          solution: `def merge(intervals):
-    intervals.sort(key=lambda x: x[0])
-    merged = []
-    for interval in intervals:
-        if not merged or merged[-1][1] < interval[0]:
-            merged.append(interval)
-        else:
-            merged[-1][1] = max(merged[-1][1], interval[1])
-    return merged`,
+          id: "boundary-traversal",
+          title: "Boundary Traversal of Binary Tree",
+          content:
+            "Return all boundary nodes in anti-clockwise direction starting from root. Include left boundary, leaves, and right boundary.",
+          solution: `def boundary_traversal(root):
+    def is_leaf(node): return not node.left and not node.right
+    def left_boundary(node, res):
+        while node:
+            if not is_leaf(node): res.append(node.val)
+            node = node.left if node.left else node.right
+
+    def right_boundary(node, res):
+        stack = []
+        while node:
+            if not is_leaf(node): stack.append(node.val)
+            node = node.right if node.right else node.left
+        while stack: res.append(stack.pop())
+
+    def add_leaves(node, res):
+        if is_leaf(node):
+            res.append(node.val)
+            return
+        if node.left: add_leaves(node.left, res)
+        if node.right: add_leaves(node.right, res)
+
+    if not root: return []
+    res = [root.val] if not is_leaf(root) else []
+    left_boundary(root.left, res)
+    add_leaves(root, res)
+    right_boundary(root.right, res)
+    return res`,
         },
         {
-          id: "non-overlapping-intervals",
-          title: "Non-overlapping Intervals",
-          content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
-          solution: `def erase_overlap_intervals(intervals):
-    intervals.sort(key=lambda x: x[1])
-    end = float('-inf')
-    count = 0
-    for interval in intervals:
-        if interval[0] >= end:
-            end = interval[1]
-        else:
-            count += 1
-    return count`,
+          id: "vertical-order-traversal",
+          title: "Vertical Order Traversal of Binary Tree",
+          content:
+            "Group and print tree nodes column by column from left to right.",
+          solution: `from collections import defaultdict, deque
+
+def vertical_order(root):
+    if not root: return []
+    col_table = defaultdict(list)
+    queue = deque([(root, 0)])
+    while queue:
+        node, col = queue.popleft()
+        col_table[col].append(node.val)
+        if node.left: queue.append((node.left, col - 1))
+        if node.right: queue.append((node.right, col + 1))
+    return [col_table[i] for i in sorted(col_table)]`,
         },
         {
-          id: "sjf-scheduling",
-          title: "Shortest Job First (SJF) Scheduling",
-          content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
-          solution: `def sjf_scheduling(burst_times):
-    burst_times.sort()
-    wait_time = 0
-    total_wait = 0
-    for i in range(1, len(burst_times)):
-        wait_time += burst_times[i - 1]
-        total_wait += wait_time
-    avg_wait = total_wait / len(burst_times)
-    return avg_wait`,
+          id: "top-view-of-binary-tree",
+          title: "Top View of Binary Tree",
+          content:
+            "Print the top view of a binary tree — the first node at each horizontal distance when viewed from the top.",
+          solution: `from collections import deque
+
+def top_view(root):
+    if not root: return []
+    top = {}
+    queue = deque([(root, 0)])
+    while queue:
+        node, hd = queue.popleft()
+        if hd not in top:
+            top[hd] = node.val
+        if node.left: queue.append((node.left, hd - 1))
+        if node.right: queue.append((node.right, hd + 1))
+    return [top[key] for key in sorted(top)]`,
         },
         {
-          id: "lru-page-replacement",
-          title: "Least Recently Used (LRU) Page Replacement",
-          content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
-          solution: `def lru(pages, capacity):
-    from collections import OrderedDict
-    cache = OrderedDict()
-    page_faults = 0
-    for page in pages:
-        if page not in cache:
-            page_faults += 1
-            if len(cache) == capacity:
-                cache.popitem(last=False)
+          id: "bottom-view-of-binary-tree",
+          title: "Bottom View of Binary Tree",
+          content:
+            "Print the bottom view of a binary tree — the last node at each horizontal distance.",
+          solution: `from collections import deque
+
+def bottom_view(root):
+    if not root: return []
+    bottom = {}
+    queue = deque([(root, 0)])
+    while queue:
+        node, hd = queue.popleft()
+        bottom[hd] = node.val
+        if node.left: queue.append((node.left, hd - 1))
+        if node.right: queue.append((node.right, hd + 1))
+    return [bottom[key] for key in sorted(bottom)]`,
+        },
+        {
+          id: "left-right-view-of-binary-tree",
+          title: "Right/Left View of Binary Tree",
+          content:
+            "Right View: Last node at each level. Left View: First node at each level.",
+          solution: `def left_view(root):
+    if not root: return []
+    res = []
+    queue = deque([root])
+    while queue:
+        res.append(queue[0].val)
+        for _ in range(len(queue)):
+            node = queue.popleft()
+            if node.left: queue.append(node.left)
+            if node.right: queue.append(node.right)
+    return res
+
+def right_view(root):
+    if not root: return []
+    res = []
+    queue = deque([root])
+    while queue:
+        res.append(queue[-1].val)
+        for _ in range(len(queue)):
+            node = queue.popleft()
+            if node.left: queue.append(node.left)
+            if node.right: queue.append(node.right)
+    return res`,
+        },
+        {
+          id: "symmetric-binary-tree",
+          title: "Symmetric Binary Tree",
+          content:
+            "Check whether a binary tree is a mirror of itself (symmetric around its center).",
+          solution: `def is_symmetric(root):
+    def is_mirror(t1, t2):
+        if not t1 and not t2: return True
+        if not t1 or not t2: return False
+        return (t1.val == t2.val and
+                is_mirror(t1.left, t2.right) and
+                is_mirror(t1.right, t2.left))
+    return is_mirror(root, root)`,
+        },
+      ],
+      "Lec 3 : Hard Probelms": [
+        {
+          id: "root-to-node-path-in-binary-tree",
+          title: "Root to Node Path in Binary Tree",
+          content:
+            "Find the path from the root node to a given target node in the binary tree.",
+          solution: `def root_to_node_path(root, target, path):
+    if not root:
+        return False
+    path.append(root.val)
+    if root.val == target:
+        return True
+    if (root_to_node_path(root.left, target, path) or
+        root_to_node_path(root.right, target, path)):
+        return True
+    path.pop()
+    return False`,
+        },
+        {
+          id: "lca-in-binary-tree",
+          title: "LCA in Binary Tree",
+          content:
+            "Find the Lowest Common Ancestor (LCA) of two nodes in a binary tree.",
+          solution: `def lca(root, p, q):
+    if not root or root == p or root == q:
+        return root
+    left = lca(root.left, p, q)
+    right = lca(root.right, p, q)
+    if left and right:
+        return root
+    return left if left else right`,
+        },
+        {
+          id: "maximum-width-of-a-binary-tree",
+          title: "Maximum Width of a Binary Tree",
+          content:
+            "Return the maximum width of the binary tree, i.e., the maximum number of nodes at any level.",
+          solution: `from collections import deque
+
+def width_of_binary_tree(root):
+    max_width = 0
+    queue = deque([(root, 0)])
+    while queue:
+        level_len = len(queue)
+        _, start = queue[0]
+        for _ in range(level_len):
+            node, idx = queue.popleft()
+            if node.left: queue.append((node.left, 2 * idx))
+            if node.right: queue.append((node.right, 2 * idx + 1))
+        max_width = max(max_width, idx - start + 1)
+    return max_width`,
+        },
+        {
+          id: "check-for-children-sum-property",
+          title: "Check for Children Sum Property",
+          content:
+            "Check whether every node's value is equal to the sum of its left and right child (if they exist).",
+          solution: `def children_sum_property(root):
+    if not root or (not root.left and not root.right):
+        return True
+    left = root.left.val if root.left else 0
+    right = root.right.val if root.right else 0
+    return (root.val == left + right and
+            children_sum_property(root.left) and
+            children_sum_property(root.right))`,
+        },
+        {
+          id: "nodes-at-distance-k",
+          title: "Print All the Nodes at a Distance of K in a Binary Tree",
+          content:
+            "Given a target node and integer K, return all nodes that are K distance from the target.",
+          solution: `from collections import defaultdict, deque
+
+def distance_k(root, target, k):
+    graph = defaultdict(list)
+    def build_graph(node, parent):
+        if node:
+            if parent:
+                graph[node.val].append(parent.val)
+                graph[parent.val].append(node.val)
+            build_graph(node.left, node)
+            build_graph(node.right, node)
+
+    build_graph(root, None)
+    visited = set()
+    queue = deque([(target.val, 0)])
+    res = []
+    while queue:
+        node, dist = queue.popleft()
+        if node in visited: continue
+        visited.add(node)
+        if dist == k:
+            res.append(node)
+        for nei in graph[node]:
+            if nei not in visited:
+                queue.append((nei, dist + 1))
+    return res`,
+        },
+        {
+          id: "burn-binary-tree",
+          title: "Minimum Time Taken to Burn the Binary Tree from a Node",
+          content:
+            "Given a node, find how much time it takes to burn the entire tree when the fire starts from that node and spreads to adjacent nodes in 1 unit time.",
+          solution: `# Similar graph + BFS approach with time tracking
+# Implementation is a variant of the above problem with level-by-level BFS`,
+        },
+        {
+          id: "count-total-nodes-in-complete-binary-tree",
+          title: "Count Total Nodes in a Complete Binary Tree",
+          content:
+            "Count the total number of nodes in a complete binary tree in less than O(n) time.",
+          solution: `def count_nodes(root):
+    def left_height(node):
+        h = 0
+        while node:
+            h += 1
+            node = node.left
+        return h
+
+    def right_height(node):
+        h = 0
+        while node:
+            h += 1
+            node = node.right
+        return h
+
+    if not root:
+        return 0
+    lh, rh = left_height(root), right_height(root)
+    if lh == rh:
+        return (1 << lh) - 1
+    return 1 + count_nodes(root.left) + count_nodes(root.right)`,
+        },
+        {
+          id: "requirements-to-construct-unique-binary-tree",
+          title:
+            "Requirements Needed to Construct a Unique Binary Tree (Theory)",
+          content:
+            "You cannot construct a unique binary tree from only inorder or only preorder/postorder. To uniquely construct a binary tree, you need:\n\n- Inorder + Preorder\n- Inorder + Postorder\n\nYou cannot uniquely build a tree with just Preorder + Postorder.\n\nThese help determine left and right subtree structures.",
+          solution: "// Theory concept — no code required.",
+        },
+        {
+          id: "construct-binary-tree-from-inorder-preorder",
+          title: "Construct Binary Tree from Inorder and Preorder",
+          content:
+            "Build a binary tree using its inorder and preorder traversal arrays.",
+          solution: `def build_tree(preorder, inorder):
+    inorder_map = {val: idx for idx, val in enumerate(inorder)}
+    pre_idx = [0]
+
+    def helper(in_left, in_right):
+        if in_left > in_right:
+            return None
+        root_val = preorder[pre_idx[0]]
+        root = TreeNode(root_val)
+        pre_idx[0] += 1
+        root.left = helper(in_left, inorder_map[root_val] - 1)
+        root.right = helper(inorder_map[root_val] + 1, in_right)
+        return root
+
+    return helper(0, len(inorder) - 1)`,
+        },
+        {
+          id: "construct-binary-tree-from-inorder-postorder",
+          title: "Construct Binary Tree from Postorder and Inorder Traversal",
+          content:
+            "Build a binary tree using its postorder and inorder traversal arrays.",
+          solution: `def build_tree(postorder, inorder):
+    inorder_map = {val: idx for idx, val in enumerate(inorder)}
+    post_idx = [len(postorder) - 1]
+
+    def helper(in_left, in_right):
+        if in_left > in_right:
+            return None
+        root_val = postorder[post_idx[0]]
+        root = TreeNode(root_val)
+        post_idx[0] -= 1
+        root.right = helper(inorder_map[root_val] + 1, in_right)
+        root.left = helper(in_left, inorder_map[root_val] - 1)
+        return root
+
+    return helper(0, len(inorder) - 1)`,
+        },
+        {
+          id: "serialize-deserialize-binary-tree",
+          title: "Serialize and Deserialize Binary Tree",
+          content:
+            "Convert a binary tree to a string (serialization) and rebuild it back (deserialization).",
+          solution: `class Codec:
+    def serialize(self, root):
+        if not root: return 'N'
+        return f"{root.val},{self.serialize(root.left)},{self.serialize(root.right)}"
+
+    def deserialize(self, data):
+        def build(nodes):
+            val = next(nodes)
+            if val == 'N': return None
+            node = TreeNode(int(val))
+            node.left = build(nodes)
+            node.right = build(nodes)
+            return node
+        return build(iter(data.split(',')))`,
+        },
+        {
+          id: "morris-preorder-traversal",
+          title: "Morris Preorder Traversal of a Binary Tree",
+          content:
+            "Traverse binary tree in preorder without recursion and without using a stack (O(1) space).",
+          solution: `def morris_preorder(root):
+    curr = root
+    while curr:
+        if not curr.left:
+            print(curr.val)
+            curr = curr.right
         else:
-            cache.move_to_end(page)
-        cache[page] = True
-    return page_faults`,
+            pre = curr.left
+            while pre.right and pre.right != curr:
+                pre = pre.right
+            if not pre.right:
+                print(curr.val)
+                pre.right = curr
+                curr = curr.left
+            else:
+                pre.right = None
+                curr = curr.right`,
+        },
+        {
+          id: "morris-inorder-traversal",
+          title: "Morris Inorder Traversal of a Binary Tree",
+          content:
+            "Traverse binary tree in inorder without recursion or stack, using Morris Traversal.",
+          solution: `def morris_inorder(root):
+    curr = root
+    while curr:
+        if not curr.left:
+            print(curr.val)
+            curr = curr.right
+        else:
+            pre = curr.left
+            while pre.right and pre.right != curr:
+                pre = pre.right
+            if not pre.right:
+                pre.right = curr
+                curr = curr.left
+            else:
+                pre.right = None
+                print(curr.val)
+                curr = curr.right`,
+        },
+        {
+          id: "flatten-binary-tree-to-linked-list",
+          title: "Flatten Binary Tree to Linked List",
+          content:
+            "Flatten the binary tree into a linked list in-place using preorder traversal order.",
+          solution: `def flatten(root):
+    curr = root
+    while curr:
+        if curr.left:
+            prev = curr.left
+            while prev.right:
+                prev = prev.right
+            prev.right = curr.right
+            curr.right = curr.left
+            curr.left = None
+        curr = curr.right`,
         },
       ],
     },
   },
   {
-    stepTitle: "Step 5:  Dynamic Programming",
+    stepTitle: "Step 9: Binary Search Tree",
     sections: {
-      "Lec 1: Medium Problem": [
+      "Lec 1 : Problems in BST": [
         {
-          id: "assign-cookies",
-          title: "Assign Cookies",
+          id: "introduction-to-bst",
+          title: "Introduction to Binary Search Tree",
           content:
-            "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
-          solution: `def findContentChildren(g, s):
-  g.sort()
-  s.sort()
-  i = j = 0
-  while i < len(g) and j < len(s):
-    if s[j] >= g[i]:
-      i += 1
-    j += 1
-  return i`,
+            "A Binary Search Tree (BST) is a binary tree in which for each node, the left subtree contains values less than the node, and the right subtree contains values greater than the node. BSTs provide efficient search, insertion, and deletion.",
+          solution: "// This is a theoretical concept. No code required.",
         },
         {
-          id: "fractional-knapsack",
-          title: "Fractional Knapsack Problem",
+          id: "search-in-bst",
+          title: "Search in a Binary Search Tree",
+          content: "Given a value, determine if it exists in the BST.",
+          solution: `def search_bst(root, val):
+    if not root or root.val == val:
+        return root
+    if val < root.val:
+        return search_bst(root.left, val)
+    return search_bst(root.right, val)`,
+        },
+        {
+          id: "find-min-max-in-bst",
+          title: "Find Min/Max in BST",
           content:
-            "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
-          solution: `def fractionalKnapsack(W, items):
-  items.sort(key=lambda x: x[1]/x[0], reverse=True)
-  total = 0
-  for wt, val in items:
-    if W >= wt:
-      W -= wt
-      total += val
+            "Find the node with the minimum and maximum value in the BST.",
+          solution: `def find_min(root):
+    while root.left:
+        root = root.left
+    return root.val
+
+def find_max(root):
+    while root.right:
+        root = root.right
+    return root.val`,
+        },
+        {
+          id: "ceil-in-bst",
+          title: "Ceil in a Binary Search Tree",
+          content:
+            "Find the smallest value in BST that is greater than or equal to the target value.",
+          solution: `def find_ceil(root, x):
+    ceil = -1
+    while root:
+        if root.val == x:
+            return root.val
+        if root.val < x:
+            root = root.right
+        else:
+            ceil = root.val
+            root = root.left
+    return ceil`,
+        },
+        {
+          id: "floor-in-bst",
+          title: "Floor in a Binary Search Tree",
+          content:
+            "Find the greatest value in BST that is less than or equal to the target value.",
+          solution: `def find_floor(root, x):
+    floor = -1
+    while root:
+        if root.val == x:
+            return root.val
+        if root.val > x:
+            root = root.left
+        else:
+            floor = root.val
+            root = root.right
+    return floor`,
+        },
+        {
+          id: "insert-node-in-bst",
+          title: "Insert a Given Node in Binary Search Tree",
+          content:
+            "Insert a new value into the BST while maintaining its properties.",
+          solution: `def insert_node(root, val):
+    if not root:
+        return TreeNode(val)
+    if val < root.val:
+        root.left = insert_node(root.left, val)
     else:
-      total += val * (W / wt)
-      break
-  return total`,
+        root.right = insert_node(root.right, val)
+    return root`,
         },
         {
-          id: "minimum-coins",
-          title: "Greedy Algorithm to Find Minimum Number of Coins",
+          id: "delete-node-in-bst",
+          title: "Delete a Node in Binary Search Tree",
           content:
-            "Given a value V and coin denominations, return the minimum number of coins needed.",
-          solution: `def minCoins(coins, V):
-  coins.sort(reverse=True)
-  count = 0
-  for coin in coins:
-    if V == 0:
-      break
-    if coin <= V:
-      count += V // coin
-      V %= coin
-  return count`,
+            "Remove a node from the BST while preserving its properties.",
+          solution: `def delete_node(root, key):
+    if not root: return None
+    if key < root.val:
+        root.left = delete_node(root.left, key)
+    elif key > root.val:
+        root.right = delete_node(root.right, key)
+    else:
+        if not root.left: return root.right
+        if not root.right: return root.left
+        temp = root.right
+        while temp.left:
+            temp = temp.left
+        root.val = temp.val
+        root.right = delete_node(root.right, temp.val)
+    return root`,
         },
         {
-          id: "lemonade-change",
-          title: "Lemonade Change",
+          id: "kth-smallest-largest-in-bst",
+          title: "Find K-th Smallest/Largest Element in BST",
           content:
-            "Customers are buying lemonade for $5. Determine if you can provide correct change.",
-          solution: `def lemonadeChange(bills):
-  five = ten = 0
-  for bill in bills:
-    if bill == 5:
-      five += 1
-    elif bill == 10:
-      if five == 0:
+            "Find the k-th smallest or largest element using in-order traversal.",
+          solution: `def kth_smallest(root, k):
+    stack = []
+    while root or stack:
+        while root:
+            stack.append(root)
+            root = root.left
+        root = stack.pop()
+        k -= 1
+        if k == 0: return root.val
+        root = root.right`,
+        },
+        {
+          id: "check-if-bst",
+          title: "Check if a Tree is a BST or BT",
+          content: "Verify if a binary tree is a valid BST.",
+          solution: `def is_bst(root, low=float('-inf'), high=float('inf')):
+    if not root:
+        return True
+    if not (low < root.val < high):
         return False
-      five -= 1
-      ten += 1
-    else:
-      if ten > 0 and five > 0:
-        ten -= 1
-        five -= 1
-      elif five >= 3:
-        five -= 3
-      else:
-        return False
-  return True`,
+    return (is_bst(root.left, low, root.val) and
+            is_bst(root.right, root.val, high))`,
         },
         {
-          id: "valid-parenthesis-checker",
-          title: "Valid Parenthesis Checker",
-          content:
-            "Given a string with parentheses, check if it's valid and balanced.",
-          solution: `def isValid(s):
-  stack = []
-  mapping = {')': '(', ']': '[', '}': '{'}
-  for char in s:
-    if char in mapping:
-      top = stack.pop() if stack else '#'
-      if mapping[char] != top:
-        return False
-    else:
-      stack.append(char)
-  return not stack`,
-        },
-      ],
-      "Lec 2: Hard Problem": [
-        {
-          id: "n-meetings-in-one-room",
-          title: "N Meetings in One Room",
-          content:
-            "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
-          solution: `def maxMeetings(start, end, n):
-  meetings = sorted(zip(start, end), key=lambda x: x[1])
-  count = 1
-  end_time = meetings[0][1]
-  for i in range(1, n):
-    if meetings[i][0] > end_time:
-      count += 1
-      end_time = meetings[i][1]
-  return count`,
-        },
-        {
-          id: "jump-game",
-          title: "Jump Game",
-          content:
-            "Given an array where each element represents jump length, check if you can reach the end.",
-          solution: `def canJump(nums):
-  reach = 0
-  for i in range(len(nums)):
-    if i > reach:
-      return False
-    reach = max(reach, i + nums[i])
-  return True`,
-        },
-        {
-          id: "jump-game-2",
-          title: "Jump Game 2",
-          content:
-            "Return the minimum number of jumps needed to reach the last index.",
-          solution: `def jump(nums):
-  jumps = cur_end = cur_farthest = 0
-  for i in range(len(nums) - 1):
-    cur_farthest = max(cur_farthest, i + nums[i])
-    if i == cur_end:
-      jumps += 1
-      cur_end = cur_farthest
-  return jumps`,
-        },
-        {
-          id: "min-platforms",
-          title: "Minimum Number of Platforms Required for a Railway",
-          content:
-            "Given arrival and departure times, find the minimum number of platforms needed.",
-          solution: `def findPlatform(arr, dep, n):
-  arr.sort()
-  dep.sort()
-  plat_needed = result = 0
-  i = j = 0
-  while i < n and j < n:
-    if arr[i] <= dep[j]:
-      plat_needed += 1
-      i += 1
-    else:
-      plat_needed -= 1
-      j += 1
-    result = max(result, plat_needed)
-  return result`,
-        },
-        {
-          id: "job-sequencing",
-          title: "Job Sequencing Problem",
-          content:
-            "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
-          solution: `def jobScheduling(jobs, n):
-  jobs.sort(key=lambda x: x[2], reverse=True)
-  max_deadline = max(job[1] for job in jobs)
-  slots = [-1] * (max_deadline + 1)
-  count = profit = 0
-  for job in jobs:
-    for j in range(job[1], 0, -1):
-      if slots[j] == -1:
-        slots[j] = job[0]
-        count += 1
-        profit += job[2]
-        break
-  return count, profit`,
-        },
-        {
-          id: "candy",
-          title: "Candy",
-          content:
-            "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
-          solution: `def candy(ratings):
-  n = len(ratings)
-  candies = [1] * n
-  for i in range(1, n):
-    if ratings[i] > ratings[i - 1]:
-      candies[i] = candies[i - 1] + 1
-  for i in range(n - 2, -1, -1):
-    if ratings[i] > ratings[i + 1]:
-      candies[i] = max(candies[i], candies[i + 1] + 1)
-  return sum(candies)`,
-        },
-        {
-          id: "insert-interval",
-          title: "Insert Interval",
-          content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
-          solution: `def insert(intervals, new_interval):
-    res = []
-    for i in range(len(intervals)):
-        if new_interval[1] < intervals[i][0]:
-            res.append(new_interval)
-            return res + intervals[i:]
-        elif new_interval[0] > intervals[i][1]:
-            res.append(intervals[i])
+          id: "lca-in-bst",
+          title: "Lowest Common Ancestor (LCA) in Binary Search Tree",
+          content: "Find the LCA of two nodes in a BST using BST properties.",
+          solution: `def lca_bst(root, p, q):
+    while root:
+        if p.val < root.val and q.val < root.val:
+            root = root.left
+        elif p.val > root.val and q.val > root.val:
+            root = root.right
         else:
-            new_interval[0] = min(new_interval[0], intervals[i][0])
-            new_interval[1] = max(new_interval[1], intervals[i][1])
-    res.append(new_interval)
-    return res`,
+            return root`,
         },
         {
-          id: "merge-intervals",
-          title: "Merge Intervals",
-          content: `Given a collection of intervals, merge all overlapping intervals.`,
-          solution: `def merge(intervals):
-    intervals.sort(key=lambda x: x[0])
-    merged = []
-    for interval in intervals:
-        if not merged or merged[-1][1] < interval[0]:
-            merged.append(interval)
+          id: "construct-bst-from-preorder",
+          title: "Construct a BST from a Preorder Traversal",
+          content: "Build a BST from its preorder traversal using bounds.",
+          solution: `def build_bst(preorder):
+    idx = [0]
+    def helper(bound=float('inf')):
+        if idx[0] == len(preorder) or preorder[idx[0]] > bound:
+            return None
+        root = TreeNode(preorder[idx[0]])
+        idx[0] += 1
+        root.left = helper(root.val)
+        root.right = helper(bound)
+        return root
+    return helper()`,
+        },
+        {
+          id: "inorder-successor-predecessor-bst",
+          title: "Inorder Successor/Predecessor in BST",
+          content:
+            "Find the next or previous node in in-order traversal for a given node.",
+          solution: `def inorder_successor(root, p):
+    succ = None
+    while root:
+        if p.val < root.val:
+            succ = root
+            root = root.left
         else:
-            merged[-1][1] = max(merged[-1][1], interval[1])
-    return merged`,
-        },
-        {
-          id: "non-overlapping-intervals",
-          title: "Non-overlapping Intervals",
-          content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
-          solution: `def erase_overlap_intervals(intervals):
-    intervals.sort(key=lambda x: x[1])
-    end = float('-inf')
-    count = 0
-    for interval in intervals:
-        if interval[0] >= end:
-            end = interval[1]
+            root = root.right
+    return succ
+
+def inorder_predecessor(root, p):
+    pred = None
+    while root:
+        if p.val > root.val:
+            pred = root
+            root = root.right
         else:
-            count += 1
-    return count`,
+            root = root.left
+    return pred`,
         },
         {
-          id: "sjf-scheduling",
-          title: "Shortest Job First (SJF) Scheduling",
-          content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
-          solution: `def sjf_scheduling(burst_times):
-    burst_times.sort()
-    wait_time = 0
-    total_wait = 0
-    for i in range(1, len(burst_times)):
-        wait_time += burst_times[i - 1]
-        total_wait += wait_time
-    avg_wait = total_wait / len(burst_times)
-    return avg_wait`,
+          id: "merge-two-bsts",
+          title: "Merge Two BSTs",
+          content: "Merge two BSTs and return a sorted list of all elements.",
+          solution: `def inorder(root, res):
+    if root:
+        inorder(root.left, res)
+        res.append(root.val)
+        inorder(root.right, res)
+
+def merge_bsts(root1, root2):
+    list1, list2 = [], []
+    inorder(root1, list1)
+    inorder(root2, list2)
+    return sorted(list1 + list2)`,
         },
         {
-          id: "lru-page-replacement",
-          title: "Least Recently Used (LRU) Page Replacement",
-          content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
-          solution: `def lru(pages, capacity):
-    from collections import OrderedDict
-    cache = OrderedDict()
-    page_faults = 0
-    for page in pages:
-        if page not in cache:
-            page_faults += 1
-            if len(cache) == capacity:
-                cache.popitem(last=False)
-        else:
-            cache.move_to_end(page)
-        cache[page] = True
-    return page_faults`,
+          id: "two-sum-in-bst",
+          title: "Two Sum in BST | Check if There Exists a Pair with Sum K",
+          content:
+            "Check if there exists two elements in the BST such that their sum equals a given target.",
+          solution: `def find_target(root, k):
+    seen = set()
+    def dfs(node):
+        if not node: return False
+        if k - node.val in seen:
+            return True
+        seen.add(node.val)
+        return dfs(node.left) or dfs(node.right)
+    return dfs(root)`,
+        },
+        {
+          id: "recover-bst",
+          title: "Recover BST | Correct BST with Two Nodes Swapped",
+          content: "Fix a BST where two nodes have been swapped by mistake.",
+          solution: `def recover_tree(root):
+    x = y = prev = None
+    def inorder(node):
+        nonlocal x, y, prev
+        if not node: return
+        inorder(node.left)
+        if prev and node.val < prev.val:
+            y = node
+            if not x: x = prev
+        prev = node
+        inorder(node.right)
+    inorder(root)
+    x.val, y.val = y.val, x.val`,
+        },
+        {
+          id: "largest-bst-in-binary-tree",
+          title: "Largest BST in Binary Tree",
+          content: "Find the size of the largest subtree which is a BST.",
+          solution: `def largest_bst_subtree(root):
+    def helper(node):
+        if not node:
+            return (float('inf'), float('-inf'), 0, True)
+        l_min, l_max, l_size, l_bst = helper(node.left)
+        r_min, r_max, r_size, r_bst = helper(node.right)
+        if l_bst and r_bst and l_max < node.val < r_min:
+            size = l_size + r_size + 1
+            return (min(node.val, l_min), max(node.val, r_max), size, True)
+        return (0, 0, max(l_size, r_size), False)
+    return helper(root)[2]`,
         },
       ],
     },

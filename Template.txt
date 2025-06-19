@@ -154,6 +154,121 @@ Step 5 : Greedy Algorithm
         Merge Intervals
         Non-overlapping Intervals
 
-
-
-
+Step 6 : Stack and Queue
+    Lec 1 : Basic Implementation of Stack and Queue
+        Implement Stack using Arrays
+        Implement Queue using Arrays
+        Implement Stack using Queue
+        Implement Queue using Stack
+        Implement Stack using Linked List
+        Implement Queue using Linked List
+        Check for Balanced Parenthesis
+        Implement Min Stack
+    Lec 2 : Postfix/Prefix Convertion 
+        Infix to Postfix Conversion using Stack
+        Prefix to Infix Conversion
+        Prefix to Postfix Conversion
+        Postfix to Prefix Conversion
+        Postfix to Infix Conversion
+        Convert Infix to Prefix Notation
+    Lec 3 : Monotonic Stack
+        Next Greater Element
+        Next Greater Element 2
+        Next Smaller Element
+        Number of Next Greater Elements to the Right
+        Trapping Rainwater
+        Sum of Subarray Minimums
+        Asteroid Collision
+        Sum of Subarray Ranges
+        Remove K Digits
+        Largest Rectangle in a Histogram
+        Maximal Rectangles
+    Lec 4 : Problems on Stack & Queue
+        Sliding Window Maximum
+        Stock Span Problem
+        The Celebrity Problem
+        LRU Cache (IMPORTANT)
+        LFU Cache
+Step 7 : Heap
+    Lec 1 : Implementation of Heap
+        Introduction to Priority Queues using Binary Heaps
+        Min Heap and Max Heap Implementation
+        Check if an Array Represents a Min-Heap or Not
+        Convert Min Heap to Max Heap
+    Lec 2 : Medium Problems
+        Kth Largest Element in an Array [Use Priority Queue]
+        Kth Smallest Element in an Array [Use Priority Queue]
+        Sort K Sorted Array
+        Merge M Sorted Lists
+        Replace Each Array Element by Its Corresponding Rank
+        Task Scheduler
+        Hands of Straights
+    Lec 3 : Hard Problems
+        Design Twitter
+        Connect n Ropes with Minimal Cost
+        Kth Largest Element in a Stream of Running Integers
+        Maximum Sum Combination
+        Find Median from Data Stream
+        K Most Frequent Elements
+Step 8 : Binary Tree
+    Lec 1 : Traversals in Trees
+        Introduction to Trees
+        Binary Tree Representation in C++
+        Binary Tree Representation in Java
+        Binary Tree Traversals in Binary Tree
+        Preorder Traversal of Binary Tree
+        Inorder Traversal of Binary Tree
+        Post-order Traversal of Binary Tree
+        Level Order Traversal / Level Order Traversal in Spiral Form
+        Iterative Preorder Traversal of Binary Tree
+        Iterative Inorder Traversal of Binary Tree
+        Post-order Traversal of Binary Tree using 2 Stacks
+        Post-order Traversal of Binary Tree using 1 Stack
+        Preorder, Inorder, and Postorder Traversal in One Traversal
+    Lec 2 : Medium Problems
+        Height of a Binary Tree
+        Check if the Binary Tree is Height-Balanced or Not
+        Diameter of Binary Tree
+        Maximum Path Sum
+        Check if Two Trees are Identical or Not
+        Zig Zag Traversal of Binary Tree
+        Boundary Traversal of Binary Tree
+        Vertical Order Traversal of Binary Tree
+        Top View of Binary Tree
+        Bottom View of Binary Tree
+        Right/Left View of Binary Tree
+        Symmetric Binary Tree
+    Lec 3 : Hard Problems
+        Root to Node Path in Binary Tree
+        LCA in Binary Tree
+        Maximum Width of a Binary Tree
+        Check for Children Sum Property
+        Print All the Nodes at a Distance of K in a Binary Tree
+        Minimum Time Taken to Burn the Binary Tree from a Node
+        Count Total Nodes in a Complete Binary Tree
+        Requirements Needed to Construct a Unique Binary Tree (Theory)
+        Construct Binary Tree from Inorder and Preorder
+        Construct Binary Tree from Postorder and Inorder Traversal
+        Serialize and Deserialize Binary Tree
+        Morris Preorder Traversal of a Binary Tree
+        Morris Inorder Traversal of a Binary Tree
+        Flatten Binary Tree to Linked List
+Step 9 : Binary Search Tree
+    Lec 1 : Problems in BST
+        Introduction to Binary Search Tree
+        Search in a Binary Search Tree
+        Find Min/Max in BST
+        Ceil in a Binary Search Tree
+        Floor in a Binary Search Tree
+        Insert a Given Node in Binary Search Tree
+        Delete a Node in Binary Search Tree
+        Find K-th Smallest/Largest Element in BST
+        Check if a Tree is a BST or BT
+        Lowest Common Ancestor (LCA) in Binary Search Tree
+        Construct a BST from a Preorder Traversal
+        Inorder Successor/Predecessor in BST
+        Merge Two BSTs
+        Two Sum in BST | Check if There Exists a Pair with Sum K
+        Recover BST | Correct BST with Two Nodes Swapped
+        Largest BST in Binary Tree
+Step 
