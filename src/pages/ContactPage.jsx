@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Lottie from "lottie-react";
+import emailjs from "emailjs-com";
 import contactAnimation from "../assets/contact.json";
 import "./Contact.css";
 import "./HomePage.css";
@@ -8,13 +9,31 @@ const ContactPage = () => {
   useEffect(() => {
     localStorage.removeItem("openStepIndex");
   }, []);
+
   const [submitted, setSubmitted] = useState(false);
+  const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    e.target.reset();
-    setTimeout(() => setSubmitted(false), 3000);
+
+    emailjs
+      .sendForm(
+        "service_6j66ioo", // ✅ Your actual Service ID
+        "template_ygghbwh", // 🔁 Replace this with your real Template ID from EmailJS
+        form.current,
+        "L9rTFCNKE3G3ZFbZX" // 🔁 Replace with your Public Key (EmailJS → Account → API Keys)
+      )
+      .then(
+        (result) => {
+          setSubmitted(true);
+          e.target.reset();
+          setTimeout(() => setSubmitted(false), 3000);
+        },
+        (error) => {
+          alert("❌ Failed to send message. Please try again.");
+          console.error(error.text);
+        }
+      );
   };
 
   return (
@@ -43,22 +62,33 @@ const ContactPage = () => {
                 ✅ Thank you! Your message has been sent.
               </div>
             )}
-            <form onSubmit={handleSubmit} className="contact-form">
+            <form ref={form} onSubmit={handleSubmit} className="contact-form">
               <div>
                 <label>Name</label>
-                <input type="text" placeholder="Your name" required />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                />
               </div>
               <div>
                 <label>Email</label>
-                <input type="email" placeholder="you@example.com" required />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
               </div>
               <div>
                 <label>Subject</label>
-                <input type="text" placeholder="Subject" />
+                <input type="text" name="subject" placeholder="Subject" />
               </div>
               <div>
                 <label>Message</label>
                 <textarea
+                  name="message"
                   rows={4}
                   placeholder="Your message..."
                   required
