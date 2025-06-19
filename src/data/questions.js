@@ -1304,33 +1304,14 @@ def merge(l1, l2):
           title: "Longest Substring Without Repeating Characters",
           content:
             "Given a string, find the length of the longest substring without repeating characters.",
-          solution: `def lengthOfLongestSubstring(s):
-  char_set = set()
-  l = 0
-  max_len = 0
-  for r in range(len(s)):
-    while s[r] in char_set:
-      char_set.remove(s[l])
-      l += 1
-    char_set.add(s[r])
-    max_len = max(max_len, r - l + 1)
-  return max_len`,
+          solution: "def lengthOfLongestSubstring(s: str) -> int:\n    d = defaultdict(int)\n    r = 0\n    l = 0\n    n = len(s)\n    mx = 0\n    while r < n:\n        d[s[r]] += 1\n        while d[s[r]] > 1:\n            d[s[l]] -= 1\n            if d[s[l]] == 0:\n                del d[s[l]]\n            l += 1\n        mx = max(mx, r - l + 1)\n        r += 1\n    return mx",
         },
         {
           id: "max-consecutive-ones-iii",
           title: "Max Consecutive Ones III",
           content:
             "Given a binary array and an integer k, return the maximum number of consecutive 1's with at most k 0's flipped.",
-          solution: `def longestOnes(nums, k):
-  l = 0
-  for r in range(len(nums)):
-    if nums[r] == 0:
-      k -= 1
-    if k < 0:
-      if nums[l] == 0:
-        k += 1
-      l += 1
-  return r - l + 1`,
+          solution: "def longestOnes(nums: List[int], k: int) -> int:\n    l = 0\n    r = 0\n    mx = 0\n    zero = 0\n    n = len(nums)\n    while r < n:\n        if nums[r] == 0:\n            zero += 1\n        while zero > k:\n            if nums[l] == 0:\n                zero -= 1\n            l += 1\n        mx = max(mx, r - l + 1)\n        r += 1\n    return mx",
         },
         {
           id: "fruit-into-baskets",
@@ -1356,75 +1337,33 @@ def merge(l1, l2):
           title: "Longest Repeating Character Replacement",
           content:
             "Return the length of the longest substring where you can replace at most k characters to make all characters the same.",
-          solution: `def characterReplacement(s, k):
-  from collections import defaultdict
-  count = defaultdict(int)
-  max_freq = l = 0
-  for r in range(len(s)):
-    count[s[r]] += 1
-    max_freq = max(max_freq, count[s[r]])
-    if (r - l + 1) - max_freq > k:
-      count[s[l]] -= 1
-      l += 1
-  return r - l + 1`,
+          solution: "def characterReplacement(s: str, k: int) -> int:\n    mx = 0\n    fr = 0\n    d = {}\n    l = 0\n    for i in range(len(s)):\n        if s[i] in d:\n            d[s[i]] += 1\n        else:\n            d[s[i]] = 1\n\n        fr = max(fr, d[s[i]])\n        if (i - l + 1) - fr > k:\n            d[s[l]] -= 1\n            l += 1\n        mx = max(mx, i - l + 1)\n    return mx",
         },
         {
           id: "binary-subarray-sum",
           title: "Binary Subarray With Sum",
           content:
             "Given a binary array and an integer goal, return the number of subarrays with sum equal to goal.",
-          solution: `def numSubarraysWithSum(nums, goal):
-  from collections import defaultdict
-  prefix_sum = defaultdict(int)
-  prefix_sum[0] = 1
-  total = 0
-  count = 0
-  for num in nums:
-    total += num
-    count += prefix_sum[total - goal]
-    prefix_sum[total] += 1
-  return count`,
+          solution: "def numSubarraysWithSum(nums: List[int], goal: int) -> int:\n    def solve(nums, goal):\n        if goal < 0:\n            return 0\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        sm = 0\n        while r < n:\n            sm += nums[r]\n            while sm > goal:\n                sm -= nums[l]\n                l += 1\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, goal) - solve(nums, goal - 1)",
         },
         {
           id: "count-nice-subarrays",
           title: "Count Number of Nice Subarrays",
           content:
             "Given an array of integers and an integer k, return the number of subarrays with exactly k odd numbers.",
-          solution: `def numberOfSubarrays(nums, k):
-  from collections import defaultdict
-  count = defaultdict(int)
-  count[0] = 1
-  curr_odd = res = 0
-  for num in nums:
-    curr_odd += num % 2
-    res += count[curr_odd - k]
-    count[curr_odd] += 1
-  return res`,
+          solution: "def numberOfSubarrays(nums: List[int], k: int) -> int:\n    def solve(nums, goal):\n        if goal < 0:\n            return 0\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        sm = 0\n        while r < n:\n            sm += nums[r] % 2\n            while sm > goal:\n                sm -= nums[l] % 2\n                l += 1\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, k) - solve(nums, k - 1)",
         },
         {
           id: "substring-with-all-three-characters",
           title: "Number of Substrings Containing All Three Characters",
           content: `Given a string s containing only characters 'a', 'b' and 'c', return the number of substrings containing at least one occurrence of all three characters.`,
-          solution: `def number_of_substrings(s):
-    last = [-1, -1, -1]
-    res = 0
-    for i, c in enumerate(s):
-        last[ord(c) - ord('a')] = i
-        res += 1 + min(last)
-    return res`,
+          solution: "def numberOfSubstrings(s: str) -> int:\n    pos = [-1, -1, -1]\n    cnt = 0\n    r = 0\n    n = len(s)\n    while r < n:\n        if s[r] in \"abc\":\n            pos[ord(s[r]) - 97] = r\n        if pos[0] != -1 and pos[1] != -1 and pos[2] != -1:\n            cnt += 1 + min(pos)\n        r += 1\n    return cnt",
         },
         {
           id: "max-points-from-cards",
           title: "Maximum Points You Can Obtain from Cards",
           content: `Given an array of card points and an integer k, return the maximum score obtainable by choosing k cards from either end of the array.`,
-          solution: `def max_score(card_points, k):
-    n = len(card_points)
-    total = sum(card_points[:k])
-    max_score = total
-    for i in range(1, k + 1):
-        total = total - card_points[k - i] + card_points[-i]
-        max_score = max(max_score, total)
-    return max_score`,
+          solution: "def maxScore(nums: List[int], k: int) -> int:\n    n = len(nums)\n    r = n - 1\n    sm = sum(nums[:k])\n    mx = sm\n    for i in range(k - 1, -1, -1):\n        sm = sm - nums[i]\n        sm = sm + nums[r]\n        mx = max(mx, sm)\n        r -= 1\n    return mx",
         },
       ],
       "Lec 2: Hard Problem": [
@@ -1433,70 +1372,21 @@ def merge(l1, l2):
           title: "Longest Substring with At Most K Distinct Characters",
           content:
             "Given a string and an integer k, return the length of the longest substring with at most k distinct characters.",
-          solution: `def lengthOfLongestSubstringKDistinct(s, k):
-  from collections import defaultdict
-  count = defaultdict(int)
-  l = max_len = 0
-  for r in range(len(s)):
-    count[s[r]] += 1
-    while len(count) > k:
-      count[s[l]] -= 1
-      if count[s[l]] == 0:
-        del count[s[l]]
-      l += 1
-    max_len = max(max_len, r - l + 1)
-  return max_len`,
+          solution: "def longestKSubstr(s, k):\n    l = 0\n    r = 0\n    n = len(s)\n    d = {}\n    mx = 0\n    while r < n:\n        if s[r] in d:\n            d[s[r]] += 1\n        else:\n            d[s[r]] = 1\n\n        while len(d) > k:\n            d[s[l]] -= 1\n            if d[s[l]] == 0:\n                del d[s[l]]\n            l += 1\n\n        if len(d) == k:\n            mx = max(mx, r - l + 1)\n        r += 1\n\n    return mx if mx else -1",
         },
         {
           id: "subarray-k-diff-integers",
           title: "Subarray with K Different Integers",
           content:
             "Return the number of subarrays with exactly k distinct integers.",
-          solution: `def subarraysWithKDistinct(nums, k):
-  from collections import Counter
-  def atMost(k):
-    count = Counter()
-    res = l = 0
-    for r in range(len(nums)):
-      count[nums[r]] += 1
-      while len(count) > k:
-        count[nums[l]] -= 1
-        if count[nums[l]] == 0:
-          del count[nums[l]]
-        l += 1
-      res += r - l + 1
-    return res
-  return atMost(k) - atMost(k - 1)`,
+          solution:"def subarraysWithKDistinct(nums: List[int], k: int) -> int:\n    def solve(nums, k):\n        d = {}\n        l = 0\n        r = 0\n        cnt = 0\n        n = len(nums)\n        while r < n:\n            if nums[r] not in d:\n                d[nums[r]] = 1\n            else:\n                d[nums[r]] += 1\n\n            while len(d) > k:\n                d[nums[l]] -= 1\n                if d[nums[l]] == 0:\n                    del d[nums[l]]\n                l += 1\n\n            cnt += (r - l + 1)\n            r += 1\n        return cnt\n\n    return solve(nums, k) - solve(nums, k - 1)",
         },
         {
           id: "min-window-substring",
           title: "Minimum Window Substring",
           content:
             "Given strings s and t, return the minimum window in s which contains all characters of t.",
-          solution: `def minWindow(s, t):
-  from collections import Counter
-  if not s or not t:
-    return ""
-  countT = Counter(t)
-  window = {}
-  have = need = 0, len(countT)
-  res, res_len = [-1, -1], float('inf')
-  l = 0
-  for r in range(len(s)):
-    c = s[r]
-    window[c] = window.get(c, 0) + 1
-    if c in countT and window[c] == countT[c]:
-      have += 1
-    while have == need:
-      if (r - l + 1) < res_len:
-        res = [l, r]
-        res_len = r - l + 1
-      window[s[l]] -= 1
-      if s[l] in countT and window[s[l]] < countT[s[l]]:
-        have -= 1
-      l += 1
-  l, r = res
-  return s[l:r + 1] if res_len != float('inf') else ""`,
+          solution: "def minWindow(S: str, T: str) -> str:\n    st = -1\n    mnLen = float('inf')\n    n = len(S)\n    m = len(T)\n    l = 0\n    r = 0\n    d = defaultdict(int)\n    for i in T:\n        d[i] += 1\n    cnt = 0\n    while r < n:\n        if d[S[r]] > 0:\n            cnt += 1\n        d[S[r]] -= 1\n        while cnt == m:\n            if r - l + 1 < mnLen:\n                mnLen = r - l + 1\n                st = l\n            d[S[l]] += 1\n            if d[S[l]] > 0:\n                cnt -= 1\n            l += 1\n        r += 1\n    return S[st:st + mnLen] if st != -1 else \"\"",
         },
         {
           id: "min-window-subsequence",
@@ -1540,32 +1430,14 @@ def merge(l1, l2):
           title: "Assign Cookies",
           content:
             "You are given two integer arrays representing children's greed and cookie sizes. Return the maximum number of content children.",
-          solution: `def findContentChildren(g, s):
-  g.sort()
-  s.sort()
-  i = j = 0
-  while i < len(g) and j < len(s):
-    if s[j] >= g[i]:
-      i += 1
-    j += 1
-  return i`,
+          solution: "def findContentChildren(g: List[int], s: List[int]) -> int:\n    g.sort()\n    s.sort()\n    j = 0\n    i = 0\n    n1 = len(g)\n    n2 = len(s)\n    cnt = 0\n    while i < n1 and j < n2:\n        if g[i] <= s[j]:\n            cnt += 1\n            i += 1\n        j += 1\n    return cnt",
         },
         {
           id: "fractional-knapsack",
           title: "Fractional Knapsack Problem",
           content:
             "Given weights and values of items, return the maximum value in the knapsack allowing fractional values.",
-          solution: `def fractionalKnapsack(W, items):
-  items.sort(key=lambda x: x[1]/x[0], reverse=True)
-  total = 0
-  for wt, val in items:
-    if W >= wt:
-      W -= wt
-      total += val
-    else:
-      total += val * (W / wt)
-      break
-  return total`,
+          solution: "import heapq\n\ndef fractionalknapsack(val, wt, cap):\n    n = len(val)\n    lis = []\n    \n    for i in range(n):\n        price = (val[i]*1.0) / wt[i]\n        lis.append((-price, i))\n    heapq.heapify(lis)\n    \n    sm = 0\n    while lis and cap > 0:\n        amt, ind = lis[0]\n        if wt[ind] <= cap:\n            sm = sm + val[ind]\n            cap = cap - wt[ind]\n            heapq.heappop(lis)\n        else:\n            sm = sm + (cap * (amt * -1))\n            cap = 0\n    return sm",
         },
         {
           id: "minimum-coins",
@@ -1588,42 +1460,14 @@ def merge(l1, l2):
           title: "Lemonade Change",
           content:
             "Customers are buying lemonade for $5. Determine if you can provide correct change.",
-          solution: `def lemonadeChange(bills):
-  five = ten = 0
-  for bill in bills:
-    if bill == 5:
-      five += 1
-    elif bill == 10:
-      if five == 0:
-        return False
-      five -= 1
-      ten += 1
-    else:
-      if ten > 0 and five > 0:
-        ten -= 1
-        five -= 1
-      elif five >= 3:
-        five -= 3
-      else:
-        return False
-  return True`,
+          solution: "def lemonadeChange(bills: List[int]) -> bool:\n    d = {5: 0, 10: 0, 20: 0}\n    for i in bills:\n        if i == 5:\n            d[i] += 1\n        elif i == 10:\n            if d[5] < 1:\n                return False\n            d[i] += 1\n            d[5] -= 1\n        elif i == 20:\n            if not ((d[10] >= 1 and d[5] >= 1) or (d[5] >= 3)):\n                return False\n            d[20] += 1\n            if d[10] >= 1 and d[5] >= 1:\n                d[10] -= 1\n                d[5] -= 1\n            else:\n                d[5] -= 3\n    return True",
         },
         {
           id: "valid-parenthesis-checker",
           title: "Valid Parenthesis Checker",
           content:
             "Given a string with parentheses, check if it's valid and balanced.",
-          solution: `def isValid(s):
-  stack = []
-  mapping = {')': '(', ']': '[', '}': '{'}
-  for char in s:
-    if char in mapping:
-      top = stack.pop() if stack else '#'
-      if mapping[char] != top:
-        return False
-    else:
-      stack.append(char)
-  return not stack`,
+          solution: "def checkValidString(s: str) -> bool:\n    st = []\n    star = []\n    for i in range(len(s)):\n        if s[i] == '(':\n            st.append(i)\n        elif s[i] == '*':\n            star.append(i)\n        else:\n            if st:\n                st.pop()\n            elif star:\n                star.pop()\n            else:\n                return False\n    while st and star:\n        if st[-1] < star[-1]:\n            st.pop()\n            star.pop()\n        else:\n            return False\n    return not st",
         },
       ],
       "Lec 2: Hard Problem": [
@@ -1632,176 +1476,72 @@ def merge(l1, l2):
           title: "N Meetings in One Room",
           content:
             "Given start and end times of meetings, find the maximum number of non-overlapping meetings.",
-          solution: `def maxMeetings(start, end, n):
-  meetings = sorted(zip(start, end), key=lambda x: x[1])
-  count = 1
-  end_time = meetings[0][1]
-  for i in range(1, n):
-    if meetings[i][0] > end_time:
-      count += 1
-      end_time = meetings[i][1]
-  return count`,
+          solution: "def maximumMeetings(start, end):\n    pair = []\n    for i in range(len(start)):\n        pair.append((start[i], end[i]))\n    pair.sort(key=lambda x: x[1])\n    cnt = 0\n    last = -1\n    for s, e in pair:\n        if last < s:\n            last = e\n            cnt += 1\n    return cnt",
         },
         {
           id: "jump-game",
           title: "Jump Game",
           content:
             "Given an array where each element represents jump length, check if you can reach the end.",
-          solution: `def canJump(nums):
-  reach = 0
-  for i in range(len(nums)):
-    if i > reach:
-      return False
-    reach = max(reach, i + nums[i])
-  return True`,
+          solution: "def canJump(nums: List[int]) -> bool:\n    n = len(nums)\n    mx = 0\n    for i in range(n):\n        if i > mx:\n            return False\n        mx = max(mx, i + nums[i])\n    return True",
         },
         {
           id: "jump-game-2",
           title: "Jump Game 2",
           content:
             "Return the minimum number of jumps needed to reach the last index.",
-          solution: `def jump(nums):
-  jumps = cur_end = cur_farthest = 0
-  for i in range(len(nums) - 1):
-    cur_farthest = max(cur_farthest, i + nums[i])
-    if i == cur_end:
-      jumps += 1
-      cur_end = cur_farthest
-  return jumps`,
+          solution: "def jump(nums: List[int]) -> int:\n    l = 0\n    r = 0\n    far = 0\n    ans = 0\n    while r < len(nums) - 1:\n        for i in range(l, r + 1):\n            far = max(far, i + nums[i])\n        l = r + 1\n        r = far\n        ans += 1\n    return ans",
         },
         {
           id: "min-platforms",
           title: "Minimum Number of Platforms Required for a Railway",
           content:
             "Given arrival and departure times, find the minimum number of platforms needed.",
-          solution: `def findPlatform(arr, dep, n):
-  arr.sort()
-  dep.sort()
-  plat_needed = result = 0
-  i = j = 0
-  while i < n and j < n:
-    if arr[i] <= dep[j]:
-      plat_needed += 1
-      i += 1
-    else:
-      plat_needed -= 1
-      j += 1
-    result = max(result, plat_needed)
-  return result`,
+          solution: "def minimumPlatform(arr, dep):\n    arr.sort()\n    dep.sort()\n    i = 0\n    j = 0\n    mx = 0\n    cnt = 0\n    while i < len(arr):\n        if arr[i] <= dep[j]:\n            cnt += 1\n            i += 1\n        else:\n            cnt -= 1\n            j += 1\n        mx = max(mx, cnt)\n    return mx",
         },
         {
           id: "job-sequencing",
           title: "Job Sequencing Problem",
           content:
             "Given jobs with deadlines and profits, schedule jobs to maximize total profit.",
-          solution: `def jobScheduling(jobs, n):
-  jobs.sort(key=lambda x: x[2], reverse=True)
-  max_deadline = max(job[1] for job in jobs)
-  slots = [-1] * (max_deadline + 1)
-  count = profit = 0
-  for job in jobs:
-    for j in range(job[1], 0, -1):
-      if slots[j] == -1:
-        slots[j] = job[0]
-        count += 1
-        profit += job[2]
-        break
-  return count, profit`,
+          solution: "def job_sequencing(id, deadline, profit):\n    n = len(id)\n    jobs = []\n    for i in range(n):\n        jobs.append((profit[i], deadline[i], id[i]))\n    jobs.sort(reverse=True)\n\n    max_deadline = max(deadline)\n    slots = [-1] * (max_deadline + 1)\n    count = 0\n    total_profit = 0\n\n    for p, d, job_id in jobs:\n        for j in range(d, 0, -1):\n            if slots[j] == -1:\n                slots[j] = job_id\n                count += 1\n                total_profit += p\n                break\n\n    return [count, total_profit]",
         },
         {
           id: "candy",
           title: "Candy",
           content:
             "Each child must have at least one candy. Children with higher ratings get more than neighbors. Return the minimum candies needed.",
-          solution: `def candy(ratings):
-  n = len(ratings)
-  candies = [1] * n
-  for i in range(1, n):
-    if ratings[i] > ratings[i - 1]:
-      candies[i] = candies[i - 1] + 1
-  for i in range(n - 2, -1, -1):
-    if ratings[i] > ratings[i + 1]:
-      candies[i] = max(candies[i], candies[i + 1] + 1)
-  return sum(candies)`,
+          solution: "def candy(arr: List[int]) -> int:\n    # Method - 2 (Slope Method)\n    n = len(arr)\n    sm = 1\n    curr = 1\n    i = 1\n    while i < n:\n        while i < n and arr[i] > arr[i - 1]:\n            curr += 1\n            sm += curr\n            i += 1\n        curr = 1\n        while i < n and arr[i] == arr[i - 1]:\n            sm += 1\n            i += 1\n        dec = 0\n        while i < n and arr[i] < arr[i - 1]:\n            dec += 1\n            sm += dec\n            i += 1\n        sm -= min(curr, dec)\n        curr = 1\n    return sm\n\n    # Method - 1 (Brute Force)\n    # n = len(arr)\n    # ans = [1] * n\n    # for i in range(1, n):\n    #     if arr[i] > arr[i - 1]:\n    #         ans[i] = ans[i - 1] + 1\n    # sm = ans[-1]\n    # for i in range(n - 2, -1, -1):\n    #     if arr[i] > arr[i + 1]:\n    #         ans[i] = max(ans[i], ans[i + 1] + 1)\n    #     sm += ans[i]\n    # return sm",
         },
         {
           id: "insert-interval",
           title: "Insert Interval",
           content: `Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).`,
-          solution: `def insert(intervals, new_interval):
-    res = []
-    for i in range(len(intervals)):
-        if new_interval[1] < intervals[i][0]:
-            res.append(new_interval)
-            return res + intervals[i:]
-        elif new_interval[0] > intervals[i][1]:
-            res.append(intervals[i])
-        else:
-            new_interval[0] = min(new_interval[0], intervals[i][0])
-            new_interval[1] = max(new_interval[1], intervals[i][1])
-    res.append(new_interval)
-    return res`,
+          solution: "def insert(intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:\n    intervals = intervals + [newInterval]\n    intervals.sort()\n    ans = [] \n    for i in intervals:\n        if not ans:\n            ans.append(i)\n            continue\n        if not((ans[-1][1] < i[0]) or (i[1] < ans[-1][0])):\n            mn = min(ans[-1][0], i[0])\n            mx = max(ans[-1][1], i[1])\n            ans.pop()\n            ans.append([mn, mx])\n        else:\n            ans.append(i)\n    return ans",
         },
         {
           id: "merge-intervals",
           title: "Merge Intervals",
           content: `Given a collection of intervals, merge all overlapping intervals.`,
-          solution: `def merge(intervals):
-    intervals.sort(key=lambda x: x[0])
-    merged = []
-    for interval in intervals:
-        if not merged or merged[-1][1] < interval[0]:
-            merged.append(interval)
-        else:
-            merged[-1][1] = max(merged[-1][1], interval[1])
-    return merged`,
+          solution: "def merge(intervals: List[List[int]]) -> List[List[int]]:\n    intervals.sort()\n    ans = []\n    for i in range(len(intervals)):\n        if i == 0 or not ans:\n            ans.append(intervals[i])\n            continue\n        last = ans[-1]\n        if last[-1] < intervals[i][0]:\n            ans.append(intervals[i])\n        else:\n            last[-1] = max(last[-1], intervals[i][-1])\n    return ans",
         },
         {
           id: "non-overlapping-intervals",
           title: "Non-overlapping Intervals",
           content: `Given a collection of intervals, find the minimum number of intervals to remove to make the rest of the intervals non-overlapping.`,
-          solution: `def erase_overlap_intervals(intervals):
-    intervals.sort(key=lambda x: x[1])
-    end = float('-inf')
-    count = 0
-    for interval in intervals:
-        if interval[0] >= end:
-            end = interval[1]
-        else:
-            count += 1
-    return count`,
+          solution: "def eraseOverlapIntervals(intervals: List[List[int]]) -> int:\n    intervals.sort(key = lambda x: x[1])\n    last = float('-inf')\n    cnt = 0\n    for i in intervals:\n        if last <= i[0]:\n            last = i[1]\n            cnt += 1\n    return len(intervals) - cnt",
         },
         {
           id: "sjf-scheduling",
           title: "Shortest Job First (SJF) Scheduling",
           content: `Given an array of processes with their burst times, implement the SJF scheduling algorithm (non-preemptive).`,
-          solution: `def sjf_scheduling(burst_times):
-    burst_times.sort()
-    wait_time = 0
-    total_wait = 0
-    for i in range(1, len(burst_times)):
-        wait_time += burst_times[i - 1]
-        total_wait += wait_time
-    avg_wait = total_wait / len(burst_times)
-    return avg_wait`,
+          solution: "import math\n\ndef solve(bt):\n    # Code here\n    bt.sort()\n    sm = 0\n    ans = 0\n    n = len(bt)\n    for i in range(n - 1):\n        sm = sm + bt[i]\n        # print(sm, ans)\n        ans += sm\n    # print(ans)\n    return math.floor(ans / n)",
         },
         {
           id: "lru-page-replacement",
           title: "Least Recently Used (LRU) Page Replacement",
           content: `Given a sequence of pages and cache size, implement LRU page replacement algorithm.`,
-          solution: `def lru(pages, capacity):
-    from collections import OrderedDict
-    cache = OrderedDict()
-    page_faults = 0
-    for page in pages:
-        if page not in cache:
-            page_faults += 1
-            if len(cache) == capacity:
-                cache.popitem(last=False)
-        else:
-            cache.move_to_end(page)
-        cache[page] = True
-    return page_faults`,
+          solution: "def pageFaults(n, c, pages):\n    arr = []\n    cnt = 0\n    for i in pages:\n        if i in arr:\n            arr.remove(i)\n        else:\n            cnt += 1\n            if len(arr) == c:\n                arr.pop(0)\n        arr.append(i)\n    return cnt",
         },
       ],
     },
