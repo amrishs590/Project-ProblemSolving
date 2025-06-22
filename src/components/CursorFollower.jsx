@@ -1,12 +1,26 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./CursorFollower.css";
 
 const CursorFollower = () => {
   const cursorRef = useRef(null);
   const position = useRef({ x: 0, y: 0 });
   const mouse = useRef({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile(); // Initial check
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
     const updateMousePosition = (e) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
@@ -28,7 +42,13 @@ const CursorFollower = () => {
     };
 
     follow();
-  }, []);
+
+    return () => {
+      document.removeEventListener("mousemove", updateMousePosition);
+    };
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return <div ref={cursorRef} className="cursor-follower" />;
 };
