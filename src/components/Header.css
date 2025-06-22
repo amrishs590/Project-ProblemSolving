@@ -37,3 +37,47 @@
 .nav-links a:hover {
     color: #93c5fd;
 }
+
+/* ================== Mobile View (≤ 768px) ================== */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-right: 60px;
+  }
+
+  .hamburger span {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    border-radius: 2px;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #1e3a8a;
+    padding: 20px 0;
+    margin: 0;
+    gap: 20px;
+    z-index: 999;
+  }
+
+  .nav-links.mobile-active {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 18px;
+  }
+
+  .logo {
+    margin-left: 20px;
+  }
+}

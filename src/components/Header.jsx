@@ -6,7 +6,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Close menu on route change
+  // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);
@@ -27,15 +27,9 @@ const Header = () => {
       </div>
 
       <nav className={`nav-links ${isMenuOpen ? "mobile-active" : ""}`}>
-        <Link to="/">
-          <h3>Home</h3>
-        </Link>
-        <Link to="/learn">
-          <h3>Learn</h3>
-        </Link>
-        <Link to="/contact">
-          <h3>Contact</h3>
-        </Link>
+        <Link to="/">Home</Link>
+        <Link to="/learn">Learn</Link>
+        <Link to="/contact">Contact</Link>
       </nav>
     </header>
   );
