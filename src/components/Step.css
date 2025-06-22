@@ -1,8 +1,9 @@
 .step-container {
-    width: 600px;
-    padding: 20px;
-    margin: 0 auto;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 600px;
+  width: 90%;
+  padding: 20px;
+  margin: 0 auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .step {
@@ -113,27 +114,34 @@
 }
 
 /* =================== Responsive Design =================== */
-@media (max-width: 1024px) {
-  .step-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+@media (max-width: 600px) {
+  .step-container {
+    width: 95%;
+    padding: 15px 10px;
   }
 
-  .step h2 {
-    font-size: 22px;
-  }
-}
-
-@media (max-width: 768px) {
-  .step-grid {
-    grid-template-columns: 1fr;
+  .step-header h2 {
+    font-size: 16px;
   }
 
-  .step h2 {
-    font-size: 18px;
+  .step-body h4 {
+    font-size: 15px;
   }
 
-  .step-content {
-    padding: 10px;
+  .step-body a {
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .step-body ul {
+    padding-left: 5px;
+  }
+
+  .step {
+    margin-bottom: 12px;
   }
 }

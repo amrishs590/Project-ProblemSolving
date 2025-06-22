@@ -5,7 +5,7 @@ import steps from "../data/questions";
 
 const Steps = () => {
   const [openStepIndex, setOpenStepIndex] = useState(null);
-  const location = useLocation(); // 🔁 Detect route change
+  const location = useLocation(); 
 
   // ⬇️ Load openStepIndex from localStorage on mount
   useEffect(() => {
@@ -21,7 +21,7 @@ const Steps = () => {
   useEffect(() => {
     const scrollPos = localStorage.getItem("learnScrollPos");
     if (scrollPos) {
-      window.scrollTo(0, parseInt(scrollPos));
+      window.scrollTo({Top:0, behavior:"smooth"});
     }
   }, []);
 

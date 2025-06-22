@@ -21,7 +21,7 @@ const QuestionPage = () => {
   let currentIndex = -1;
   let question = null;
 
-  // 🔍 Loop through each lecture to find the current question and its group
+  // Loop through each lecture to find the current question and its group
   for (let [lectureTitle, questions] of Object.entries(currentStep.sections)) {
     const index = questions.findIndex((q) => q.id === id);
     if (index !== -1) {

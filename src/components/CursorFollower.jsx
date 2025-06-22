@@ -28,10 +28,6 @@ const CursorFollower = () => {
     };
 
     follow();
-
-    return () => {
-      document.removeEventListener("mousemove", updateMousePosition);
-    };
   }, []);
 
   return <div ref={cursorRef} className="cursor-follower" />;

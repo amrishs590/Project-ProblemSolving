@@ -2,12 +2,13 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.homepage-entire-section{
-background: linear-gradient(to right, #f0f9ff, #e0f2fe);
+
+.homepage-entire-section {
+  background: linear-gradient(to right, #f0f9ff, #e0f2fe);
 }
+
 /* Hero Section */
 .homepage-section {
-  /* background: linear-gradient(to right, #f0f9ff, #e0f2fe); */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -25,6 +26,13 @@ background: linear-gradient(to right, #f0f9ff, #e0f2fe);
 @media (min-width: 768px) {
   .homepage-container {
     flex-direction: row;
+  }
+}
+
+@media (max-width: 767px) {
+  .homepage-container {
+    padding: 0 15px;
+    gap: 30px;
   }
 }
 
@@ -54,6 +62,29 @@ background: linear-gradient(to right, #f0f9ff, #e0f2fe);
   line-height: 1.7;
 }
 
+@media (max-width: 767px) {
+  .homepage-left h1 {
+    font-size: 2.2rem;
+    padding: 0 10px;
+  }
+
+  .homepage-left p {
+    font-size: 1rem;
+    padding: 0 10px;
+    text-align: justify;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-left h1 {
+    font-size: 1.8rem;
+  }
+
+  .homepage-left p {
+    font-size: 1rem;
+  }
+}
+
 .homepage-buttons {
   display: flex;
   gap: 15px;
@@ -63,6 +94,20 @@ background: linear-gradient(to right, #f0f9ff, #e0f2fe);
 @media (min-width: 768px) {
   .homepage-buttons {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .homepage-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -102,9 +147,24 @@ background: linear-gradient(to right, #f0f9ff, #e0f2fe);
   justify-content: center;
 }
 
+@media (max-width: 767px) {
+  .homepage-right {
+    margin-top: 20px;
+  }
+}
+
 .homepage-animation {
   max-width: 450px;
   width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .homepage-animation {
+    margin-top: 40px;
+    /* margin-right: 30px; */
+    padding-right: 40px;
+  }
 }
 
 /* Text Hover Animation */
@@ -138,6 +198,16 @@ p:hover {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+@media (max-width: 480px) {
+  .name-cards div {
+    font-size: 1rem;
+  }
+
+  .name-cards ul {
+    font-size: 0.9rem;
+  }
 }
 
 .name-cards div:hover {
