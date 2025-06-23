@@ -201,6 +201,30 @@
   transition: width 0.3s ease;
 }
 
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: #e0f2fe;
+  padding: 12px 20px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.step-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.step-count {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1e40af;
+}
+
 
 
 /* =================== Responsive Design =================== */
