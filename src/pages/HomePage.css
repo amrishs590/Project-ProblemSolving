@@ -5,6 +5,10 @@ body {
 
 
 /* Hero Section */
+.homepage-entire-section {
+  background-color: white;
+}
+
 .homepage-section {
   min-height: 100vh;
   display: flex;
@@ -226,4 +230,39 @@ p:hover {
   justify-content: center;
   margin-top: 30px;
   margin-bottom: 5px;
+}
+
+/* FORCE LIGHT BACKGROUND EVEN IN DARK MODE */
+@media (prefers-color-scheme: dark) {
+  .homepage-section {
+    background-color: #ffffff !important; /* Force white background */
+  }
+
+  .homepage-left h1 {
+    color: #0f172a; /* Dark text */
+  }
+
+  .homepage-left p {
+    color: #334155; /* Medium-dark text */
+  }
+
+  .name-cards div {
+    background-color: #ffffff;
+    color: #1e293b;
+  }
+
+  .name-cards ul {
+    color: #475569;
+  }
+
+  .btn-outline {
+    border-color: #2563eb;
+    color: #2563eb;
+  }
+
+  .btn-outline:hover {
+    background-color: #2563eb;
+    color: white;
+  }
+  
 }

@@ -54,7 +54,7 @@
 }
 
 .login-btn {
-  width: 100%;
+  width: 50px;
   padding: 0.8rem;
   border: none;
   border-radius: 6px;
@@ -110,6 +110,7 @@ h2 {
   width: 100%;
   padding: 0.85rem;
   border: 1px solid #ccc;
+  color:black;
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -174,5 +175,37 @@ p a:hover {
 
   .login-container h2 {
     font-size: 1.5rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .login-container {
+    /* Keep it light */
+    background: #fff;
+    color: #111;
+  }
+  .form-group input {
+    background-color: #f9f9f9;
+    color: #111;
+    border-color: #ccc;
+  }
+
+  .form-group input:focus {
+    background-color: #fff;
+    color: #000;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  }
+
+  .form-group input::placeholder {
+    color: #e8dfdf;
+  }
+
+  .login-container p {
+    color: #111;
+  }
+
+  .login-container p a {
+    color: #007bff;
   }
 }

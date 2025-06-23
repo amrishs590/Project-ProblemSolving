@@ -176,3 +176,12 @@ p a:hover {
     font-size: 1.5rem;
   }
 }
+
+/* Force visible text in signup container even in dark mode */
+.signup-container p {
+  color: #222; /* or use #000 for full black */
+}
+
+.signup-container p a {
+  color: #007bff;
+}
