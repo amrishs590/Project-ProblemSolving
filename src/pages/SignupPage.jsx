@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SignupPage.css';
+import {supabase} from "../supabaseClient";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -17,16 +18,26 @@ const SignupPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password !== formData['confirm-password']) {
-      alert("Passwords don't match!");
-      return;
-    }
-    // Here you would typically handle the signup logic,
-    // e.g., send the formData to a backend server
-    console.log('Signup form submitted:', formData);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (formData.password !== formData['confirm-password']) {
+    alert("Passwords don't match!");
+    return;
+  }
+
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.email,
+    password: formData.password,
+  });
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert('Signup successful! Check your email to confirm.');
+    window.location.href = '/login';
+  }
+};
+
 
   return (
     <div className="signup-page">

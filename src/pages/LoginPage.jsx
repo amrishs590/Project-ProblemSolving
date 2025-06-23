@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
+import {supabase} from "../supabaseClient";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -16,12 +17,20 @@ const LoginPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically handle the login logic,
-    // e.g., send the formData to a backend server
-    console.log('Login form submitted:', formData);
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: formData.email,
+    password: formData.password,
+  });
+
+  if (error) {
+    alert(error.message);
+  } else {
+    window.location.href = '/';
+  }
+};
 
   return (
     <div className="login-page">
