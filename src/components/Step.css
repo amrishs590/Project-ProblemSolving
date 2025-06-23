@@ -100,18 +100,24 @@
 
 .step-body a {
     text-decoration: none;
-    color: #333;
-    background-color: #e0e7ff;
-    padding: 6px 10px;
-    border-radius: 5px;
-    transition: all 0.2s ease-in-out;
-    display: inline-block;
+  color: #333;
+  background-color: #e0e7ff;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  display: block; /* changed from inline-block to block */
+  margin-bottom: 8px;
 }
 
 .step-body a:hover {
     background-color: #c7d2fe;
     color: #000;
 }
+
+.completed-question a:hover {
+  background-color: hsl(120, 91%, 70%) !important; /* keep same green */
+}
+
 
 .step-progress-bar {
   background: #e5e7eb;
@@ -225,6 +231,29 @@
   color: #1e40af;
 }
 
+.completed-question {
+  /* background-color: #d4edda;  */
+   background-color: #90ee90; 
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.completed-question a {
+  background-color: #90ee90 !important; /* bright green overrides default */
+  color: black !important;
+  display: block; /* make sure same display type */
+}
+
+
+.completed-question a {
+ color: black; /* text color black */
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.completed-question:hover {
+  background-color: #c3e6cb;
+}
 
 
 /* =================== Responsive Design =================== */

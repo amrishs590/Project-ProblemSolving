@@ -103,11 +103,12 @@ const Steps = () => {
             className={`step ${openStepIndex === index ? "open" : ""}`}
           >
             <div className="step-header" onClick={() => toggleStep(index)}>
-  <h2>{step.stepTitle}</h2>
-  <span className="step-count">
-    {getStepProgress(step).done}/{getStepProgress(step).total} completed
-  </span>
-</div>
+              <h2>{step.stepTitle}</h2>
+              <span className="step-count">
+                {getStepProgress(step).done}/{getStepProgress(step).total}{" "}
+                completed
+              </span>
+            </div>
 
             <div className="step-progress-bar">
               <div
@@ -155,26 +156,26 @@ const Steps = () => {
                           </div>
 
                           <ul>
-                            {questions.map((q) => (
-                              <li key={q.id}>
-                                <Link
-                                  to={`/question/${q.id}`}
-                                  onClick={() => {
-                                    localStorage.setItem(
-                                      "selectedQuestionId",
-                                      q.id
-                                    );
-                                    localStorage.setItem(
-                                      "learnScrollPos",
-                                      window.scrollY
-                                    );
-                                  }}
-                                >
-                                  {q.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
+  {questions.map((q) => {
+    const completed = JSON.parse(localStorage.getItem("completedQuestions") || "[]");
+    const isCompleted = completed.includes(q.id);
+
+    return (
+      <li key={q.id} className={isCompleted ? "completed-question" : ""}>
+        <Link
+          to={`/question/${q.id}`}
+          onClick={() => {
+            localStorage.setItem("selectedQuestionId", q.id);
+            localStorage.setItem("learnScrollPos", window.scrollY);
+          }}
+        >
+          {q.title}
+        </Link>
+      </li>
+    );
+  })}
+</ul>
+
                         </div>
                       );
                     }
