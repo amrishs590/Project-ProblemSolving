@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './SignupPage.css';
-import {supabase} from "../supabaseClient";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./SignupPage.css";
+import { supabase } from "../supabaseClient";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    'confirm-password': '',
+    email: "",
+    password: "",
+    "confirm-password": "",
   });
 
   const handleChange = (e) => {
@@ -18,7 +18,7 @@ const SignupPage = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
   e.preventDefault();
   if (formData.password !== formData['confirm-password']) {
     alert("Passwords don't match!");
@@ -28,6 +28,10 @@ const handleSubmit = async (e) => {
   const { data, error } = await supabase.auth.signUp({
     email: formData.email,
     password: formData.password,
+    options: {
+      emailRedirectTo: 'http://localhost:5173/login'
+      // emailRedirectTo: 'https://your-vercel-domain.vercel.app/login'
+    }
   });
 
   if (error) {
@@ -72,12 +76,14 @@ const handleSubmit = async (e) => {
               type="password"
               id="confirm-password"
               name="confirm-password"
-              value={formData['confirm-password']}
+              value={formData["confirm-password"]}
               onChange={handleChange}
               required
             />
           </div>
-          <button type="submit" className="btn-primary">Sign Up</button>
+          <button type="submit" className="btn-primary">
+            Sign Up
+          </button>
         </form>
         <p>
           Already have an account? <Link to="/login">Login</Link>
@@ -87,4 +93,4 @@ const handleSubmit = async (e) => {
   );
 };
 
-export default SignupPage; 
+export default SignupPage;
