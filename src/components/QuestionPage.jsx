@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import steps from "../data/questions";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -11,9 +11,31 @@ const QuestionPage = () => {
 
   const stepIndex = localStorage.getItem("openStepIndex");
   const currentStep = steps[stepIndex];
+
+  const [isCompleted, setIsCompleted] = useState(false);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    const saved = JSON.parse(
+      localStorage.getItem("completedQuestions") || "[]"
+    );
+    setIsCompleted(saved.includes(id));
   }, [id]);
+
+  const handleCheckboxChange = () => {
+    let saved = JSON.parse(localStorage.getItem("completedQuestions") || "[]");
+
+    if (isCompleted) {
+      saved = saved.filter((qid) => qid !== id);
+    } else {
+      saved.push(id);
+    }
+
+    localStorage.setItem("completedQuestions", JSON.stringify(saved));
+    setIsCompleted(!isCompleted);
+  };
+
   if (!currentStep) {
     return <div className="p-4 text-red-500">Step not found!</div>;
   }
@@ -22,7 +44,6 @@ const QuestionPage = () => {
   let currentIndex = -1;
   let question = null;
 
-  // Loop through each lecture to find the current question and its group
   for (let [lectureTitle, questions] of Object.entries(currentStep.sections)) {
     const index = questions.findIndex((q) => q.id === id);
     if (index !== -1) {
@@ -60,6 +81,16 @@ const QuestionPage = () => {
           <h1>{question.title}</h1>
           <p>{question.content}</p>
         </div>
+
+        <label className="custom-checkbox">
+          <input
+            type="checkbox"
+            checked={isCompleted}
+            onChange={handleCheckboxChange}
+          />
+          <span className="checkmark"></span>
+          Mark as Completed
+        </label>
 
         <div className="question-solution">
           <h2>Solution</h2>

@@ -113,6 +113,59 @@
     color: #000;
 }
 
+.step-progress-bar {
+  background: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 10px;
+  margin: 8px 20px;
+  position: relative;
+}
+
+.step-progress-fill {
+  background: #3b82f6;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.step-progress-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1e3a8a;
+  margin-left: 20px;
+  margin-top: 4px;
+  display: block;
+}
+
+.global-progress-wrapper {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.global-progress-bar {
+  background: #e2e8f0;
+  border-radius: 8px;
+  height: 12px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.global-progress-fill {
+  background: #2563eb;
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.global-progress-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+
+
 /* =================== Responsive Design =================== */
 @media (max-width: 600px) {
   .step-container {

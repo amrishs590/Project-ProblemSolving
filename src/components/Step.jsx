@@ -5,7 +5,7 @@ import steps from "../data/questions";
 
 const Steps = () => {
   const [openStepIndex, setOpenStepIndex] = useState(null);
-  const location = useLocation(); 
+  const location = useLocation();
 
   // ⬇️ Load openStepIndex from localStorage on mount
   useEffect(() => {
@@ -21,7 +21,7 @@ const Steps = () => {
   useEffect(() => {
     const scrollPos = localStorage.getItem("learnScrollPos");
     if (scrollPos) {
-      window.scrollTo({Top:0, behavior:"smooth"});
+      window.scrollTo({ Top: 0, behavior: "smooth" });
     }
   }, []);
 
@@ -31,6 +31,37 @@ const Steps = () => {
     localStorage.setItem("openStepIndex", newIndex !== null ? newIndex : "");
   };
 
+  const getStepProgress = (step) => {
+    const completed = JSON.parse(
+      localStorage.getItem("completedQuestions") || "[]"
+    );
+    let total = 0;
+    let done = 0;
+
+    for (let section of Object.values(step.sections)) {
+      total += section.length;
+      done += section.filter((q) => completed.includes(q.id)).length;
+    }
+
+    return { total, done };
+  };
+
+  const getGlobalProgress = () => {
+  const completed = JSON.parse(localStorage.getItem("completedQuestions") || "[]");
+  let total = 0;
+  let done = 0;
+
+  for (let step of steps) {
+    for (let section of Object.values(step.sections)) {
+      total += section.length;
+      done += section.filter((q) => completed.includes(q.id)).length;
+    }
+  }
+
+  return { total, done };
+};
+
+
   return (
     <div className="step-container">
       <h1
@@ -38,6 +69,21 @@ const Steps = () => {
       >
         Problem Solving Steps
       </h1>
+      <div className="global-progress-wrapper">
+  <div className="global-progress-bar">
+    <div
+      className="global-progress-fill"
+      style={{
+        width: `${Math.round(
+          (getGlobalProgress().done / getGlobalProgress().total) * 100
+        )}%`,
+      }}
+    ></div>
+  </div>
+  <span className="global-progress-label">
+    {getGlobalProgress().done}/{getGlobalProgress().total} completed overall
+  </span>
+</div>
 
       <div className="step-grid">
         {steps.map((step, index) => (
@@ -47,6 +93,21 @@ const Steps = () => {
           >
             <div className="step-header" onClick={() => toggleStep(index)}>
               <h2>{step.stepTitle}</h2>
+            </div>
+            <div className="step-progress-bar">
+              <div
+                className="step-progress-fill"
+                style={{
+                  width: `${Math.round(
+                    (getStepProgress(step).done / getStepProgress(step).total) *
+                      100
+                  )}%`,
+                }}
+              ></div>
+              <span className="step-progress-label">
+                {getStepProgress(step).done}/{getStepProgress(step).total}{" "}
+                completed
+              </span>
             </div>
 
             <div
