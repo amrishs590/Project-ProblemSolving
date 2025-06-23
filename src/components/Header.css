@@ -113,3 +113,11 @@
         margin-left: 20px;
     }
 }
+@media (max-width: 768px) {
+  .logout-btn {
+    color: #1e3a8a; /* Match the mobile nav link color */
+    font-weight: bolder;
+    text-align: left;
+  }
+
+}
