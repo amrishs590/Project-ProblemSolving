@@ -65,7 +65,7 @@ const LoginPage = () => {
               onChange={handleChange}
               required
             />
-            <span className="eye-icon" onClick={togglePassword}>
+            <span className="eye-icon-login" onClick={togglePassword}>
               {showPassword ? <EyeOff /> : <Eye />}
             </span>
           </div>
