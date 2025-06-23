@@ -3,9 +3,6 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.homepage-entire-section {
-  background: linear-gradient(to right, #f0f9ff, #e0f2fe);
-}
 
 /* Hero Section */
 .homepage-section {
@@ -113,8 +110,8 @@ body {
 
 .btn-primary,
 .btn-outline {
-  padding: 12px 24px;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  width: 200px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;

@@ -18,6 +18,9 @@
     font-weight: bold;
     margin-left: 50px;
 }
+.logo h2 {
+    color:white;
+}
 
 .nav-links {
     display: flex;

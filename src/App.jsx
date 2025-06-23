@@ -7,6 +7,8 @@ import QuestionPage from "./components/QuestionPage";
 import Header from "./components/Header";
 import CursorFollower from "./components/CursorFollower"; 
 import Footer from "./components/Footer";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/learn" element={<LearnPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/question/:id" element={<QuestionPage />} /> 
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/signup" element={<SignupPage/>}/>
       </Routes>
       <Footer />
     </Router>
