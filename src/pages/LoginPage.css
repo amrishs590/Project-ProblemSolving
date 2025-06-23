@@ -209,3 +209,24 @@ p a:hover {
     color: #007bff;
   }
 }
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 94%; /* match your form field width */
+  margin: 0 auto;
+  display: block;
+}
+
+.eye-icon {
+  position: absolute;
+  padding-top: 30px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+  font-size: 1.2rem;
+}

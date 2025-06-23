@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
-import {supabase} from "../supabaseClient";
+import { supabase } from "../supabaseClient";
+import { Eye, EyeOff } from 'lucide-react'; // eye icon (you can also use FontAwesome if preferred)
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,20 +20,24 @@ const LoginPage = () => {
     }));
   };
 
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: formData.email,
-    password: formData.password,
-  });
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password,
+    });
 
-  if (error) {
-    alert(error.message);
-  } else {
-    window.location.href = '/';
-  }
-};
+    if (error) {
+      alert(error.message);
+    } else {
+      window.location.href = '/';
+    }
+  };
 
   return (
     <div className="login-page">
@@ -48,16 +55,19 @@ const LoginPage = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="form-group password-wrapper">
             <label htmlFor="password">Password</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
               required
             />
+            <span className="eye-icon" onClick={togglePassword}>
+              {showPassword ? <EyeOff /> : <Eye />}
+            </span>
           </div>
           <button type="submit" className="btn-primary">Login</button>
         </form>
@@ -69,4 +79,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage; 
+export default LoginPage;

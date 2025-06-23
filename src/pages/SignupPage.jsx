@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./SignupPage.css";
 import { supabase } from "../supabaseClient";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import "./SignupPage.css";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,9 @@ const SignupPage = () => {
     password: "",
     "confirm-password": "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,29 +23,32 @@ const SignupPage = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (formData.password !== formData['confirm-password']) {
-    alert("Passwords don't match!");
-    return;
-  }
+    e.preventDefault();
 
-  const { data, error } = await supabase.auth.signUp({
-    email: formData.email,
-    password: formData.password,
-    options: {
-      emailRedirectTo: 'http://localhost:5173/login'
-      // emailRedirectTo: 'https://your-vercel-domain.vercel.app/login'
+    if (formData.password !== formData["confirm-password"]) {
+      alert("Passwords don't match!");
+      return;
     }
-  });
 
-  if (error) {
-    alert(error.message);
-  } else {
-    alert('Signup successful! Check your email to confirm.');
-    window.location.href = '/login';
-  }
-};
+    const { data, error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        emailRedirectTo: "https://your-domain.vercel.app/login", // ✅ Update this
+      },
+    });
 
+    if (error) {
+      if (error.message.toLowerCase().includes("user already registered")) {
+        alert("This email is already registered. Please login instead.");
+      } else {
+        alert(error.message);
+      }
+    } else {
+      alert("Signup successful! Check your email to confirm.");
+      window.location.href = "/login";
+    }
+  };
 
   return (
     <div className="signup-page">
@@ -59,28 +66,49 @@ const SignupPage = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="eye-icon"
+              >
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </span>
+            </div>
           </div>
+
           <div className="form-group">
             <label htmlFor="confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              id="confirm-password"
-              name="confirm-password"
-              value={formData["confirm-password"]}
-              onChange={handleChange}
-              required
-            />
+            <div className="password-wrapper">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirm-password"
+                name="confirm-password"
+                value={formData["confirm-password"]}
+                onChange={handleChange}
+                required
+              />
+              <span
+                onClick={() =>
+                  setShowConfirmPassword(!showConfirmPassword)
+                }
+                className="eye-icon"
+              >
+                {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+              </span>
+            </div>
           </div>
+
           <button type="submit" className="btn-primary">
             Sign Up
           </button>
