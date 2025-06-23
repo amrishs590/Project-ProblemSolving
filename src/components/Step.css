@@ -164,6 +164,43 @@
   color: #1e3a8a;
 }
 
+.lecture-section {
+  margin-bottom: 24px;
+}
+
+.lecture-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0 6px;
+}
+
+.lecture-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.lecture-count {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.lecture-progress-bar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.lecture-progress-fill {
+  height: 100%;
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
 
 
 /* =================== Responsive Design =================== */
