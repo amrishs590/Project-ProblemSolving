@@ -156,26 +156,39 @@ const Steps = () => {
                           </div>
 
                           <ul>
-  {questions.map((q) => {
-    const completed = JSON.parse(localStorage.getItem("completedQuestions") || "[]");
-    const isCompleted = completed.includes(q.id);
+                            {questions.map((q) => {
+                              const completed = JSON.parse(
+                                localStorage.getItem("completedQuestions") ||
+                                  "[]"
+                              );
+                              const isCompleted = completed.includes(q.id);
 
-    return (
-      <li key={q.id} className={isCompleted ? "completed-question" : ""}>
-        <Link
-          to={`/question/${q.id}`}
-          onClick={() => {
-            localStorage.setItem("selectedQuestionId", q.id);
-            localStorage.setItem("learnScrollPos", window.scrollY);
-          }}
-        >
-          {q.title}
-        </Link>
-      </li>
-    );
-  })}
-</ul>
-
+                              return (
+                                <li
+                                  key={q.id}
+                                  className={
+                                    isCompleted ? "completed-question" : ""
+                                  }
+                                >
+                                  <Link
+                                    to={`/question/${q.id}`}
+                                    onClick={() => {
+                                      localStorage.setItem(
+                                        "selectedQuestionId",
+                                        q.id
+                                      );
+                                      localStorage.setItem(
+                                        "learnScrollPos",
+                                        window.scrollY
+                                      );
+                                    }}
+                                  >
+                                    {q.title}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
                         </div>
                       );
                     }

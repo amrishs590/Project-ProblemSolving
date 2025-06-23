@@ -34,7 +34,7 @@ const SignupPage = () => {
       email: formData.email,
       password: formData.password,
       options: {
-        emailRedirectTo: "https://your-domain.vercel.app/login", // ✅ Update this
+        emailRedirectTo: "https://dsapathway.vercel.app/login", // ✅ Update this
       },
     });
 
