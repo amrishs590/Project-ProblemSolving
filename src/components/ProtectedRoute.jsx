@@ -1,7 +1,7 @@
 // src/components/ProtectedRoute.jsx
-import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { supabase } from '../supabaseClient';
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 const ProtectedRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -9,7 +9,9 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       setAuthenticated(!!session?.user);
       setLoading(false);
     };

@@ -84,6 +84,7 @@
 .login-container p a:hover {
   text-decoration: underline;
 }
+
 /* Common inside .login-container or .signup-container */
 
 h2 {
@@ -110,7 +111,7 @@ h2 {
   width: 100%;
   padding: 0.85rem;
   border: 1px solid #ccc;
-  color:black;
+  color: black;
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -162,6 +163,7 @@ p a:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -184,6 +186,7 @@ p a:hover {
     background: #fff;
     color: #111;
   }
+
   .form-group input {
     background-color: #f9f9f9;
     color: #111;
@@ -215,7 +218,8 @@ p a:hover {
 }
 
 .password-wrapper input {
-  width: 94%; /* match your form field width */
+  width: 94%;
+  /* match your form field width */
   margin: 0 auto;
   display: block;
 }

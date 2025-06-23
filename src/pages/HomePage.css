@@ -235,15 +235,18 @@ p:hover {
 /* FORCE LIGHT BACKGROUND EVEN IN DARK MODE */
 @media (prefers-color-scheme: dark) {
   .homepage-section {
-    background-color: #ffffff !important; /* Force white background */
+    background-color: #ffffff !important;
+    /* Force white background */
   }
 
   .homepage-left h1 {
-    color: #0f172a; /* Dark text */
+    color: #0f172a;
+    /* Dark text */
   }
 
   .homepage-left p {
-    color: #334155; /* Medium-dark text */
+    color: #334155;
+    /* Medium-dark text */
   }
 
   .name-cards div {
@@ -264,5 +267,5 @@ p:hover {
     background-color: #2563eb;
     color: white;
   }
-  
+
 }

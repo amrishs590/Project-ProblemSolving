@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './LoginPage.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./LoginPage.css";
 import { supabase } from "../supabaseClient";
-import { Eye, EyeOff } from 'lucide-react'; // eye icon (you can also use FontAwesome if preferred)
+import { Eye, EyeOff } from "lucide-react"; // eye icon (you can also use FontAwesome if preferred)
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +35,7 @@ const LoginPage = () => {
     if (error) {
       alert(error.message);
     } else {
-      window.location.href = '/';
+      window.location.href = "/";
     }
   };
 
@@ -69,7 +69,9 @@ const LoginPage = () => {
               {showPassword ? <EyeOff /> : <Eye />}
             </span>
           </div>
-          <button type="submit" className="btn-primary">Login</button>
+          <button type="submit" className="btn-primary">
+            Login
+          </button>
         </form>
         <p>
           Don't have an account? <Link to="/signup">Sign up</Link>

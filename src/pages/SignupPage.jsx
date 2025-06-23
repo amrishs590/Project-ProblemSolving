@@ -99,9 +99,7 @@ const SignupPage = () => {
                 required
               />
               <span
-                onClick={() =>
-                  setShowConfirmPassword(!showConfirmPassword)
-                }
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="eye-icon"
               >
                 {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
