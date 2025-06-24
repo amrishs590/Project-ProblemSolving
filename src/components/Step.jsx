@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Step.css";
 import steps from "../data/questions";
+import { supabase } from "../supabaseClient";
 
 const Steps = () => {
   const [openStepIndex, setOpenStepIndex] = useState(null);
+  const [progress, setProgress] = useState([]);
   const location = useLocation();
 
-  // ⬇️ Load openStepIndex from localStorage on mount
+  // Load openStepIndex from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("openStepIndex");
     if (saved !== null && saved !== "") {
@@ -18,11 +20,36 @@ const Steps = () => {
     }
   }, []);
 
+  // Scroll restore
   useEffect(() => {
     const scrollPos = localStorage.getItem("learnScrollPos");
     if (scrollPos) {
-      window.scrollTo({ Top: 0, behavior: "smooth" });
+      window.scrollTo({ top: parseInt(scrollPos), behavior: "smooth" });
     }
+  }, []);
+
+  // ✅ Fetch progress from Supabase
+  useEffect(() => {
+    const fetchProgress = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) return;
+
+      const { data, error } = await supabase
+        .from("progress")
+        .select("question_id")
+        .eq("user_id", user.id);
+
+      if (error) {
+        console.error("Failed to fetch progress:", error.message);
+      } else {
+        setProgress(data.map((item) => item.question_id));
+      }
+    };
+
+    fetchProgress();
   }, []);
 
   const toggleStep = (index) => {
@@ -32,31 +59,25 @@ const Steps = () => {
   };
 
   const getStepProgress = (step) => {
-    const completed = JSON.parse(
-      localStorage.getItem("completedQuestions") || "[]"
-    );
     let total = 0;
     let done = 0;
 
     for (let section of Object.values(step.sections)) {
       total += section.length;
-      done += section.filter((q) => completed.includes(q.id)).length;
+      done += section.filter((q) => progress.includes(q.id)).length;
     }
 
     return { total, done };
   };
 
   const getGlobalProgress = () => {
-    const completed = JSON.parse(
-      localStorage.getItem("completedQuestions") || "[]"
-    );
     let total = 0;
     let done = 0;
 
     for (let step of steps) {
       for (let section of Object.values(step.sections)) {
         total += section.length;
-        done += section.filter((q) => completed.includes(q.id)).length;
+        done += section.filter((q) => progress.includes(q.id)).length;
       }
     }
 
@@ -64,21 +85,17 @@ const Steps = () => {
   };
 
   const getLectureProgress = (questions) => {
-    const completed = JSON.parse(
-      localStorage.getItem("completedQuestions") || "[]"
-    );
     const total = questions.length;
-    const done = questions.filter((q) => completed.includes(q.id)).length;
+    const done = questions.filter((q) => progress.includes(q.id)).length;
     return { total, done };
   };
 
   return (
     <div className="step-container">
-      <h1
-        style={{ textAlign: "center", marginBottom: "20px", marginTop: "50px" }}
-      >
+      <h1 style={{ textAlign: "center", marginBottom: "20px", marginTop: "50px" }}>
         Problem Solving Steps
       </h1>
+
       <div className="global-progress-wrapper">
         <div className="global-progress-bar">
           <div
@@ -91,22 +108,17 @@ const Steps = () => {
           ></div>
         </div>
         <span className="global-progress-label">
-          {getGlobalProgress().done}/{getGlobalProgress().total} completed
-          overall
+          {getGlobalProgress().done}/{getGlobalProgress().total} completed overall
         </span>
       </div>
 
       <div className="step-grid">
         {steps.map((step, index) => (
-          <div
-            key={index}
-            className={`step ${openStepIndex === index ? "open" : ""}`}
-          >
+          <div key={index} className={`step ${openStepIndex === index ? "open" : ""}`}>
             <div className="step-header" onClick={() => toggleStep(index)}>
               <h2>{step.stepTitle}</h2>
               <span className="step-count">
-                {getStepProgress(step).done}/{getStepProgress(step).total}{" "}
-                completed
+                {getStepProgress(step).done}/{getStepProgress(step).total} completed
               </span>
             </div>
 
@@ -115,22 +127,16 @@ const Steps = () => {
                 className="step-progress-fill"
                 style={{
                   width: `${Math.round(
-                    (getStepProgress(step).done / getStepProgress(step).total) *
-                      100
+                    (getStepProgress(step).done / getStepProgress(step).total) * 100
                   )}%`,
                 }}
               ></div>
               <span className="step-progress-label">
-                {getStepProgress(step).done}/{getStepProgress(step).total}{" "}
-                completed
+                {getStepProgress(step).done}/{getStepProgress(step).total} completed
               </span>
             </div>
 
-            <div
-              className={`step-content ${
-                openStepIndex === index ? "open" : ""
-              }`}
-            >
+            <div className={`step-content ${openStepIndex === index ? "open" : ""}`}>
               {openStepIndex === index && (
                 <div className="step-body">
                   {Object.entries(step.sections).map(
@@ -157,30 +163,18 @@ const Steps = () => {
 
                           <ul>
                             {questions.map((q) => {
-                              const completed = JSON.parse(
-                                localStorage.getItem("completedQuestions") ||
-                                  "[]"
-                              );
-                              const isCompleted = completed.includes(q.id);
+                              const isCompleted = progress.includes(q.id);
 
                               return (
                                 <li
                                   key={q.id}
-                                  className={
-                                    isCompleted ? "completed-question" : ""
-                                  }
+                                  className={isCompleted ? "completed-question" : ""}
                                 >
                                   <Link
                                     to={`/question/${q.id}`}
                                     onClick={() => {
-                                      localStorage.setItem(
-                                        "selectedQuestionId",
-                                        q.id
-                                      );
-                                      localStorage.setItem(
-                                        "learnScrollPos",
-                                        window.scrollY
-                                      );
+                                      localStorage.setItem("selectedQuestionId", q.id);
+                                      localStorage.setItem("learnScrollPos", window.scrollY);
                                     }}
                                   >
                                     {q.title}

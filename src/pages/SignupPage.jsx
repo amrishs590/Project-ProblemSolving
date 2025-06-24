@@ -22,33 +22,54 @@ const SignupPage = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (formData.password !== formData["confirm-password"]) {
-      alert("Passwords don't match!");
-      return;
-    }
+  if (formData.password !== formData["confirm-password"]) {
+    alert("Passwords don't match!");
+    return;
+  }
 
-    const { data, error } = await supabase.auth.signUp({
-      email: formData.email,
-      password: formData.password,
-      options: {
-        emailRedirectTo: "https://dsapathway.vercel.app/login", // ✅ Update this
-      },
-    });
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.email,
+    password: formData.password,
+  });
 
-    if (error) {
-      if (error.message.toLowerCase().includes("user already registered")) {
-        alert("This email is already registered. Please login instead.");
-      } else {
-        alert(error.message);
-      }
+  if (error) {
+    if (error.message.toLowerCase().includes("user already registered")) {
+      alert("This email is already registered. Please login instead.");
     } else {
-      alert("Signup successful! Check your email to confirm.");
-      window.location.href = "/login";
+      alert(error.message);
     }
-  };
+    return;
+  }
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError) {
+    alert("Could not retrieve user data.");
+    return;
+  }
+
+  // Insert into profiles table
+  const { error: insertError } = await supabase.from("profiles").insert({
+    id: user.id,
+    email: user.email,
+    // Add other fields like full_name or created_at if needed
+  });
+
+  if (insertError) {
+    alert("Error saving profile: " + insertError.message);
+    return;
+  }
+
+  alert("Signup successful!");
+  window.location.href = "/login";
+};
+
 
   return (
     <div className="signup-page">
