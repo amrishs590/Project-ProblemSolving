@@ -38,7 +38,7 @@ const CodeEditor = ({ expectedOutput = "" }) => {
       <h3>Try it Yourself</h3>
 
       <Editor
-        height="300px"
+        height="350px"
         language="python"
         value={code}
         onChange={(value) => setCode(value)}
@@ -61,13 +61,6 @@ const CodeEditor = ({ expectedOutput = "" }) => {
       <div className="output-section">
         <h4>Your Output:</h4>
         <pre>{output}</pre>
-
-        {expectedOutput && (
-          <>
-            <h4>Expected Output:</h4>
-            <pre>{expectedOutput}</pre>
-          </>
-        )}
       </div>
     </div>
   );

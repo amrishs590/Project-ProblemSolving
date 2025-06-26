@@ -22,54 +22,49 @@ const SignupPage = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (formData.password !== formData["confirm-password"]) {
-    alert("Passwords don't match!");
-    return;
-  }
-
-  const { data, error } = await supabase.auth.signUp({
-    email: formData.email,
-    password: formData.password,
-  });
-
-  if (error) {
-    if (error.message.toLowerCase().includes("user already registered")) {
-      alert("This email is already registered. Please login instead.");
-    } else {
-      alert(error.message);
+    if (formData.password !== formData["confirm-password"]) {
+      alert("Passwords don't match!");
+      return;
     }
-    return;
-  }
 
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
+    const { data, error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+    });
 
-  if (userError) {
-    alert("Could not retrieve user data.");
-    return;
-  }
+    if (error) {
+      if (error.message.toLowerCase().includes("user already registered")) {
+        alert("This email is already registered. Please login instead.");
+      } else {
+        alert(error.message);
+      }
+      return;
+    }
 
-  // Insert into profiles table
-  const { error: insertError } = await supabase.from("profiles").insert({
-    id: user.id,
-    email: user.email,
-    // Add other fields like full_name or created_at if needed
-  });
+    const user = data.user;
 
-  if (insertError) {
-    alert("Error saving profile: " + insertError.message);
-    return;
-  }
+    if (!user) {
+      alert("User created. Please verify your email and log in.");
+      return;
+    }
 
-  alert("Signup successful!");
-  window.location.href = "/login";
-};
+    const { error: insertError } = await supabase.from("profiles").insert({
+      id: user.id,
+      email: user.email,
+    });
 
+    if (insertError) {
+      console.error("Profile insert error:", insertError);
+      alert("Error saving profile: " + insertError.message);
+      return;
+    }
+
+    alert("Signup successful!");
+    window.location.href = "/login";
+  };
 
   return (
     <div className="signup-page">
