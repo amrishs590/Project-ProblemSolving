@@ -63,7 +63,6 @@ const SignupPage = () => {
       alert("Error saving profile: " + insertError.message);
       return;
     }
-    alert("Signup successful!");
     navigate("/");
   };
 
