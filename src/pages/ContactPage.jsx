@@ -9,6 +9,9 @@ const ContactPage = () => {
   useEffect(() => {
     localStorage.removeItem("openStepIndex");
   }, []);
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
 
   const [submitted, setSubmitted] = useState(false);
   const form = useRef();

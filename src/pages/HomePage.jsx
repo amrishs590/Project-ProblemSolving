@@ -7,7 +7,9 @@ const HomePage = () => {
   useEffect(() => {
     localStorage.removeItem("openStepIndex");
   }, []);
-  
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
   return (
     <>
       <div className="homepage-entire-section">
