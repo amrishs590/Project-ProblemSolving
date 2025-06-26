@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -61,9 +63,8 @@ const SignupPage = () => {
       alert("Error saving profile: " + insertError.message);
       return;
     }
-
     alert("Signup successful!");
-    window.location.href = "/";
+    navigate("/");
   };
 
   return (
