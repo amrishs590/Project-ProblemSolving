@@ -3592,6 +3592,19 @@ def merge_bsts(root1, root2):
       ],
     },
   },
+  {
+    stepTitle: "Step 10: DP",
+    sections: { 
+      "Lec 1 : Introduction to DP": [],
+      "Lec 2 : DP on Subsequences": [],
+      "Lec 3 : DP on Grids": [],
+      "Lec 4 : DP on Trees": [],
+      "Lec 5 : DP on Stocks": [],
+      "Lec 6 : DP on Fibonacci Numbers": [],
+      "Lec 7 : DP on Counting": [],
+      "Lec 8 : DP on Partitions": [],
+    },
+  },
 ];
 
 export default steps;

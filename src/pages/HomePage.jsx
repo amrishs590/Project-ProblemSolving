@@ -7,6 +7,7 @@ const HomePage = () => {
   useEffect(() => {
     localStorage.removeItem("openStepIndex");
   }, []);
+  
   return (
     <>
       <div className="homepage-entire-section">
@@ -48,8 +49,6 @@ const HomePage = () => {
                     const roadmap = document.getElementById("roadmap-section");
                     if (roadmap) {
                       roadmap.scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      console.warn("Roadmap section not found!");
                     }
                   }}
                 >

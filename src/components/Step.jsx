@@ -7,6 +7,7 @@ import { supabase } from "../supabaseClient";
 const Steps = () => {
   const [openStepIndex, setOpenStepIndex] = useState(null);
   const [progress, setProgress] = useState([]);
+  const [restoreScroll, setRestoreScroll] = useState(false);
   const location = useLocation();
 
   // Load openStepIndex from localStorage
@@ -20,15 +21,46 @@ const Steps = () => {
     }
   }, []);
 
-  // Scroll restore
+  // Detect where user came from
   useEffect(() => {
+    const from = location.state?.from;
     const scrollPos = localStorage.getItem("learnScrollPos");
-    if (scrollPos) {
-      window.scrollTo({ top: parseInt(scrollPos), behavior: "smooth" });
-    }
-  }, []);
 
-  // ✅ Fetch progress from Supabase
+    if (from === "question" && scrollPos) {
+      setRestoreScroll(true);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location]);
+
+  // Restore scroll position after coming back from Question page
+  useEffect(() => {
+    if (!restoreScroll) return;
+
+    const scrollY = parseInt(localStorage.getItem("learnScrollPos")) || 0;
+
+    const interval = setInterval(() => {
+      const body = document.querySelector(".step-body");
+      if (body) {
+        window.scrollTo({ top: scrollY, behavior: "smooth" });
+        clearInterval(interval);
+      }
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [restoreScroll]);
+
+  // Scroll to step title when a new step is opened
+  useEffect(() => {
+    if (openStepIndex === null) return;
+
+    const stepEl = document.getElementById(`step-${openStepIndex}`);
+    if (stepEl) {
+      stepEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [openStepIndex]);
+
+  // Fetch progress from Supabase
   useEffect(() => {
     const fetchProgress = async () => {
       const {
@@ -114,7 +146,11 @@ const Steps = () => {
 
       <div className="step-grid">
         {steps.map((step, index) => (
-          <div key={index} className={`step ${openStepIndex === index ? "open" : ""}`}>
+          <div
+            key={index}
+            id={`step-${index}`} // ✅ For scrolling to title
+            className={`step ${openStepIndex === index ? "open" : ""}`}
+          >
             <div className="step-header" onClick={() => toggleStep(index)}>
               <h2>{step.stepTitle}</h2>
               <span className="step-count">
@@ -174,7 +210,10 @@ const Steps = () => {
                                     to={`/question/${q.id}`}
                                     onClick={() => {
                                       localStorage.setItem("selectedQuestionId", q.id);
-                                      localStorage.setItem("learnScrollPos", window.scrollY);
+                                      localStorage.setItem(
+                                        "learnScrollPos",
+                                        window.scrollY
+                                      );
                                     }}
                                   >
                                     {q.title}

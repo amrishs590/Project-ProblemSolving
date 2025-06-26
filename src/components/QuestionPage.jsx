@@ -101,7 +101,7 @@ const QuestionPage = () => {
   return (
     <div className="question-wrapper">
       <div className="question-container">
-        <button className="back-button" onClick={() => navigate("/learn")}>
+        <button className="back-button" onClick={() => navigate("/learn", { state: { from: "question" } })}>
           Back
         </button>
 
