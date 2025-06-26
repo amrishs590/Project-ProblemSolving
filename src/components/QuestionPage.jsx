@@ -4,6 +4,7 @@ import steps from "../data/questions";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { supabase } from "../supabaseClient";
+import CodeEditor from "./CodeEditor";
 import "./QuestionPage.css";
 
 const QuestionPage = () => {
@@ -121,6 +122,7 @@ const QuestionPage = () => {
         </label>
 
         <div className="question-solution">
+          <CodeEditor/>
           <h2>Solution</h2>
           <SyntaxHighlighter language="python" style={oneDark} showLineNumbers>
             {question.solution}
