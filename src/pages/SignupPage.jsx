@@ -63,7 +63,7 @@ const SignupPage = () => {
     }
 
     alert("Signup successful!");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   return (
