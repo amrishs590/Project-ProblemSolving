@@ -41,29 +41,43 @@ const QuestionPage = () => {
   }, [id]);
 
   const handleCheckboxChange = async () => {
-    if (!userId) return;
+  if (!userId) return;
 
-    if (isCompleted) {
-      // ❌ Unmark as completed
-      const { error } = await supabase
-        .from("progress")
-        .delete()
-        .eq("user_id", userId)
-        .eq("question_id", id);
+  if (isCompleted) {
+    console.log("Trying to delete row with:", {
+  user_id: userId,
+  question_id: id,
+});
 
-      if (!error) setIsCompleted(false);
+    const { error } = await supabase
+      .from("progress")
+      .delete()
+      .eq("user_id", userId)
+      .eq("question_id", id);
+
+    if (error) {
+      console.error("Delete failed:", error);
     } else {
-      // ✅ Mark as completed
-      const { error } = await supabase.from("progress").insert([
-        {
-          user_id: userId,
-          question_id: id,
-        },
-      ]);
-
-      if (!error) setIsCompleted(true);
+      console.log("Delete successful");
+      setIsCompleted(false);
     }
-  };
+  } else {
+    const { error } = await supabase.from("progress").insert([
+      {
+        user_id: userId,
+        question_id: id,
+      },
+    ]);
+
+    if (error) {
+      console.error("Insert failed:", error);
+    } else {
+      console.log("Insert successful");
+      setIsCompleted(true);
+    }
+  }
+};
+
 
   if (!currentStep) {
     return <div className="p-4 text-red-500">Step not found!</div>;
@@ -102,7 +116,10 @@ const QuestionPage = () => {
   return (
     <div className="question-wrapper">
       <div className="question-container">
-        <button className="back-button" onClick={() => navigate("/learn", { state: { from: "question" } })}>
+        <button
+          className="back-button"
+          onClick={() => navigate("/learn", { state: { from: "question" } })}
+        >
           Back
         </button>
 
@@ -122,7 +139,7 @@ const QuestionPage = () => {
         </label>
 
         <div className="question-solution">
-          <CodeEditor/>
+          <CodeEditor />
           <h2>Solution</h2>
           <SyntaxHighlighter language="python" style={oneDark} showLineNumbers>
             {question.solution}
