@@ -41,7 +41,15 @@ const steps = [
           content:
             "Given an array and a number D, left rotate the array by D places.\n\nExample 1:\n- Input: [1, 2, 3, 4, 5], D = 2\n- Output: [3, 4, 5, 1, 2]\n\nExample 2:\n- Input: [1, 2, 3], D = 3\n- Output: [1, 2, 3]",
           solution:
-            "def rotate(nums: List[int], k: int) -> None:\n    n = len(nums)\n    k = k % n\n    ans = [0] * n\n    for i in range(n):\n        ans[(i + k) % n] = nums[i]\n    for i in range(n):\n        nums[i] = ans[i]",
+            `def rotateArr(self, arr, d):
+  n = len(arr)
+  d = d%n
+  ans = [0] * n
+  for i in range(n):
+      ans[i] = arr[(i+d)%n]
+  for i in range(n):
+      arr[i] = ans[i]
+            `,
         },
         {
           id: "move-zeros-to-end",

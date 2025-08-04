@@ -18,8 +18,7 @@ const ProtectedRoute = ({ children }) => {
     checkSession();
   }, []);
 
-  if (loading) return null; // Optional: loader
-
+  if (loading) return null; 
   return authenticated ? children : <Navigate to="/login" />;
 };
 
