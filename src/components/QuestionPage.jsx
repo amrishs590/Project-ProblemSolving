@@ -139,7 +139,7 @@ const QuestionPage = () => {
         </label>
 
         <div className="question-solution">
-          {/* <CodeEditor /> */}
+          <CodeEditor />
           <h2>Solution</h2>
           <SyntaxHighlighter language="python" style={oneDark} showLineNumbers>
             {question.solution}

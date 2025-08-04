@@ -140,7 +140,7 @@ const Steps = () => {
           ></div>
         </div>
         <span className="global-progress-label">
-          {getGlobalProgress().done}/{getGlobalb().total} completed overall
+          {getGlobalProgress().done}/{getGlobalProgress().total} completed overall
         </span>
       </div>
 
