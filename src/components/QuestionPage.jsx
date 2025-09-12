@@ -41,43 +41,42 @@ const QuestionPage = () => {
   }, [id]);
 
   const handleCheckboxChange = async () => {
-  if (!userId) return;
+    if (!userId) return;
 
-  if (isCompleted) {
-    console.log("Trying to delete row with:", {
-  user_id: userId,
-  question_id: id,
-});
-
-    const { error } = await supabase
-      .from("progress")
-      .delete()
-      .eq("user_id", userId)
-      .eq("question_id", id);
-
-    if (error) {
-      console.error("Delete failed:", error);
-    } else {
-      console.log("Delete successful");
-      setIsCompleted(false);
-    }
-  } else {
-    const { error } = await supabase.from("progress").insert([
-      {
+    if (isCompleted) {
+      console.log("Trying to delete row with:", {
         user_id: userId,
         question_id: id,
-      },
-    ]);
+      });
 
-    if (error) {
-      console.error("Insert failed:", error);
+      const { error } = await supabase
+        .from("progress")
+        .delete()
+        .eq("user_id", userId)
+        .eq("question_id", id);
+
+      if (error) {
+        console.error("Delete failed:", error);
+      } else {
+        console.log("Delete successful");
+        setIsCompleted(false);
+      }
     } else {
-      console.log("Insert successful");
-      setIsCompleted(true);
-    }
-  }
-};
+      const { error } = await supabase.from("progress").insert([
+        {
+          user_id: userId,
+          question_id: id,
+        },
+      ]);
 
+      if (error) {
+        console.error("Insert failed:", error);
+      } else {
+        console.log("Insert successful");
+        setIsCompleted(true);
+      }
+    }
+  };
 
   if (!currentStep) {
     return <div className="p-4 text-red-500">Step not found!</div>;
@@ -139,7 +138,7 @@ const QuestionPage = () => {
         </label>
 
         <div className="question-solution">
-          {/* <CodeEditor /> */}
+          <CodeEditor />
           <h2>Solution</h2>
           <SyntaxHighlighter language="python" style={oneDark} showLineNumbers>
             {question.solution}
