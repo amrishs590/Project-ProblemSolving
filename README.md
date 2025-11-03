@@ -45,8 +45,8 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 
 ### 1. Clone the repository
 
--git clone https://github.com/amrishs590/DSAPathway.git
--cd DSAPathway
+- git clone https://github.com/amrishs590/DSAPathway.git
+- cd DSAPathway
 
 **2. Install dependencies**
 
@@ -54,9 +54,9 @@ npm install
 
 **3. Configure Supabase credentials**
 
--Create a .env.local file in the root directory and add:
--VITE_SUPABASE_URL=your_supabase_url
--VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+- Create a .env.local file in the root directory and add:
+- VITE_SUPABASE_URL=your_supabase_url
+- ITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 **4. Start the development server**
 
@@ -64,11 +64,11 @@ npm run dev
 **
 🛡️ Security**
 
--🔐 Protected Routes – Only authenticated users can access learning content
--🧱 Supabase Auth ensures secure login and signup
--💾 LocalStorage Protection for theme and session state
--✅ Follows best practices for safe client-side state handling
--🧠 Learning Path Structure
+- 🔐 Protected Routes – Only authenticated users can access learning content
+- 🧱 Supabase Auth ensures secure login and signup
+- 💾 LocalStorage Protection for theme and session state
+- ✅ Follows best practices for safe client-side state handling
+- 🧠 Learning Path Structure
 
 **Each Step represents a major DSA topic with categorized lectures:**
 
