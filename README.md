@@ -39,7 +39,7 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 
 ---
 
----
+
 
 ## ⚙️ Setup and Installation
 
@@ -62,6 +62,8 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 
      npm run dev
 
+---
+
 **🛡️ Security**
 
 - 🔐 Protected Routes – Only authenticated users can access learning content
@@ -69,6 +71,8 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 - 💾 LocalStorage Protection for theme and session state
 - ✅ Follows best practices for safe client-side state handling
 - 🧠 Learning Path Structure
+
+---
 
 **Each Step represents a major DSA topic with categorized lectures:**
 
