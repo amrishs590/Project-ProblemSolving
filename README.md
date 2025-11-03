@@ -50,7 +50,7 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 
 **2. Install dependencies**
 
-npm install
+     npm install
 
 **3. Configure Supabase credentials**
 
@@ -60,9 +60,9 @@ npm install
 
 **4. Start the development server**
 
-npm run dev
-**
-🛡️ Security**
+     npm run dev
+
+**🛡️ Security**
 
 - 🔐 Protected Routes – Only authenticated users can access learning content
 - 🧱 Supabase Auth ensures secure login and signup
