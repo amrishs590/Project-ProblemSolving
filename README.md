@@ -33,7 +33,7 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 | **Frontend** | React.js, Tailwind CSS |
 | **Authentication** | Supabase Auth |
 | **Code Editor** | Monaco Editor |
-| **Storage** | LocalStorage (for theme & last question) |
+| **Storage** | LocalStorage (last question) |
 | **Icons & UI** | Lucide-react |
 | **Deployment** | Vercel |
 
