@@ -77,14 +77,14 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 **Each Step represents a major DSA topic with categorized lectures:**
 
 **Step	Topic	Categories**
-- Step 1	Arrays	Easy, Medium, Hard
-- Step 2	Binary Search	Easy, Medium, Hard
-- Step 3	Linked List	Easy, Medium, Hard
-- Step 4	Sliding Window  Medium, Hard
-- Step 5	Greedy Medium, Hard
-- Step 6  Stack & Queue Easy, Medium, Hard
-- Step 7  Heap Easy, Medium, Hard
-- Step 8  Binary Tree Easy, Medium, Hard
-- Step 9  Binary Search Tree Medium
-- Step 10 Dynamic Programming (upcoming)
+- **Step 1	Arrays**	Easy, Medium, Hard
+- **Step 2	Binary Search**	Easy, Medium, Hard
+- **Step 3	Linked List**	Easy, Medium, Hard
+- **Step 4	Sliding Window**  Medium, Hard
+- **Step 5	Greedy** Medium, Hard
+- **Step 6  Stack & Queue** Easy, Medium, Hard
+- **Step 7  Heap Easy**, Medium, Hard
+- **Step 8  Binary Tree** Easy, Medium, Hard
+- **Step 9  Binary Search Tree** Medium
+- **Step 10 Dynamic Programming** (upcoming)
 
