@@ -8,7 +8,7 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 ## 🚀 Features
 
 - 🧩 **Structured Learning Path**
-- 
+  
   - Stepwise progression through DSA topics (Arrays, Binary Search, Linked List, etc.)
 
 - 📚 **Categorized Problem Sets**
