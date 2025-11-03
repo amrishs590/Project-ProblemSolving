@@ -8,20 +8,35 @@ It organizes learning into clear, structured steps — from Arrays to Linked Lis
 ## 🚀 Features
 
 - 🧩 **Structured Learning Path**
+- 
   - Stepwise progression through DSA topics (Arrays, Binary Search, Linked List, etc.)
+
 - 📚 **Categorized Problem Sets**
+  
   - Each topic has Easy, Medium, and Hard level problems
+    
 - 🧠 **Detailed Problem Pages**
+  
   - Each problem includes question description, sample inputs/outputs, and solutions
+    
 - 📝 **Integrated Code Editor**
+  
   - Built-in **Monaco Editor** with Python support for writing and testing code
+    
 - 💾 **Local Storage Persistence**
-  - Saves last selected question 
+  
+  - Saves last selected question
+    
 - 🧭 **Smooth Navigation**
+  
   - “Next Question” feature for sequential practice
+    
 - 🎨 **Modern UI & Animations**
+  
   - Collapsible sections, smooth scroll, active link highlighting, and mobile responsiveness
+    
 - 🔒 **User Authentication (via Supabase)**
+  
   - Signup/Login protection for personalized user progress tracking
 
 ---
